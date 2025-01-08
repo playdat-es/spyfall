@@ -19,10 +19,6 @@ function HomePage() {
   const [filled, setFilled] = useState(false)
   const [open, setOpen] = useState(false)
 
-  const handleLobbyCode = () => {
-    console.log("hello")
-  }
-
   return (
     <Box>
       <img style={{height: '8em'}} src={spyfallLogo} className="logo" alt="Spyfall logo" />
@@ -56,7 +52,6 @@ function HomePage() {
             placeholder="Lobby Code"
             autoComplete="off"
             fullWidth
-            onChange={handleLobbyCode}
           />
         </Box>
       </Modal>
