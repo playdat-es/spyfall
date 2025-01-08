@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Box, Button, Modal, Stack, TextField, Typography } from "@mui/material"
 import spyfallLogo from '../assets/react.svg'
 
-const style = {
+const lobbyCodeModalStyle = {
   position: 'absolute',
   top: '50%',
   left: '50%',
@@ -16,8 +16,8 @@ const style = {
 };
 
 function HomePage() {
-  const [filled, setFilled] = useState(false)
-  const [open, setOpen] = useState(false)
+  const [hasName, setHasName] = useState(false)
+  const [showModal, setShowModal] = useState(false)
 
   return (
     <Box>
@@ -33,18 +33,18 @@ function HomePage() {
           placeholder="Player Name"
           autoComplete="off"
           fullWidth 
-          onChange={(text) => setFilled(Boolean(text.target.value))}
+          onChange={(text) => setHasName(Boolean(text.target.value))}
         />
       </Box>
       <Stack spacing={1}>
-        <Button variant="contained" disabled={!filled}>Create Lobby</Button>
-        <Button variant="contained" disabled={!filled} onClick={() => setOpen(true)}>Join Lobby</Button>
+        <Button variant="contained" disabled={!hasName}>Create Lobby</Button>
+        <Button variant="contained" disabled={!hasName} onClick={() => setShowModal(true)}>Join Lobby</Button>
       </Stack>
       <Modal
-        open={open}
-        onClose={() => setOpen(false)}
+        open={showModal}
+        onClose={() => setShowModal(false)}
       >
-        <Box sx={style}>
+        <Box sx={lobbyCodeModalStyle}>
           <Typography variant="h4" gutterBottom>
             Enter Lobby Code
           </Typography>
