@@ -7,11 +7,12 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 400,
+  width: 300,
   bgcolor: 'background.paper',
   color: 'black',
   borderRadius: '10px',
   p: 4,
+  textAlign: 'center',
 };
 
 function HomePage() {
@@ -25,7 +26,7 @@ function HomePage() {
   return (
     <Box>
       <img style={{height: '8em'}} src={spyfallLogo} className="logo" alt="Spyfall logo" />
-      <Typography variant="h3" sx={{ my: 4 }}>
+      <Typography variant="h4" sx={{ my: 4 }}>
         Spyfall
       </Typography>
       <Box sx={{ mb: 2 }}>
@@ -48,7 +49,7 @@ function HomePage() {
         onClose={() => setOpen(false)}
       >
         <Box sx={style}>
-          <Typography variant="h3" gutterBottom>
+          <Typography variant="h4" gutterBottom>
             Enter Lobby Code
           </Typography>
           <TextField
