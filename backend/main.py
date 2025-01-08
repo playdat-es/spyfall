@@ -12,7 +12,7 @@ import os
 
 import sys
 
-config = dotenv_values(".env")
+config = dotenv_values("vars/.env")
 
 app = FastAPI()
 
