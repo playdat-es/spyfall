@@ -20,3 +20,5 @@ Install dependencies:
 `pipenv install` or `pipenv install --dev`
 
 If virtual env is active: `pipenv sync` or `pipenv sync --dev`
+
+Add `vars/.env` folder along with the env variables `URI` and `DB_NAME`
