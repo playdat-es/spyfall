@@ -16,7 +16,7 @@ const lobbyCodeModalStyle = {
 };
 
 function HomePage() {
-  const [hasName, setHasName] = useState(false)
+  const [name, setName] = useState('')
   const [showModal, setShowModal] = useState(false)
 
   return (
@@ -32,13 +32,13 @@ function HomePage() {
         <TextField
           placeholder="Player Name"
           autoComplete="off"
-          fullWidth 
-          onChange={(text) => setHasName(Boolean(text.target.value))}
+          fullWidth
+          onChange={(text) => setName(text.target.value)}
         />
       </Box>
       <Stack spacing={1}>
-        <Button variant="contained" disabled={!hasName}>Create Lobby</Button>
-        <Button variant="contained" disabled={!hasName} onClick={() => setShowModal(true)}>Join Lobby</Button>
+        <Button variant="contained" disabled={!name}>Create Lobby</Button>
+        <Button variant="contained" disabled={!name} onClick={() => setShowModal(true)}>Join Lobby</Button>
       </Stack>
       <Modal
         open={showModal}
