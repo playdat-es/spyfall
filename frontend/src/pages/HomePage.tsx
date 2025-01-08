@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Box, Button, colors, Modal, Stack, TextField, Typography } from "@mui/material"
+import { Box, Button, Modal, Stack, TextField, Typography } from "@mui/material"
+import spyfallLogo from '../assets/react.svg'
 
 const style = {
   position: 'absolute',
@@ -9,8 +10,7 @@ const style = {
   width: 400,
   bgcolor: 'background.paper',
   color: 'black',
-  border: '2px solid #000',
-  boxShadow: 24,
+  borderRadius: '10px',
   p: 4,
 };
 
@@ -24,8 +24,8 @@ function HomePage() {
 
   return (
     <Box>
-      <div>IMAGE</div>
-      <Typography variant="h3" gutterBottom>
+      <img style={{height: '8em'}} src={spyfallLogo} className="logo" alt="Spyfall logo" />
+      <Typography variant="h3" sx={{ my: 4 }}>
         Spyfall
       </Typography>
       <Box sx={{ mb: 2 }}>
