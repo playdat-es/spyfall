@@ -10,7 +10,7 @@ function HomePage() {
       <Typography variant="h3" gutterBottom>
         Spyfall
       </Typography>
-      <Box>
+      <Box sx={{ mb: 2 }}>
         <div>Enter Your Name</div>
         <TextField
           placeholder="Player Name"
