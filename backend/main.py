@@ -8,6 +8,10 @@ from dotenv import dotenv_values
 
 from contextlib import asynccontextmanager
 
+import os
+
+import sys
+
 config = dotenv_values(".env")
 
 app = FastAPI()
@@ -22,8 +26,16 @@ def read_item(item_id: int, q: Union[str, None] = None):
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    app.mongodb_client = MongoClient(config["URI"])
-    app.database = app.mongodb_client[config["DB_NAME"]]
+    if sys.prefix != sys.base_prefix:
+        uri = config["URI"]
+        database = config["DB_NAME"]
+        print("Inside a virtual environment")
+    else:
+        os.environ["URI"]
+        os.environ["DB_NAME"]
+        print("Not in a virtual environment")
+    app.mongodb_client = MongoClient(uri)
+    app.database = app.mongodb_client[database]
     print("Connected to the MongoDB database!")
     yield
     print("Database shutdown")
