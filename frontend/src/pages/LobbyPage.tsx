@@ -4,6 +4,7 @@ import PlayerListItem from "../molecules/PlayerListItem"
 
 function LobbyPage() {
     // Fetch players in lobby here
+    // DUMMY DATA
     const leader = 'Someone'
     const players = ['Noby', 'Stephen', 'James', 'Amy']
   
@@ -25,7 +26,8 @@ function LobbyPage() {
         </Stack>
         <Divider />
         <List>
-
+            <PlayerListItem playerName={leader} isLeader={true} canEdit={true} />
+            {players.map((player) => <PlayerListItem playerName={player} isLeader={true} canEdit={false} />)}
         </List>
       </Box>
     )
