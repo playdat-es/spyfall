@@ -1,4 +1,4 @@
-import { Box, Divider, IconButton, List, Stack, Typography } from "@mui/material"
+import { Box, IconButton, List, ListItem, ListItemIcon, ListItemText } from "@mui/material"
 import { ArrowBackIosNew, ContactMail } from "@mui/icons-material"
 import PlayerListItem from "../molecules/PlayerListItem"
 
@@ -10,22 +10,16 @@ function LobbyPage() {
   
     return (
       <Box>
-        <Stack direction='row' spacing={1}
-            sx={{
-                justifyContent: "center",
-                alignItems: "center",
-            }}
-        >
-            <IconButton>
-                <ArrowBackIosNew />
-            </IconButton>
-            <ContactMail />
-            <Typography>
-                Lobby Code
-            </Typography>
-        </Stack>
-        <Divider />
         <List>
+            <ListItem divider >
+                <IconButton edge="start" aria-label="back">
+                    <ArrowBackIosNew />
+                </IconButton>
+                <ListItemIcon>
+                    <ContactMail />
+                </ListItemIcon>
+                <ListItemText primary="Lobby Number" />
+            </ListItem>
             <PlayerListItem playerName={leader} isLeader={true} canEdit={true} />
             {players.map((player) => <PlayerListItem playerName={player} isLeader={true} canEdit={false} />)}
         </List>
