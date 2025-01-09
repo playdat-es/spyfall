@@ -26,7 +26,7 @@ function HomePage() {
         Spyfall
       </Typography>
       <Box sx={{ mb: 2 }}>
-        <Typography variant="body1" gutterBottom>
+        <Typography variant="body1" component="label" gutterBottom>
           Enter Your Name
         </Typography>
         <TextField
@@ -45,7 +45,7 @@ function HomePage() {
         onClose={() => setOpen(false)}
       >
         <Box sx={style}>
-          <Typography variant="h4" gutterBottom>
+          <Typography variant="h4" component="label" gutterBottom>
             Enter Lobby Code
           </Typography>
           <TextField
