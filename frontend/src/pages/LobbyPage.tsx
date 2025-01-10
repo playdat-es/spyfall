@@ -16,15 +16,17 @@ const user4 = {
   name: 'Amy'
 }
 const lobbyData = {
-  creator: user2,
+  creator: user1,
   users: [user1, user2, user3, user4],
 }
 
 function LobbyPage() {
     // Fetch players in lobby here
     const {creator, users} = lobbyData
+    // Get user (DEBUG VALUE FOR NOW)
+    const user = user1
     // Determine if user is creator (DEBUG VALUE FOR NOW)
-    const isUserCreator = true
+    const isUserCreator = user == creator
     
     return (
       <Box>
@@ -38,8 +40,8 @@ function LobbyPage() {
                 </ListItemIcon>
                 <ListItemText primary="Lobby Number" />
             </ListItem>
-            <PlayerListItem playerName={creator.name} isCreator={isUserCreator} canEdit={true} canKick={false} />
-            {users.map((user) => <PlayerListItem playerName={user.name} isCreator={false} canEdit={false} canKick={isUserCreator} />)}
+            <PlayerListItem playerName={creator.name} isCreator={true} canEdit={isUserCreator} canKick={false} />
+            {users.map((player) => player != creator && <PlayerListItem playerName={player.name} isCreator={false} canEdit={player == user} canKick={isUserCreator} />)}
         </List>
       </Box>
     )
