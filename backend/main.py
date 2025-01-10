@@ -1,12 +1,11 @@
 import os
 import sys
-import uuid
 
-from typing import Union
 from fastapi import FastAPI
 from pymongo import MongoClient
 from dotenv import dotenv_values
 from contextlib import asynccontextmanager
+from routes import router
 
 
 config = dotenv_values("vars/.env")
@@ -30,12 +29,4 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(lifespan=lifespan)
 
-@app.post("/lobby")
-async def create_lobby(player: Player):
-    lobby_id = uuid.uuid4()
-    
-    return lobby_id
-
-@app.post("/lobby/{id}")
-async def join_lobby():
-    pass
+app.include_router(router)
