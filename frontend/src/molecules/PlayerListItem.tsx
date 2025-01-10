@@ -11,14 +11,13 @@ function PlayerListItem({ playerName, isLeader, canEdit }: PlayerListItemProps) 
     return (
         <ListItem
             secondaryAction={
-                canEdit ?
-                    <IconButton edge="end" aria-label="edit">
+                <IconButton edge="end">
+                    {canEdit ?
                         <Edit />
-                    </IconButton>
-                : isLeader &&
-                    <IconButton edge="end" aria-label="kick">
+                    : isLeader &&
                         <Close />
-                    </IconButton>
+                    }
+                </IconButton>
             }
         >
             <ListItemIcon>
