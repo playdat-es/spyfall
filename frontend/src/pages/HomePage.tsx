@@ -80,7 +80,7 @@ function HomePage() {
           <TextField
             placeholder="Lobby Code"
         autoComplete="off"
-            fullWidth
+        fullWidth
             onChange={(text) => handleCodeChange(text.target.value)}
           />
         </Box>
