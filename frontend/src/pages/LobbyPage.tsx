@@ -17,6 +17,7 @@ const user4 = {
   name: 'Amy'
 }
 const lobbyData = {
+  uuid: 'ABCDEF',
   creator: user1,
   users: [user1, user2, user3, user4],
 }
@@ -40,7 +41,7 @@ function LobbyPage() {
               <ListItemIcon>
                   <ContactMail />
               </ListItemIcon>
-              <ListItemText primary="Lobby Number" />
+              <ListItemText primary={lobbyData.uuid} />
           </ListItem>
           <PlayerListItem playerName={creator.name} isCreator={true} canEdit={isUserCreator} canKick={false} />
           {users.map((player) => player != creator && <PlayerListItem playerName={player.name} isCreator={false} canEdit={player == user} canKick={isUserCreator} />)}
