@@ -32,6 +32,11 @@ function LobbyPage() {
   // Determine if user is creator (DEBUG VALUE FOR NOW)
   const isUserCreator = user == creator;
 
+  let count = 0;
+  const getCount = () => {
+    return count++;
+  };
+
   return (
     <Box>
       <List>
@@ -54,6 +59,7 @@ function LobbyPage() {
           (player) =>
             player != creator && (
               <PlayerListItem
+                key={getCount()}
                 playerName={player.name}
                 isCreator={false}
                 canEdit={player == user}

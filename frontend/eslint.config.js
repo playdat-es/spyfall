@@ -11,5 +11,17 @@ export default [
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
   pluginReact.configs.flat.recommended,
-  eslintPluginPrettierRecommended
+  eslintPluginPrettierRecommended,
+  {
+    rules: {
+      'react/react-in-jsx-scope': 'off'
+    }
+  },
+  {
+    settings: {
+      react: {
+        version: 'detect'
+      }
+    }
+  }
 ];
