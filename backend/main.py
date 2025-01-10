@@ -1,20 +1,15 @@
+import os
+import sys
+import uuid
+
 from typing import Union
-
 from fastapi import FastAPI
-
 from pymongo import MongoClient
-
 from dotenv import dotenv_values
-
 from contextlib import asynccontextmanager
 
-import os
-
-import sys
 
 config = dotenv_values("vars/.env")
-
-app = FastAPI()
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -34,3 +29,13 @@ async def lifespan(app: FastAPI):
     app.mongodb_client.close()
 
 app = FastAPI(lifespan=lifespan)
+
+@app.post("/lobby")
+async def create_lobby(player: Player):
+    lobby_id = uuid.uuid4()
+    
+    return lobby_id
+
+@app.post("/lobby/{id}")
+async def join_lobby():
+    pass
