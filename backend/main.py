@@ -1,20 +1,14 @@
-from typing import Union
-
-from fastapi import FastAPI
-
-from pymongo import MongoClient
-
-from dotenv import dotenv_values
-
-from contextlib import asynccontextmanager
-
 import os
-
 import sys
 
-config = dotenv_values("vars/.env")
+from fastapi import FastAPI
+from pymongo import MongoClient
+from dotenv import dotenv_values
+from contextlib import asynccontextmanager
+from routes import router
 
-app = FastAPI()
+
+config = dotenv_values("vars/.env")
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -34,3 +28,5 @@ async def lifespan(app: FastAPI):
     app.mongodb_client.close()
 
 app = FastAPI(lifespan=lifespan)
+
+app.include_router(router)

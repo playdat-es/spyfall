@@ -22,3 +22,5 @@ Install dependencies:
 If virtual env is active: `pipenv sync` or `pipenv sync --dev`
 
 Add `vars/.env` folder along with the env variables `URI` and `DB_NAME`
+
+Endpoints: http://127.0.0.1:8000/docs
