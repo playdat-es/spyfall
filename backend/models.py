@@ -19,9 +19,6 @@ class Lobby(BaseModel):
         populate_by_name=True
     )
 
-class CreateLobby(BaseModel):
-    player: Player = Field(...)
-
 class CreateLobbyResponse(BaseModel):
     id: str = Field(...)
     code: str = Field(...)
