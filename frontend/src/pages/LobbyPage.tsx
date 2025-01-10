@@ -1,6 +1,6 @@
 import { Box, IconButton, List, ListItem, ListItemIcon, ListItemText } from "@mui/material"
 import { ArrowBackIosNew, ContactMail } from "@mui/icons-material"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import PlayerListItem from "../molecules/PlayerListItem"
 
 // DUMMY DATA
@@ -24,6 +24,7 @@ const lobbyData = {
 
 function LobbyPage() {
   const navigate = useNavigate()
+  const { lobbyCode } = useParams()
   // Fetch players in lobby here
   const {creator, users} = lobbyData
   // Get user (DEBUG VALUE FOR NOW)
@@ -41,7 +42,7 @@ function LobbyPage() {
               <ListItemIcon>
                   <ContactMail />
               </ListItemIcon>
-              <ListItemText primary={lobbyData.uuid} />
+              <ListItemText primary={lobbyCode} />
           </ListItem>
           <PlayerListItem playerName={creator.name} isCreator={true} canEdit={isUserCreator} canKick={false} />
           {users.map((player) => player != creator && <PlayerListItem playerName={player.name} isCreator={false} canEdit={player == user} canKick={isUserCreator} />)}
