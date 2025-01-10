@@ -78,8 +78,8 @@ function HomePage() {
             Enter Lobby Code
           </Typography>
           <TextField
-        placeholder="Lobby Code"
-          autoComplete="off"
+            placeholder="Lobby Code"
+        autoComplete="off"
             fullWidth
             onChange={(text) => handleCodeChange(text.target.value)}
           />
