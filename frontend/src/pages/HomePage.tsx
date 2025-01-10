@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Box, Button, Modal, Stack, TextField, Typography } from "@mui/material"
+import { useNavigate } from "react-router-dom";
 import spyfallLogo from '../assets/react.svg'
 
 const lobbyCodeModalStyle = {
@@ -16,6 +17,7 @@ const lobbyCodeModalStyle = {
 };
 
 function HomePage() {
+  const navigate = useNavigate();
   const [name, setName] = useState('')
   const [showModal, setShowModal] = useState(false)
 
@@ -37,7 +39,7 @@ function HomePage() {
         />
       </Box>
       <Stack spacing={1}>
-        <Button variant="contained" disabled={!name}>Create Lobby</Button>
+        <Button variant="contained" disabled={!name} onClick={() => navigate("/lobby")}>Create Lobby</Button>
         <Button variant="contained" disabled={!name} onClick={() => setShowModal(true)}>Join Lobby</Button>
       </Stack>
       <Modal
