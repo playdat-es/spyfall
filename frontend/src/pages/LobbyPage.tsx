@@ -23,6 +23,8 @@ const lobbyData = {
 function LobbyPage() {
     // Fetch players in lobby here
     const {creator, users} = lobbyData
+    // Determine if user is creator (DEBUG VALUE FOR NOW)
+    const isUserCreator = true
     
     return (
       <Box>
@@ -36,8 +38,8 @@ function LobbyPage() {
                 </ListItemIcon>
                 <ListItemText primary="Lobby Number" />
             </ListItem>
-            <PlayerListItem playerName={creator.name} isLeader={true} canEdit={true} />
-            {users.map((user) => <PlayerListItem playerName={user.name} isLeader={true} canEdit={false} />)}
+            <PlayerListItem playerName={creator.name} isCreator={isUserCreator} canEdit={true} canKick={false} />
+            {users.map((user) => <PlayerListItem playerName={user.name} isCreator={false} canEdit={false} canKick={isUserCreator} />)}
         </List>
       </Box>
     )

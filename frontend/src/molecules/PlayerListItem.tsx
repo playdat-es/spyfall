@@ -3,25 +3,26 @@ import { Close, Edit, Face, FaceRetouchingNatural } from "@mui/icons-material"
 
 interface PlayerListItemProps {
     playerName: string;
-    isLeader: boolean;
+    isCreator: boolean;
     canEdit: boolean;
+    canKick: boolean;
 }
 
-function PlayerListItem({ playerName, isLeader, canEdit }: PlayerListItemProps) {
+function PlayerListItem({ playerName, isCreator, canEdit, canKick }: PlayerListItemProps) {
     return (
         <ListItem
             secondaryAction={
                 <IconButton edge="end">
                     {canEdit ?
                         <Edit />
-                    : isLeader &&
+                    : canKick &&
                         <Close />
                     }
                 </IconButton>
             }
         >
             <ListItemIcon>
-                {isLeader
+                {isCreator
                     ? <FaceRetouchingNatural />
                     : <Face />
                 }
