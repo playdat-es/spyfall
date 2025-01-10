@@ -16,6 +16,14 @@ const lobbyCodeModalStyle = {
   textAlign: 'center',
 };
 
+// DUMMY DATA - simulating fetching all lobbies from server
+// IRL - ask server to find the user's inputted code then return true/false
+const lobbies = [
+  { code: 'ABCDEF' },
+  { code: '123456' },
+  { code: '000000' },
+]
+
 function HomePage() {
   const navigate = useNavigate()
   const [name, setName] = useState('')
@@ -26,6 +34,19 @@ function HomePage() {
   const handleCreateLobby = () => {
     const lobbyCode = Math.floor(100000 + Math.random() * 900000)
     navigate(`/${lobbyCode}`)
+  }
+
+  // Call server to see if a lobby with lobbyCode exists
+  // Return true if it exists; otherwise false
+  // DEBUG CODE: lobby code is a random six digit number
+  const handleCodeChange = (lobbyCode: string) => {
+    // lobbyCode must be of length 6 (may change later)
+    if (lobbyCode.length != 6) { return; }
+    for (const lobby of lobbies) {
+      if (lobby.code == lobbyCode) {
+        navigate(`/${lobbyCode}`)
+      }
+    }
   }
 
   return (
@@ -61,6 +82,7 @@ function HomePage() {
             placeholder="Lobby Code"
             autoComplete="off"
             fullWidth
+            onChange={(text) => handleCodeChange(text.target.value)}
           />
         </Box>
       </Modal>
