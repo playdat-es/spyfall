@@ -1,0 +1,996 @@
+{
+    "name": "spyfall-pack-1",
+    "locations": [
+      {
+        "name": "Airplane",
+        "roles": [
+          {
+            "name": "Business Class Passenger",
+            "description": ""
+          },
+          {
+            "name:": "Coach Passenger",
+            "description": ""
+          },
+          {
+            "name:": "Copilot",
+            "description": ""
+          },
+          {
+            "name:": "Flight Attendant",
+            "description": ""
+          },
+          {
+            "name:": "Flight Engineer",
+            "description": ""
+          },
+          {
+            "name:": "Pilot",
+            "description": ""
+          },
+          {
+            "name:": "Stowaway",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "Amusement Park",
+        "roles": [
+          {
+            "name": "Clown",
+            "description": ""
+          },
+          {
+            "name:": "Kid",
+            "description": ""
+          },
+          {
+            "name:": "Mechanic",
+            "description": ""
+          },
+          {
+            "name:": "Ride Operator",
+            "description": ""
+          },
+          {
+            "name:": "Tourist",
+            "description": ""
+          },
+          {
+            "name:": "Vendor",
+            "description": ""
+          },
+          {
+            "name:": "Visitor",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "Bank",
+        "roles": [
+          {
+            "name": "Armored Car Driver",
+            "description": ""
+          },
+          {
+            "name:": "Branch Manager",
+            "description": ""
+          },
+          {
+            "name:": "Consultant",
+            "description": ""
+          },
+          {
+            "name:": "Customer",
+            "description": ""
+          },
+          {
+            "name:": "Security Guard",
+            "description": ""
+          },
+          {
+            "name:": "Robber",
+            "description": ""
+          },
+          {
+            "name:": "Teller",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "Beach",
+        "roles": [
+          {
+            "name": "Entertainment Director",
+            "description": ""
+          },
+          {
+            "name:": "Food Vendor",
+            "description": ""
+          },
+          {
+            "name:": "Lifeguard",
+            "description": ""
+          },
+          {
+            "name:": "Paraglider",
+            "description": ""
+          },
+          {
+            "name:": "Photographer with Monkey",
+            "description": ""
+          },
+          {
+            "name:": "Thief",
+            "description": ""
+          },
+          {
+            "name:": "Vacationer",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "Carnival",
+        "roles": [
+          {
+            "name": "Costumer",
+            "description": ""
+          },
+          {
+            "name:": "Photographer",
+            "description": ""
+          },
+          {
+            "name:": "Reenactor",
+            "description": ""
+          },
+          {
+            "name:": "Reporter",
+            "description": ""
+          },
+          {
+            "name:": "Roleplaying Game Fan",
+            "description": ""
+          },
+          {
+            "name:": "Tourist",
+            "description": ""
+          },
+          {
+            "name:": "Vendor",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "Casino",
+        "roles": [
+          {
+            "name": "Administrator",
+            "description": ""
+          },
+          {
+            "name:": "Bartender",
+            "description": ""
+          },
+          {
+            "name:": "Bouncer",
+            "description": ""
+          },
+          {
+            "name:": "Cardsharp",
+            "description": ""
+          },
+          {
+            "name:": "Dealer",
+            "description": ""
+          },
+          {
+            "name:": "Head of Security",
+            "description": ""
+          },
+          {
+            "name:": "Gambler",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "Circus Tent",
+        "roles": [
+          {
+            "name": "Acrobat",
+            "description": ""
+          },
+          {
+            "name:": "Animal Tamer",
+            "description": ""
+          },
+          {
+            "name:": "Circus-Goer",
+            "description": ""
+          },
+          {
+            "name:": "Clown",
+            "description": ""
+          },
+          {
+            "name:": "Juggler",
+            "description": ""
+          },
+          {
+            "name:": "Knife Thrower",
+            "description": ""
+          },
+          {
+            "name:": "Magician",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "Corporate Party",
+        "roles": [
+          {
+            "name": "Accountant",
+            "description": ""
+          },
+          {
+            "name:": "Administrative Assistant",
+            "description": ""
+          },
+          {
+            "name:": "CEO",
+            "description": ""
+          },
+          {
+            "name:": "Courier",
+            "description": ""
+          },
+          {
+            "name:": "Emcee",
+            "description": ""
+          },
+          {
+            "name:": "Manager",
+            "description": ""
+          },
+          {
+            "name:": "Party Crasher",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "Crusader Army",
+        "roles": [
+          {
+            "name": "Archer",
+            "description": ""
+          },
+          {
+            "name:": "Bishop",
+            "description": ""
+          },
+          {
+            "name:": "Captive Nomad",
+            "description": ""
+          },
+          {
+            "name:": "Knight",
+            "description": ""
+          },
+          {
+            "name:": "Monk",
+            "description": ""
+          },
+          {
+            "name:": "Servant",
+            "description": ""
+          },
+          {
+            "name:": "Squire",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "Day Spa",
+        "roles": [
+          {
+            "name": "Beautician",
+            "description": ""
+          },
+          {
+            "name:": "Customer",
+            "description": ""
+          },
+          {
+            "name:": "Dermatologist",
+            "description": ""
+          },
+          {
+            "name:": "Makeup Specialist",
+            "description": ""
+          },
+          {
+            "name:": "Masseur",
+            "description": ""
+          },
+          {
+            "name:": "Nail Specialist",
+            "description": ""
+          },
+          {
+            "name:": "Stylist",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "Embassy",
+        "roles": [
+          {
+            "name": "Ambassador",
+            "description": ""
+          },
+          {
+            "name:": "Bureaucrat",
+            "description": ""
+          },
+          {
+            "name:": "Diplomat",
+            "description": ""
+          },
+          {
+            "name:": "Refugee",
+            "description": ""
+          },
+          {
+            "name:": "Secretary",
+            "description": ""
+          },
+          {
+            "name:": "Security Guard",
+            "description": ""
+          },
+          {
+            "name:": "Tourist",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "Hospital",
+        "roles": [
+          {
+            "name": "Head Physician",
+            "description": ""
+          },
+          {
+            "name:": "Intern",
+            "description": ""
+          },
+          {
+            "name:": "Nurse",
+            "description": ""
+          },
+          {
+            "name:": "Pathologist",
+            "description": ""
+          },
+          {
+            "name:": "Patient",
+            "description": ""
+          },
+          {
+            "name:": "Physician",
+            "description": ""
+          },
+          {
+            "name:": "Surgeon",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "Hotel",
+        "roles": [
+          {
+            "name": "Bartender",
+            "description": ""
+          },
+          {
+            "name:": "Doorman",
+            "description": ""
+          },
+          {
+            "name:": "Guest",
+            "description": ""
+          },
+          {
+            "name:": "Hotel Manager",
+            "description": ""
+          },
+          {
+            "name:": "Housekeeper",
+            "description": ""
+          },
+          {
+            "name:": "Receptionist",
+            "description": ""
+          },
+          {
+            "name:": "Security Guard",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "Military Base",
+        "roles": [
+          {
+            "name": "Colonel",
+            "description": ""
+          },
+          {
+            "name:": "Deserter",
+            "description": ""
+          },
+          {
+            "name:": "Medic",
+            "description": ""
+          },
+          {
+            "name:": "Non-Commissioned Officer",
+            "description": ""
+          },
+          {
+            "name:": "Private",
+            "description": ""
+          },
+          {
+            "name:": "Sales Clerk",
+            "description": ""
+          },
+          {
+            "name:": "Sentry",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "Movie Studio",
+        "roles": [
+          {
+            "name": "Actor",
+            "description": ""
+          },
+          {
+            "name:": "Cameraman",
+            "description": ""
+          },
+          {
+            "name:": "Costume Designer",
+            "description": ""
+          },
+          {
+            "name:": "Director",
+            "description": ""
+          },
+          {
+            "name:": "Extra",
+            "description": ""
+          },
+          {
+            "name:": "Sound Engineer",
+            "description": ""
+          },
+          {
+            "name:": "Stuntman",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "Night Club",
+        "roles": [
+          {
+            "name": "Barman",
+            "description": ""
+          },
+          {
+            "name:": "Bouncer",
+            "description": ""
+          },
+          {
+            "name:": "Dancer",
+            "description": ""
+          },
+          {
+            "name:": "DJ",
+            "description": ""
+          },
+          {
+            "name:": "Model",
+            "description": ""
+          },
+          {
+            "name:": "Pick-Up Artist",
+            "description": ""
+          },
+          {
+            "name:": "Regular",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "Ocean Liner",
+        "roles": [
+          {
+            "name": "Attendant",
+            "description": ""
+          },
+          {
+            "name:": "Bartender",
+            "description": ""
+          },
+          {
+            "name:": "Captain",
+            "description": ""
+          },
+          {
+            "name:": "Cook",
+            "description": ""
+          },
+          {
+            "name:": "Musician",
+            "description": ""
+          },
+          {
+            "name:": "Radio Operator",
+            "description": ""
+          },
+          {
+            "name:": "Wealthy Passenger",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "Passenger Train",
+        "roles": [
+          {
+            "name": "Conductor",
+            "description": ""
+          },
+          {
+            "name:": "Dining Car Cook",
+            "description": ""
+          },
+          {
+            "name:": "Passenger",
+            "description": ""
+          },
+          {
+            "name:": "Passenger Car Attendant",
+            "description": ""
+          },
+          {
+            "name:": "Stoker",
+            "description": ""
+          },
+          {
+            "name:": "Ticket Taker",
+            "description": ""
+          },
+          {
+            "name:": "Vendor",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "Pirate Ship",
+        "roles": [
+          {
+            "name": "Cabin Boy",
+            "description": ""
+          },
+          {
+            "name:": "Cook",
+            "description": ""
+          },
+          {
+            "name:": "Gunner",
+            "description": ""
+          },
+          {
+            "name:": "Seaman",
+            "description": ""
+          },
+          {
+            "name:": "Shackled Prisoner",
+            "description": ""
+          },
+          {
+            "name:": "Slave",
+            "description": ""
+          },
+          {
+            "name:": "Swashbuckling Captain",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "Polar Station",
+        "roles": [
+          {
+            "name": "Biologist",
+            "description": ""
+          },
+          {
+            "name:": "Expedition Leader",
+            "description": ""
+          },
+          {
+            "name:": "Geoscientist",
+            "description": ""
+          },
+          {
+            "name:": "Hydrologist",
+            "description": ""
+          },
+          {
+            "name:": "Medic",
+            "description": ""
+          },
+          {
+            "name:": "Meteorologist",
+            "description": ""
+          },
+          {
+            "name:": "Radio Operator",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "Police Station",
+        "roles": [
+          {
+            "name": "Attorney",
+            "description": ""
+          },
+          {
+            "name:": "Beat Cop",
+            "description": ""
+          },
+          {
+            "name:": "Criminal Lawyer",
+            "description": ""
+          },
+          {
+            "name:": "Detective",
+            "description": ""
+          },
+          {
+            "name:": "Journalist",
+            "description": ""
+          },
+          {
+            "name:": "Lieutenant",
+            "description": ""
+          },
+          {
+            "name:": "Suspect",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "Restaurant",
+        "roles": [
+          {
+            "name": "Busboy",
+            "description": ""
+          },
+          {
+            "name:": "Chef",
+            "description": ""
+          },
+          {
+            "name:": "Customer",
+            "description": ""
+          },
+          {
+            "name:": "Food Critic",
+            "description": ""
+          },
+          {
+            "name:": "Maître d'hôtel",
+            "description": ""
+          },
+          {
+            "name:": "Musician",
+            "description": ""
+          },
+          {
+            "name:": "Waiter",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "School",
+        "roles": [
+          {
+            "name": "Gym Teacher",
+            "description": ""
+          },
+          {
+            "name:": "Janitor",
+            "description": ""
+          },
+          {
+            "name:": "Math Teacher",
+            "description": ""
+          },
+          {
+            "name:": "Principal",
+            "description": ""
+          },
+          {
+            "name:": "Security Guard",
+            "description": ""
+          },
+          {
+            "name:": "Student",
+            "description": ""
+          },
+          {
+            "name:": "Vice Principal",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "Service Station",
+        "roles": [
+          {
+            "name": "Biker",
+            "description": ""
+          },
+          {
+            "name:": "Car Washer",
+            "description": ""
+          },
+          {
+            "name:": "Driver",
+            "description": ""
+          },
+          {
+            "name:": "Electrical Technician",
+            "description": ""
+          },
+          {
+            "name:": "Manager",
+            "description": ""
+          },
+          {
+            "name:": "Service Receptionist",
+            "description": ""
+          },
+          {
+            "name:": "Tire Service Technician",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "Space Station",
+        "roles": [
+          {
+            "name": "Alien",
+            "description": ""
+          },
+          {
+            "name:": "Doctor",
+            "description": ""
+          },
+          {
+            "name:": "Mechanical Engineer",
+            "description": ""
+          },
+          {
+            "name:": "Mission Commander",
+            "description": ""
+          },
+          {
+            "name:": "Pilot",
+            "description": ""
+          },
+          {
+            "name:": "Research Engineer",
+            "description": ""
+          },
+          {
+            "name:": "Space Tourist",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "Submarine",
+        "roles": [
+          {
+            "name": "Commander",
+            "description": ""
+          },
+          {
+            "name:": "Cook",
+            "description": ""
+          },
+          {
+            "name:": "Electrical Officer",
+            "description": ""
+          },
+          {
+            "name:": "Navigator",
+            "description": ""
+          },
+          {
+            "name:": "Radio Operator",
+            "description": ""
+          },
+          {
+            "name:": "Sailor",
+            "description": ""
+          },
+          {
+            "name:": "Sonar Operator",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "Supermarket",
+        "roles": [
+          {
+            "name": "Butcher",
+            "description": ""
+          },
+          {
+            "name:": "Cashier",
+            "description": ""
+          },
+          {
+            "name:": "Customer",
+            "description": ""
+          },
+          {
+            "name:": "Delivery Man",
+            "description": ""
+          },
+          {
+            "name:": "Janitor",
+            "description": ""
+          },
+          {
+            "name:": "Merchandiser",
+            "description": ""
+          },
+          {
+            "name:": "Security Guard",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "Theatre",
+        "roles": [
+          {
+            "name": "Actor",
+            "description": ""
+          },
+          {
+            "name:": "Audience Member",
+            "description": ""
+          },
+          {
+            "name:": "Coatroom Attendant",
+            "description": ""
+          },
+          {
+            "name:": "Director",
+            "description": ""
+          },
+          {
+            "name:": "Prompter",
+            "description": ""
+          },
+          {
+            "name:": "Stage Hand",
+            "description": ""
+          },
+          {
+            "name:": "Usher",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "University",
+        "roles": [
+          {
+            "name": "Campus Security",
+            "description": ""
+          },
+          {
+            "name:": "Dean",
+            "description": ""
+          },
+          {
+            "name:": "Graduate Student",
+            "description": ""
+          },
+          {
+            "name:": "President",
+            "description": ""
+          },
+          {
+            "name:": "Professor",
+            "description": ""
+          },
+          {
+            "name:": "Researcher",
+            "description": ""
+          },
+          {
+            "name:": "Student",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "Zoo",
+        "roles": [
+          {
+            "name": "Caretaker",
+            "description": ""
+          },
+          {
+            "name:": "General Manager",
+            "description": ""
+          },
+          {
+            "name:": "Guide",
+            "description": ""
+          },
+          {
+            "name:": "Janitor",
+            "description": ""
+          },
+          {
+            "name:": "Vendor",
+            "description": ""
+          },
+          {
+            "name:": "Veterinarian",
+            "description": ""
+          },
+          {
+            "name:": "Visitor",
+            "description": ""
+          }
+        ]
+      }
+    ]
+  }
+  
