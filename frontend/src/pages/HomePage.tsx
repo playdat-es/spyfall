@@ -77,11 +77,7 @@ function HomePage() {
           <Typography variant="h4" component="label" gutterBottom>
             Enter Lobby Code
           </Typography>
-          <TextField
-            placeholder="Lobby Code"
-            autoComplete="off"
-            fullWidth
-            onChange={(text) => handleCodeChange(text.target.value)}
+          <TextField placeholder="Lobby Code" autoComplete="off" fullWidth onChange={(text) => handleCodeChange(text.target.value)}
           />
         </Box>
       </Modal>
