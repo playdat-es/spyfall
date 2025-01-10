@@ -17,7 +17,7 @@ const lobbyCodeModalStyle = {
 };
 
 function HomePage() {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   const [name, setName] = useState('')
   const [showModal, setShowModal] = useState(false)
 
