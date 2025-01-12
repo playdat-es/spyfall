@@ -1,10 +1,9 @@
+from bson import ObjectId
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Optional, List
 
-import uuid
-
 class Player(BaseModel):
-    uuid: uuid.UUID
+    _id: ObjectId
     name: str
     role: str
 
@@ -22,3 +21,7 @@ class Lobby(BaseModel):
 class CreateLobbyResponse(BaseModel):
     id: str = Field(...)
     code: str = Field(...)
+
+class JoinLobbyResponse(BaseModel):
+    playerId: str = Field(...)
+    lobbyId: str = Field(...)
