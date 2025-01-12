@@ -30,4 +30,4 @@ def join_lobby(code: str, request: Request, player: Player = Body(...)):
 
     lobby_database.update_one({"code": code}, {"$push": { "players": player_dict } })
 
-    return {"id": str(player_dict["_id"])}
+    return { "playerId": str(player_dict["_id"]), "lobbyId": str(lobby["_id"]) }

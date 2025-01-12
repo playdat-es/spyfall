@@ -23,4 +23,5 @@ class CreateLobbyResponse(BaseModel):
     code: str = Field(...)
 
 class JoinLobbyResponse(BaseModel):
-    id: str = Field(...)
+    playerId: str = Field(...)
+    lobbyId: str = Field(...)
