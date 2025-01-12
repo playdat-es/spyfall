@@ -30,3 +30,10 @@ class JoinLobbyRequest(BaseModel):
 class JoinLobbyResponse(BaseModel):
     playerId: str
     lobbyId: str
+
+class PlayerJoinEvent(BaseModel):
+    uuid: uuid.UUID
+    name: str
+
+class PlayerLeaveEvent(BaseModel):
+    uuid: uuid.UUID

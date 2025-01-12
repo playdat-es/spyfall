@@ -1,6 +1,7 @@
 import os
 import sys
 
+from typing import Union
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pymongo import MongoClient

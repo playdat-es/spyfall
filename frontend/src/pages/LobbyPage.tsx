@@ -2,6 +2,7 @@ import { Box, IconButton, List, ListItem, ListItemIcon, ListItemText } from '@mu
 import { ArrowBackIosNew, ContactMail } from '@mui/icons-material';
 import { useNavigate, useParams } from 'react-router-dom';
 import PlayerListItem from '../molecules/PlayerListItem';
+import { useGameStateManager } from '../hooks/useGameStateManager';
 
 // DUMMY DATA
 const user1 = {
@@ -23,19 +24,16 @@ const lobbyData = {
 };
 
 function LobbyPage() {
+  const { players } = useGameStateManager();
+
   const navigate = useNavigate();
   const { lobbyCode } = useParams();
   // Fetch players in lobby here
-  const { creator, users } = lobbyData;
+  const { creator } = lobbyData;
   // Get user (DEBUG VALUE FOR NOW)
   const user = user1;
   // Determine if user is creator (DEBUG VALUE FOR NOW)
   const isUserCreator = user == creator;
-
-  let count = 0;
-  const getCount = () => {
-    return count++;
-  };
 
   return (
     <Box>
@@ -55,11 +53,11 @@ function LobbyPage() {
           canEdit={isUserCreator}
           canKick={false}
         />
-        {users.map(
+        {players.map(
           (player) =>
             player != creator && (
               <PlayerListItem
-                key={getCount()}
+                key={player.uuid}
                 playerName={player.name}
                 isCreator={false}
                 canEdit={player == user}
