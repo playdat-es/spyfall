@@ -25,11 +25,27 @@ function HomePage() {
   const [name, setName] = useState('');
   const [showModal, setShowModal] = useState(false);
 
-  // Call server to create lobby and navigate to lobby page with lobby code
-  // DEBUG CODE: lobby code is a random six digit number
   const handleCreateLobby = () => {
-    const lobbyCode = Math.floor(100000 + Math.random() * 900000);
-    navigate(`/${lobbyCode}`);
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/lobby`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        playerName: name
+      })
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        if (json['lobbyCode']) {
+          localStorage.setItem('playerId', json['playerId']);
+          localStorage.setItem('lobbyId', json['lobbyId']);
+          navigate(`/${json['lobbyCode']}`);
+        } else {
+          console.error(json);
+        }
+      })
+      .catch((error) => console.error(error));
   };
 
   // Call server to see if a lobby with lobbyCode exists
