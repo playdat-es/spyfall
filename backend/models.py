@@ -5,23 +5,25 @@ from typing import Optional, List
 class Player(BaseModel):
     _id: ObjectId
     name: str
-    role: str
+    role: str = None
 
 class Lobby(BaseModel):
-    code: str = Field(...)
-    creator: Player = Field(...)
-    players: List[Player] = Field(...)
-    location: Optional[str] = Field(...)
-    start_time: Optional[int] = Field(...)
-    duration: int = Field(default=480) # seconds
-    model_config = ConfigDict(
-        populate_by_name=True
-    )
+    _id: ObjectId
+    code: str
+    creator: Player
+    players: List[Player]
+    location: Optional[str] = None
+    start_time: Optional[int] = None
+    duration: int = 480 # seconds
+
+class CreateLobbyRequest(BaseModel):
+    playerName: str
 
 class CreateLobbyResponse(BaseModel):
-    id: str = Field(...)
-    code: str = Field(...)
+    lobbyId: str
+    lobbyCode: str
+    playerId: str
 
 class JoinLobbyResponse(BaseModel):
-    playerId: str = Field(...)
-    lobbyId: str = Field(...)
+    playerId: str
+    lobbyId: str
