@@ -32,8 +32,12 @@ def join_lobby(code: str, request: Request, body: JoinLobbyRequest = Body(...)):
     if (lobby := lobby_database.find_one({"code": code})) is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Lobby with code {code} not found")
     
-    player_dict = Player.model_dump()
-    player_dict["_id"] = ObjectId()
+    player = {
+        "_id": ObjectId(),
+        "name": body.playerName
+    }
+
+    player_dict = player.model_dump()
 
     lobby_database.update_one({"code": code}, {"$push": { "players": player_dict } })
 
