@@ -16,10 +16,6 @@ const lobbyCodeModalStyle = {
   textAlign: 'center'
 };
 
-// DUMMY DATA - simulating fetching all lobbies from server
-// IRL - ask server to find the user's inputted code then return true/false
-const lobbies = [{ code: 'ABCDEF' }, { code: '123456' }, { code: '000000' }];
-
 function HomePage() {
   const navigate = useNavigate();
   const [name, setName] = useState('');
@@ -48,19 +44,34 @@ function HomePage() {
       .catch((error) => console.error(error));
   };
 
-  // Call server to see if a lobby with lobbyCode exists
-  // Return true if it exists; otherwise false
-  // DEBUG CODE: lobby code is a random six digit number
-  const handleCodeChange = (lobbyCode: string) => {
-    // lobbyCode must be of length 6 (may change later)
-    if (lobbyCode.length != 6) {
+  // Call server to validate inputted lobby code
+  // If valid, join lobby with that code
+  const handleCodeChange = (code: string) => {
+    // lobbyCode must be of length 4
+    if (code.length != 4) {
       return;
     }
-    for (const lobby of lobbies) {
-      if (lobby.code == lobbyCode) {
-        navigate(`/${lobbyCode}`);
-      }
-    }
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/lobby/${code}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        playerName: name,
+        lobbyCode: code
+      })
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        if (json['lobbyId']) {
+          localStorage.setItem('playerId', json['playerId']);
+          localStorage.setItem('lobbyId', json['lobbyId']);
+          navigate(`/${code}`);
+        } else {
+          console.error(json);
+        }
+      })
+      .catch((error) => console.error(error));
   };
 
   return (
