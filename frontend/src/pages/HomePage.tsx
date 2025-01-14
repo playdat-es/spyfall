@@ -110,6 +110,8 @@ function HomePage() {
             placeholder="Lobby Code"
             autoComplete="off"
             fullWidth
+            slotProps={{ htmlInput: { maxLength: 4 } }}
+            helperText="Code is 4 characters"
             disabled={disableCodeField}
             onChange={(text) => handleCodeChange(text.target.value)}
           />
