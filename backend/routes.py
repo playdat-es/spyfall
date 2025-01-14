@@ -2,7 +2,7 @@ from bson import ObjectId
 from fastapi import APIRouter, Body, HTTPException, Request, status
 from fastapi.encoders import jsonable_encoder
 from typing import List
-from models import Player, Lobby, CreateLobbyRequest, CreateLobbyResponse, JoinLobbyRequest, JoinLobbyResponse
+from models import Player, Lobby, CreateLobbyRequest, CreateLobbyResponse, JoinLobbyResponse
 
 import random
 import string
@@ -27,17 +27,13 @@ def create_lobby(request: Request, body: CreateLobbyRequest = Body(...)):
     return { "lobbyId": str(new_lobby.inserted_id), "lobbyCode": code, "playerId": str(player["_id"]) }
 
 @router.post("/lobby/{code}", tags=["lobby"], response_description="Join a lobby", status_code=status.HTTP_200_OK, response_model=JoinLobbyResponse)
-def join_lobby(code: str, request: Request, body: JoinLobbyRequest = Body(...)):
+def join_lobby(code: str, request: Request, player: Player = Body(...)):
     lobby_database = request.app.database["Lobby"]
     if (lobby := lobby_database.find_one({"code": code})) is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Lobby with code {code} not found")
 
-    player = {
-        "_id": ObjectId(),
-        "name": body.playerName
-    }
-
     player_dict = player.model_dump()
+    player_dict["_id"] = ObjectId()
 
     lobby_database.update_one({"code": code}, {"$push": { "players": player_dict } })
 

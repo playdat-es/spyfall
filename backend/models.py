@@ -24,9 +24,6 @@ class CreateLobbyResponse(BaseModel):
     lobbyCode: str
     playerId: str
 
-class JoinLobbyRequest(BaseModel):
-    playerName: str
-
 class JoinLobbyResponse(BaseModel):
     playerId: str
     lobbyId: str
