@@ -31,7 +31,7 @@ def join_lobby(code: str, request: Request, body: JoinLobbyRequest = Body(...)):
     lobby_database = request.app.database["Lobby"]
     if (lobby := lobby_database.find_one({"code": code})) is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Lobby with code {code} not found")
-    
+
     player = {
         "_id": ObjectId(),
         "name": body.playerName

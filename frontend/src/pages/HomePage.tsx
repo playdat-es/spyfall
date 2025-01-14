@@ -57,8 +57,7 @@ function HomePage() {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        playerName: name,
-        lobbyCode: code
+        playerName: name
       })
     })
       .then((response) => response.json())
