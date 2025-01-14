@@ -20,6 +20,7 @@ function HomePage() {
   const navigate = useNavigate();
   const [name, setName] = useState('');
   const [showModal, setShowModal] = useState(false);
+  const [disableCodeField, setDisableCodeField] = useState(false);
 
   const handleCreateLobby = () => {
     fetch(`${import.meta.env.VITE_API_BASE_URL}/lobby`, {
@@ -51,6 +52,7 @@ function HomePage() {
     if (code.length != 4) {
       return;
     }
+    setDisableCodeField(true);
     fetch(`${import.meta.env.VITE_API_BASE_URL}/lobby/${code}`, {
       method: 'POST',
       headers: {
@@ -70,7 +72,8 @@ function HomePage() {
           console.error(json);
         }
       })
-      .catch((error) => console.error(error));
+      .catch((error) => console.error(error))
+      .finally(() => setDisableCodeField(false));
   };
 
   return (
@@ -107,6 +110,7 @@ function HomePage() {
             placeholder="Lobby Code"
             autoComplete="off"
             fullWidth
+            disabled={disableCodeField}
             onChange={(text) => handleCodeChange(text.target.value)}
           />
         </Box>
