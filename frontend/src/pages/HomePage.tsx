@@ -21,6 +21,8 @@ function HomePage() {
   const [name, setName] = useState('');
   const [showModal, setShowModal] = useState(false);
   const [disableCodeField, setDisableCodeField] = useState(false);
+  const [codeError, setCodeError] = useState(false);
+  const [codeHelperText, setCodeHelperText] = useState('Code is 4 characters');
 
   const handleCreateLobby = () => {
     fetch(`${import.meta.env.VITE_API_BASE_URL}/lobby`, {
@@ -48,6 +50,8 @@ function HomePage() {
   // Call server to validate inputted lobby code
   // If valid, join lobby with that code
   const handleCodeChange = (code: string) => {
+    setCodeError(false);
+    setCodeHelperText('Code is 4 characters');
     // lobbyCode must be of length 4
     if (code.length != 4) {
       return;
@@ -70,6 +74,8 @@ function HomePage() {
           navigate(`/${code}`);
         } else {
           console.error(json);
+          setCodeError(true);
+          setCodeHelperText('Invalid Code');
         }
       })
       .catch((error) => console.error(error))
@@ -111,7 +117,8 @@ function HomePage() {
             autoComplete="off"
             fullWidth
             slotProps={{ htmlInput: { maxLength: 4 } }}
-            helperText="Code is 4 characters"
+            helperText={codeHelperText}
+            error={codeError}
             disabled={disableCodeField}
             onChange={(text) => handleCodeChange(text.target.value)}
           />
