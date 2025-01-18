@@ -16,14 +16,13 @@ const lobbyCodeModalStyle = {
   textAlign: 'center'
 };
 
-// DUMMY DATA - simulating fetching all lobbies from server
-// IRL - ask server to find the user's inputted code then return true/false
-const lobbies = [{ code: 'ABCDEF' }, { code: '123456' }, { code: '000000' }];
-
 function HomePage() {
   const navigate = useNavigate();
   const [name, setName] = useState('');
   const [showModal, setShowModal] = useState(false);
+  const [disableCodeField, setDisableCodeField] = useState(false);
+  const [codeError, setCodeError] = useState(false);
+  const [codeHelperText, setCodeHelperText] = useState('Code is 4 characters');
 
   const handleCreateLobby = () => {
     fetch(`${import.meta.env.VITE_API_BASE_URL}/lobby`, {
@@ -48,19 +47,39 @@ function HomePage() {
       .catch((error) => console.error(error));
   };
 
-  // Call server to see if a lobby with lobbyCode exists
-  // Return true if it exists; otherwise false
-  // DEBUG CODE: lobby code is a random six digit number
-  const handleCodeChange = (lobbyCode: string) => {
-    // lobbyCode must be of length 6 (may change later)
-    if (lobbyCode.length != 6) {
+  // Call server to validate inputted lobby code
+  // If valid, join lobby with that code
+  const handleCodeChange = (code: string) => {
+    setCodeError(false);
+    setCodeHelperText('Code is 4 characters');
+    // lobbyCode must be of length 4
+    if (code.length != 4) {
       return;
     }
-    for (const lobby of lobbies) {
-      if (lobby.code == lobbyCode) {
-        navigate(`/${lobbyCode}`);
-      }
-    }
+    setDisableCodeField(true);
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/lobby/${code}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        playerName: name
+      })
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        if (json['lobbyId']) {
+          localStorage.setItem('playerId', json['playerId']);
+          localStorage.setItem('lobbyId', json['lobbyId']);
+          navigate(`/${code}`);
+        } else {
+          console.error(json);
+          setCodeError(true);
+          setCodeHelperText('Invalid Code');
+        }
+      })
+      .catch((error) => console.error(error))
+      .finally(() => setDisableCodeField(false));
   };
 
   return (
@@ -97,6 +116,10 @@ function HomePage() {
             placeholder="Lobby Code"
             autoComplete="off"
             fullWidth
+            slotProps={{ htmlInput: { maxLength: 4 } }}
+            helperText={codeHelperText}
+            error={codeError}
+            disabled={disableCodeField}
             onChange={(text) => handleCodeChange(text.target.value)}
           />
         </Box>
