@@ -3,37 +3,21 @@ import { ArrowBackIosNew, ContactMail } from '@mui/icons-material';
 import { useNavigate, useParams } from 'react-router-dom';
 import PlayerListItem from '../molecules/PlayerListItem';
 import { useGameStateManager } from '../hooks/useGameStateManager';
-
-// DUMMY DATA
-const user1 = {
-  name: 'Noby'
-};
-const user2 = {
-  name: 'Stephen'
-};
-const user3 = {
-  name: 'James'
-};
-const user4 = {
-  name: 'Amy'
-};
-const lobbyData = {
-  uuid: 'ABCDEF',
-  creator: user1,
-  users: [user1, user2, user3, user4]
-};
+import { useEffect } from 'react';
 
 function LobbyPage() {
-  const { players } = useGameStateManager();
-
   const navigate = useNavigate();
   const { lobbyCode } = useParams();
-  // Fetch players in lobby here
-  const { creator } = lobbyData;
-  // Get user (DEBUG VALUE FOR NOW)
-  const user = user1;
-  // Determine if user is creator (DEBUG VALUE FOR NOW)
-  const isUserCreator = user == creator;
+
+  const { gameState, socketState, sendEvent } = useGameStateManager();
+
+  useEffect(() => {
+    if (socketState === WebSocket.OPEN) {
+      sendEvent.playerJoinEvent(lobbyCode!);
+    }
+  }, [socketState]);
+  console.log(gameState.creator);
+  console.log(localStorage.getItem('playerId'));
 
   return (
     <Box>
@@ -47,24 +31,15 @@ function LobbyPage() {
           </ListItemIcon>
           <ListItemText primary={lobbyCode} />
         </ListItem>
-        <PlayerListItem
-          playerName={creator.name}
-          isCreator={true}
-          canEdit={isUserCreator}
-          canKick={false}
-        />
-        {players.map(
-          (player) =>
-            player != creator && (
-              <PlayerListItem
-                key={player.uuid}
-                playerName={player.name}
-                isCreator={false}
-                canEdit={player == user}
-                canKick={isUserCreator}
-              />
-            )
-        )}
+        {gameState.players.map((player) => (
+          <PlayerListItem
+            key={player.id}
+            playerName={player.name}
+            isCreator={player.id === gameState.creator}
+            canEdit={player.id === localStorage.getItem('playerId')}
+            canKick={localStorage.getItem('playerId') === gameState.creator}
+          />
+        ))}
       </List>
     </Box>
   );

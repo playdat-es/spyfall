@@ -10,7 +10,7 @@ class Player(BaseModel):
 class Lobby(BaseModel):
     _id: ObjectId
     code: str
-    creator: Player
+    creator: str
     players: List[Player]
     location: Optional[str] = None
     start_time: Optional[int] = None
@@ -31,9 +31,9 @@ class JoinLobbyResponse(BaseModel):
     playerId: str
     lobbyId: str
 
-class PlayerJoinEvent(BaseModel):
-    uuid: uuid.UUID
-    name: str
+# class PlayerJoinEvent(BaseModel):
+#     uuid: uuid.UUID
+#     name: str
 
-class PlayerLeaveEvent(BaseModel):
-    uuid: uuid.UUID
+# class PlayerLeaveEvent(BaseModel):
+#     uuid: uuid.UUID

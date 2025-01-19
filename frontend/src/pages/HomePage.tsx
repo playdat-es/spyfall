@@ -38,7 +38,7 @@ function HomePage() {
       .then((json) => {
         if (json['lobbyCode']) {
           localStorage.setItem('playerId', json['playerId']);
-          localStorage.setItem('lobbyId', json['lobbyId']);
+          localStorage.setItem('playerName', name);
           navigate(`/${json['lobbyCode']}`);
         } else {
           console.error(json);
@@ -70,7 +70,7 @@ function HomePage() {
       .then((json) => {
         if (json['lobbyId']) {
           localStorage.setItem('playerId', json['playerId']);
-          localStorage.setItem('lobbyId', json['lobbyId']);
+          localStorage.setItem('playerName', name);
           navigate(`/${code}`);
         } else {
           console.error(json);
