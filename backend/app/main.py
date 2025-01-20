@@ -1,13 +1,13 @@
 import os
 import sys
 
-from typing import Union
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pymongo import MongoClient
 from dotenv import dotenv_values
 from contextlib import asynccontextmanager
 from app.routes import router
+from app.sockets import websocket_router
 
 
 config = dotenv_values(".env")
@@ -34,6 +34,7 @@ async def lifespan(app: FastAPI):
 app = FastAPI(lifespan=lifespan)
 
 app.include_router(router)
+app.include_router(websocket_router)
 
 origins = [
     "http://localhost",

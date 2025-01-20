@@ -36,10 +36,10 @@ function HomePage() {
     })
       .then((response) => response.json())
       .then((json) => {
-        if (json['lobbyCode']) {
+        if (json['lobbyId']) {
           localStorage.setItem('playerId', json['playerId']);
           localStorage.setItem('playerName', name);
-          navigate(`/${json['lobbyCode']}`);
+          navigate(`/${json['lobbyId']}`);
         } else {
           console.error(json);
         }

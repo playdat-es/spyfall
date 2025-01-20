@@ -1,39 +1,36 @@
-from bson import ObjectId
-from pydantic import BaseModel, ConfigDict, Field
+import random
+import string
+import uuid
+
+from pydantic import BaseModel, Field
 from typing import Optional, List
 
+
 class Player(BaseModel):
-    _id: ObjectId
+    id: str = Field(default_factory=lambda: uuid.uuid4().hex)
     name: str
-    role: str = None
+    role: Optional[str] = None
+
 
 class Lobby(BaseModel):
-    _id: ObjectId
-    code: str
-    creator: str
-    players: List[Player]
+    @staticmethod
+    def generate_id() -> str:
+        characters = string.ascii_letters + string.digits
+        return ''.join(random.choice(characters) for _ in range(4)).upper()
+
+    id: str = Field(alias="_id", default_factory=generate_id)
+    creator: str = Field(default_factory=lambda: uuid.uuid4().hex)
+    players: List[Player] = Field(default_factory=list)
     location: Optional[str] = None
     start_time: Optional[int] = None
-    duration: int = 480 # seconds
+    duration: int = Field(default=480) # seconds
 
-class CreateLobbyRequest(BaseModel):
-    playerName: str
 
 class CreateLobbyResponse(BaseModel):
     lobbyId: str
-    lobbyCode: str
     playerId: str
 
-class JoinLobbyRequest(BaseModel):
-    playerName: str
 
-class JoinLobbyResponse(BaseModel):
+class CheckLobbyResponse(BaseModel):
     playerId: str
     lobbyId: str
-
-# class PlayerJoinEvent(BaseModel):
-#     uuid: uuid.UUID
-#     name: str
-
-# class PlayerLeaveEvent(BaseModel):
-#     uuid: uuid.UUID

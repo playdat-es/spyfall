@@ -7,17 +7,15 @@ import { useEffect } from 'react';
 
 function LobbyPage() {
   const navigate = useNavigate();
-  const { lobbyCode } = useParams();
+  const { lobbyId } = useParams();
 
   const { gameState, socketState, sendEvent } = useGameStateManager();
 
   useEffect(() => {
     if (socketState === WebSocket.OPEN) {
-      sendEvent.playerJoinEvent(lobbyCode!);
+      sendEvent.playerJoinEvent(lobbyId!);
     }
   }, [socketState]);
-  console.log(gameState.creator);
-  console.log(localStorage.getItem('playerId'));
 
   return (
     <Box>
@@ -29,7 +27,7 @@ function LobbyPage() {
           <ListItemIcon>
             <ContactMail />
           </ListItemIcon>
-          <ListItemText primary={lobbyCode} />
+          <ListItemText primary={lobbyId} />
         </ListItem>
         {gameState.players.map((player) => (
           <PlayerListItem

@@ -31,7 +31,6 @@ export const useGameStateManager = () => {
 
   const handlePlayerLeave = (id: string) => {
     setPlayers(players.filter((player) => player.id !== id));
-    // todo: this should return client to home page if receiving leave with own id
   };
 
   const handlePlayerRename = (playerId: string, newName: string) => {
@@ -43,7 +42,6 @@ export const useGameStateManager = () => {
   };
 
   useEffect(() => {
-    console.log(lastJsonMessage);
     switch (lastJsonMessage?.type) {
       case 'LOBBY_STATE': {
         handleLobbyState(lastJsonMessage.data['players'], lastJsonMessage.data['creator']);
@@ -64,23 +62,13 @@ export const useGameStateManager = () => {
     }
   }, [lastJsonMessage]);
 
-  const playerJoinEvent = (lobbyCode: string) => {
+  const playerJoinEvent = (lobbyId: string) => {
     sendJsonMessage({
       type: 'PLAYER_JOIN',
       data: {
-        lobbyCode: lobbyCode,
+        lobbyId: lobbyId,
         playerId: localStorage.getItem('playerId'),
         playerName: localStorage.getItem('playerName')
-      }
-    });
-  };
-
-  const playerLeaveEvent = (lobbyCode: string, playerId: string) => {
-    sendJsonMessage({
-      type: 'PLAYER_LEAVE',
-      data: {
-        lobbyCode: lobbyCode,
-        playerId: playerId
       }
     });
   };
@@ -97,7 +85,6 @@ export const useGameStateManager = () => {
 
   const sendEvent = {
     playerJoinEvent,
-    playerLeaveEvent,
     playerRenameEvent
   };
 
