@@ -10,6 +10,8 @@ from app.routes import router
 
 
 config = dotenv_values(".env")
+if "URI" not in config:
+    raise Exception(".env is not properly configured")
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
