@@ -6,10 +6,12 @@ from fastapi.middleware.cors import CORSMiddleware
 from pymongo import MongoClient
 from dotenv import dotenv_values
 from contextlib import asynccontextmanager
-from routes import router
+from app.routes import router
 
 
-config = dotenv_values("vars/.env")
+config = dotenv_values(".env")
+if "URI" not in config:
+    raise Exception(".env is not properly configured")
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):

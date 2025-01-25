@@ -1,2 +1,7 @@
+#!/usr/bin/env sh
+
 cd frontend
 npm run pre-commit
+cd ../backend
+uv run ruff check --fix
+uv run ruff format
