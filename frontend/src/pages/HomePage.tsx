@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Box, Button, Modal, Stack, TextField, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import spyfallLogo from '../assets/react.svg';
+import { LOBBY_CODE_LENGTH, post, sanitizeLobbyCode } from '../utils/utils.ts';
 
 const lobbyCodeModalStyle = {
   position: 'absolute',
@@ -13,32 +14,23 @@ const lobbyCodeModalStyle = {
   color: 'black',
   borderRadius: '10px',
   p: 4,
-  textAlign: 'center'
+  textAlign: 'center',
 };
 
 function HomePage() {
   const navigate = useNavigate();
-  const [name, setName] = useState('');
+  const [name, setName] = useState(localStorage.getItem('playerName') || '');
   const [showModal, setShowModal] = useState(false);
   const [disableCodeField, setDisableCodeField] = useState(false);
-  const [codeError, setCodeError] = useState(false);
-  const [codeHelperText, setCodeHelperText] = useState('Code is 4 characters');
+  const [codeHelperText, setCodeHelperText] = useState('');
 
   const handleCreateLobby = () => {
-    fetch(`${import.meta.env.VITE_API_BASE_URL}/lobby`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        playerName: name
-      })
-    })
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/lobby`, post({ playerName: name.trim() }))
       .then((response) => response.json())
       .then((json) => {
         if (json['lobbyId']) {
           localStorage.setItem('playerId', json['playerId']);
-          localStorage.setItem('playerName', name);
+          localStorage.setItem('playerName', json['playerName']);
           navigate(`/${json['lobbyId']}`);
         } else {
           console.error(json);
@@ -47,34 +39,24 @@ function HomePage() {
       .catch((error) => console.error(error));
   };
 
-  // Call server to validate inputted lobby code
+  // Call server to validate lobby code
   // If valid, join lobby with that code
   const handleCodeChange = (code: string) => {
-    setCodeError(false);
-    setCodeHelperText('Code is 4 characters');
-    // lobbyCode must be of length 4
-    if (code.length != 4) {
+    code = sanitizeLobbyCode(code);
+    if (code.length != LOBBY_CODE_LENGTH) {
+      setCodeHelperText('Code is 4 characters');
       return;
     }
     setDisableCodeField(true);
-    fetch(`${import.meta.env.VITE_API_BASE_URL}/lobby/${code}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        playerName: name
-      })
-    })
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/lobby/${code}`, post({ playerName: name.trim() }))
       .then((response) => response.json())
       .then((json) => {
         if (json['lobbyId']) {
           localStorage.setItem('playerId', json['playerId']);
-          localStorage.setItem('playerName', name);
+          localStorage.setItem('playerName', json['playerName']);
           navigate(`/${code}`);
         } else {
           console.error(json);
-          setCodeError(true);
           setCodeHelperText('Invalid Code');
         }
       })
@@ -94,6 +76,8 @@ function HomePage() {
         </Typography>
         <TextField
           placeholder="Player Name"
+          defaultValue={localStorage.getItem('playerName')}
+          slotProps={{ htmlInput: { maxLength: 16 } }}
           autoComplete="off"
           fullWidth
           onChange={(text) => setName(text.target.value)}
@@ -116,9 +100,9 @@ function HomePage() {
             placeholder="Lobby Code"
             autoComplete="off"
             fullWidth
-            slotProps={{ htmlInput: { maxLength: 4 } }}
+            slotProps={{ htmlInput: { style: { textTransform: 'uppercase' } } }}
             helperText={codeHelperText}
-            error={codeError}
+            error={codeHelperText !== ''}
             disabled={disableCodeField}
             onChange={(text) => handleCodeChange(text.target.value)}
           />

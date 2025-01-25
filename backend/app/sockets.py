@@ -32,9 +32,19 @@ class ConnectionManager:
     async def handle_player_join(
         self, connection: WebSocket, lobby_id: str, player_id: str, player_name: str
     ):
-        # todo: lobby id does not exist
         database = connection.app.database["Lobby"]
-        player = Player(id=player_id, name=player_name).model_dump(by_alias=True)
+
+        # todo: lobby id does not exist
+        if (lobby := lobby_database.find_one({"code": lobby_id})) is None:
+            print(f"Lobby with code {lobby_id} not found")
+            return
+
+        dedupe_num = 0
+        for player in lobby["players"]:
+            if player.name == sanitized_name:
+                dedupe_num = max(player.dedupe + 1, dedupe_num)
+
+        player = Player(id=player_id, name=player_name, dedupe=dedupe_num).model_dump(by_alias=True)
         database.update_one({"_id": lobby_id}, {"$push": {"players": player}})
 
         if lobby_id not in self.lobby_to_connections:
@@ -47,11 +57,10 @@ class ConnectionManager:
         self.lobby_to_connections[lobby_id].append(connection)
         self.connection_to_metadata[connection] = PlayerMetadata(lobby_id, player_id)
 
-        lobby = database.find_one({"_id": lobby_id})
         await self.send_event(
             connection,
             "LOBBY_STATE",
-            {"players": lobby["players"], "creator": lobby["creator"]},
+            {"players": lobby["players"] + [player], "creator": lobby["creator"]},
         )
 
     async def handle_player_leave(self, connection: WebSocket):

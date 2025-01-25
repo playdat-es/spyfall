@@ -10,6 +10,7 @@ class Player(BaseModel):
     id: str = Field(default_factory=lambda: uuid.uuid4().hex)
     name: str
     role: Optional[str] = None
+    dedupe: Optional[int] = 0
 
 
 class Lobby(BaseModel):
@@ -24,6 +25,14 @@ class Lobby(BaseModel):
     location: Optional[str] = None
     start_time: Optional[int] = None
     duration: int = Field(default=480)  # seconds
+
+
+class CreateLobbyRequest(BaseModel):
+    playerName: str
+
+
+class CheckLobbyRequest(BaseModel):
+    playerName: str
 
 
 class CreateLobbyResponse(BaseModel):
