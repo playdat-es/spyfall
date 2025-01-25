@@ -14,6 +14,7 @@ config = dotenv_values(".env")
 if "URI" not in config:
     raise Exception(".env is not properly configured")
 
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     if sys.prefix != sys.base_prefix:
@@ -30,6 +31,7 @@ async def lifespan(app: FastAPI):
     yield
     print("Database shutdown")
     app.mongodb_client.close()
+
 
 app = FastAPI(lifespan=lifespan)
 
