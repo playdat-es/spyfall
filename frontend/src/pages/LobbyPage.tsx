@@ -1,4 +1,13 @@
-import { Box, Button, IconButton, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
+import {
+  Box,
+  Button,
+  IconButton,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Typography,
+} from '@mui/material';
 import { ArrowBackIosNew, ContactMail } from '@mui/icons-material';
 import { useNavigate, useParams } from 'react-router-dom';
 import PlayerListItem from '../molecules/PlayerListItem';
@@ -35,7 +44,12 @@ function LobbyPage({ gameState, playerRenameEvent, startGameEvent }: LobbyPagePr
           />
         ))}
       </List>
-      {isCreator && <Button onClick={startGameEvent}>Start Game</Button>}
+      {isCreator && (
+        <Button onClick={startGameEvent} disabled={gameState.players.length >= 3}>
+          Start Game
+        </Button>
+      )}
+      {!isCreator && <Typography>Waiting for Host...</Typography>}
     </Box>
   );
 }
