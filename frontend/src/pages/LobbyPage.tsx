@@ -1,21 +1,18 @@
-import { Box, IconButton, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
+import { Box, Button, IconButton, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
 import { ArrowBackIosNew, ContactMail } from '@mui/icons-material';
 import { useNavigate, useParams } from 'react-router-dom';
 import PlayerListItem from '../molecules/PlayerListItem';
-import { useGameStateManager } from '../hooks/useGameStateManager';
-import { useEffect } from 'react';
+import { GamePageProps } from './GamePage.tsx';
 
-function LobbyPage() {
+type LobbyPageProps = GamePageProps & {
+  playerRenameEvent: (newName: string) => void;
+  startGameEvent: () => void;
+};
+function LobbyPage({ gameState, playerRenameEvent, startGameEvent }: LobbyPageProps) {
   const navigate = useNavigate();
   const { lobbyId } = useParams();
 
-  const { gameState, socketState, sendEvent } = useGameStateManager();
-
-  useEffect(() => {
-    if (socketState === WebSocket.OPEN) {
-      sendEvent.playerJoinEvent(lobbyId!);
-    }
-  }, [socketState]);
+  const isCreator = gameState.creator === localStorage.getItem('playerId');
 
   return (
     <Box>
@@ -33,11 +30,12 @@ function LobbyPage() {
           <PlayerListItem
             key={player.id}
             player={player}
-            rename={sendEvent.playerRenameEvent}
+            rename={playerRenameEvent}
             creator={gameState.creator}
           />
         ))}
       </List>
+      {isCreator && <Button onClick={startGameEvent}>Start Game</Button>}
     </Box>
   );
 }

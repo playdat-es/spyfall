@@ -2,24 +2,18 @@ import { useEffect, useRef, useState } from 'react';
 import { Button, Divider, Stack, Typography } from '@mui/material';
 import { Face } from '@mui/icons-material';
 import RoleLocationListitem from '../molecules/RoleLocationListItem';
+import { GamePageProps } from './GamePage.tsx';
 
-// DUMMY DATA
-const user = {
-  name: 'Amy'
-};
-
-function RolePage() {
+function RolePage({ gameState }: GamePageProps) {
   const intervalRef = useRef(0);
   const [timer, setTimer] = useState('XX:XX');
   const [gameOver, setGameOver] = useState(false);
 
-  // fetch role and location from server
-  const role = 'Spy';
-  const location = 'Airplane';
-  // fetch lobby duration
-  const duration = 5; // 5 seconds
-  // Determine if user is creator (DEBUG VALUE FOR NOW)
-  const isCreator = true;
+  const player = gameState.players.find((player) => player.id === localStorage.getItem('playerId'));
+  const role = player?.role ?? '';
+  const location = gameState.location ?? '';
+  const duration = gameState.duration ?? 0;
+  const isCreator = gameState.creator === localStorage.getItem('playerId');
 
   const getTimeRemaining = (currTime: Date) => {
     const total = Date.parse(currTime.toString()) - Date.parse(new Date().toString());
@@ -32,7 +26,7 @@ function RolePage() {
     const { total, minutes, seconds } = getTimeRemaining(currTime);
     if (total >= 0) {
       setTimer(
-        (minutes > 9 ? minutes : '0' + minutes) + ':' + (seconds > 9 ? seconds : '0' + seconds)
+        (minutes > 9 ? minutes : '0' + minutes) + ':' + (seconds > 9 ? seconds : '0' + seconds),
       );
     } else {
       setGameOver(true);
@@ -44,10 +38,9 @@ function RolePage() {
     const currTime = new Date();
     currTime.setSeconds(currTime.getSeconds() + duration);
     if (intervalRef.current) clearInterval(intervalRef.current);
-    const intervalId = setInterval(() => {
+    intervalRef.current = setInterval(() => {
       updateTimer(currTime);
     }, 1000);
-    intervalRef.current = intervalId;
   };
 
   useEffect(() => {
@@ -58,7 +51,7 @@ function RolePage() {
     <Stack>
       <Stack direction="row" alignItems="center" justifyContent="center" spacing={1} sx={{ my: 1 }}>
         <Face />
-        <Typography>{user.name}</Typography>
+        <Typography>{player?.name}</Typography>
       </Stack>
       <Divider />
       <RoleLocationListitem role={role} location={location} />

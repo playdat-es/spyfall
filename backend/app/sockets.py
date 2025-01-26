@@ -1,7 +1,10 @@
+import time
+
 from fastapi import APIRouter, WebSocket
 from starlette.websockets import WebSocketDisconnect
 
 from app.models import Player
+from app.utils import get_lobby_status
 
 
 class PlayerMetadata:
@@ -61,10 +64,11 @@ class ConnectionManager:
         self.lobby_to_connections[lobby_id].append(connection)
         self.connection_to_metadata[connection] = PlayerMetadata(lobby_id, player_id)
 
+        lobby = database.find_one({"_id": lobby_id})
         await self.send_event(
             connection,
             "LOBBY_STATE",
-            {"players": lobby["players"] + [player], "creator": lobby["creator"]},
+            {"lobby": lobby, "status": get_lobby_status(lobby)},
         )
 
     async def handle_player_leave(self, connection: WebSocket):
@@ -123,6 +127,27 @@ class ConnectionManager:
                 },
             )
 
+    async def handle_start_game(self, connection: WebSocket):
+        database = connection.app.database["Lobby"]
+        metadata = self.connection_to_metadata.get(connection)
+        lobby_id = metadata.lobby_id
+        database.update_one(
+            {"_id": lobby_id},
+            {
+                "$set": {
+                    "start_time": time.time(),
+                    "location": "sample location",
+                    "players.$[].role": "sample role",
+                }
+            },
+        )
+        lobby = database.find_one({"_id": lobby_id})
+        await self.broadcast_event(
+            lobby_id,
+            "LOBBY_STATE",
+            {"lobby": lobby, "status": "IN_PROGRESS"},
+        )
+
 
 websocket_router = APIRouter()
 manager = ConnectionManager()
@@ -150,6 +175,8 @@ async def websocket_endpoint(websocket: WebSocket):
                         websocket,
                         event_data["playerName"],
                     )
+                case "START_GAME":
+                    await manager.handle_start_game(websocket)
                 case _:
                     print(f"Received event with unhandled type: {event}")
 
