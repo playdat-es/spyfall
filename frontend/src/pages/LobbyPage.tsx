@@ -45,7 +45,7 @@ function LobbyPage({ gameState, playerRenameEvent, startGameEvent }: LobbyPagePr
         ))}
       </List>
       {isCreator && (
-        <Button onClick={startGameEvent} disabled={gameState.players.length >= 3}>
+        <Button onClick={startGameEvent} disabled={gameState.players.length < 3}>
           Start Game
         </Button>
       )}
