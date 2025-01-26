@@ -38,8 +38,10 @@ class CheckLobbyRequest(BaseModel):
 class CreateLobbyResponse(BaseModel):
     lobbyId: str
     playerId: str
+    playerName: str
 
 
 class CheckLobbyResponse(BaseModel):
     playerId: str
     lobbyId: str
+    playerName: str

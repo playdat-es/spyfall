@@ -13,5 +13,5 @@ createRoot(document.getElementById('root')!).render(
         <Route path="/:lobbyId" element={<LobbyPage />} />
       </Routes>
     </BrowserRouter>
-  </StrictMode>
+  </StrictMode>,
 );

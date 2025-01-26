@@ -1,5 +1,11 @@
 from fastapi import APIRouter, HTTPException, Request, status
-from app.models import CheckLobbyResponse, CreateLobbyResponse, Lobby
+from app.models import (
+    CheckLobbyResponse,
+    CreateLobbyResponse,
+    Lobby,
+    CreateLobbyRequest,
+    CheckLobbyRequest,
+)
 import uuid
 
 from app.utils import sanitize_name
@@ -21,7 +27,9 @@ def create_lobby(request: Request, body: CreateLobbyRequest):
     print(f"Created a lobby with code {lobby.id}")
 
     sanitized_name = sanitize_name(body.playerName)
-    return CreateLobbyResponse(lobbyId=lobby.id, playerId=lobby.creator)
+    return CreateLobbyResponse(
+        lobbyId=lobby.id, playerId=lobby.creator, playerName=sanitized_name
+    )
 
 
 @router.post(
@@ -40,4 +48,6 @@ def check_lobby(lobby_id: str, request: Request, body: CheckLobbyRequest):
         )
 
     sanitized_name = sanitize_name(body.playerName)
-    return CheckLobbyResponse(lobbyId=lobby_id, playerId=uuid.uuid4().hex)
+    return CheckLobbyResponse(
+        lobbyId=lobby_id, playerId=uuid.uuid4().hex, playerName=sanitized_name
+    )

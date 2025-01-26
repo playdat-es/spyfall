@@ -1,7 +1,8 @@
 from fastapi import APIRouter, WebSocket
 from starlette.websockets import WebSocketDisconnect
 
-from models import Player
+from app.models import Player
+from app.utils import sanitize_name
 
 
 class PlayerMetadata:
@@ -35,23 +36,28 @@ class ConnectionManager:
         database = connection.app.database["Lobby"]
 
         # todo: lobby id does not exist
-        if (lobby := lobby_database.find_one({"code": lobby_id})) is None:
+        if (lobby := database.find_one({"_id": lobby_id})) is None:
             print(f"Lobby with code {lobby_id} not found")
             return
 
+        player_name = sanitize_name(player_name)
         dedupe_num = 0
         for player in lobby["players"]:
-            if player.name == sanitized_name:
-                dedupe_num = max(player.dedupe + 1, dedupe_num)
+            if player["name"] == player_name:
+                dedupe_num = max(player["dedupe"] + 1, dedupe_num)
 
-        player = Player(id=player_id, name=player_name, dedupe=dedupe_num).model_dump(by_alias=True)
+        player = Player(id=player_id, name=player_name, dedupe=dedupe_num).model_dump(
+            by_alias=True
+        )
         database.update_one({"_id": lobby_id}, {"$push": {"players": player}})
 
         if lobby_id not in self.lobby_to_connections:
             self.lobby_to_connections[lobby_id] = []
 
         await self.broadcast_event(
-            lobby_id, "PLAYER_JOIN", {"playerId": player_id, "playerName": player_name}
+            lobby_id,
+            "PLAYER_JOIN",
+            {"playerId": player_id, "playerName": player_name, "dedupe": dedupe_num},
         )
 
         self.lobby_to_connections[lobby_id].append(connection)
@@ -81,6 +87,45 @@ class ConnectionManager:
             },
         )
 
+    async def handle_player_rename(self, connection: WebSocket, player_name: str):
+        database = connection.app.database["Lobby"]
+        metadata = self.connection_to_metadata.get(connection)
+        player_id = metadata.player_id
+        lobby_id = metadata.lobby_id
+
+        lobby = database.find_one({"_id": lobby_id})
+
+        player_name = sanitize_name(player_name)
+        player_by_id = next(
+            (player for player in lobby["players"] if player["id"] == player_id), None
+        )
+
+        if player_by_id["name"] != player_name:
+            dedupe_num = 0
+            for player in lobby["players"]:
+                if player["name"] == player_name:
+                    dedupe_num = max(player["dedupe"] + 1, dedupe_num)
+
+            database.update_one(
+                {"_id": lobby_id, "players.id": player_id},
+                {
+                    "$set": {
+                        "players.$.name": player_name,
+                        "players.$.dedupe": dedupe_num,
+                    }
+                },
+            )
+
+            await self.broadcast_event(
+                lobby_id,
+                "PLAYER_RENAME",
+                {
+                    "playerId": player_id,
+                    "playerName": player_name,
+                    "dedupe": dedupe_num,
+                },
+            )
+
 
 websocket_router = APIRouter()
 manager = ConnectionManager()
@@ -101,6 +146,11 @@ async def websocket_endpoint(websocket: WebSocket):
                         websocket,
                         event_data["lobbyId"],
                         event_data["playerId"],
+                        event_data["playerName"],
+                    )
+                case "PLAYER_RENAME":
+                    await manager.handle_player_rename(
+                        websocket,
                         event_data["playerName"],
                     )
                 case _:

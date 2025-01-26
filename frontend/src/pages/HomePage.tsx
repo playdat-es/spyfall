@@ -2,20 +2,7 @@ import { useState } from 'react';
 import { Box, Button, Modal, Stack, TextField, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import spyfallLogo from '../assets/react.svg';
-import { LOBBY_CODE_LENGTH, post, sanitizeLobbyCode } from '../utils/utils.ts';
-
-const lobbyCodeModalStyle = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 300,
-  bgcolor: 'background.paper',
-  color: 'black',
-  borderRadius: '10px',
-  p: 4,
-  textAlign: 'center',
-};
+import { LOBBY_CODE_LENGTH, modalStyle, post, sanitizeLobbyCode } from '../utils/utils.ts';
 
 function HomePage() {
   const navigate = useNavigate();
@@ -43,7 +30,7 @@ function HomePage() {
   // If valid, join lobby with that code
   const handleCodeChange = (code: string) => {
     code = sanitizeLobbyCode(code);
-    if (code.length != LOBBY_CODE_LENGTH) {
+    if (code.length < LOBBY_CODE_LENGTH) {
       setCodeHelperText('Code is 4 characters');
       return;
     }
@@ -92,7 +79,7 @@ function HomePage() {
         </Button>
       </Stack>
       <Modal open={showModal} onClose={() => setShowModal(false)}>
-        <Box sx={lobbyCodeModalStyle}>
+        <Box sx={modalStyle}>
           <Typography variant="h4" component="label" gutterBottom>
             Enter Lobby Code
           </Typography>
