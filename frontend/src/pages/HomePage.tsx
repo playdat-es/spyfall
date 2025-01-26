@@ -36,10 +36,10 @@ function HomePage() {
     })
       .then((response) => response.json())
       .then((json) => {
-        if (json['lobbyCode']) {
+        if (json['lobbyId']) {
           localStorage.setItem('playerId', json['playerId']);
-          localStorage.setItem('lobbyId', json['lobbyId']);
-          navigate(`/${json['lobbyCode']}`);
+          localStorage.setItem('playerName', name);
+          navigate(`/${json['lobbyId']}`);
         } else {
           console.error(json);
         }
@@ -70,7 +70,7 @@ function HomePage() {
       .then((json) => {
         if (json['lobbyId']) {
           localStorage.setItem('playerId', json['playerId']);
-          localStorage.setItem('lobbyId', json['lobbyId']);
+          localStorage.setItem('playerName', name);
           navigate(`/${code}`);
         } else {
           console.error(json);

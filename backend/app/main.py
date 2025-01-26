@@ -7,11 +7,13 @@ from pymongo import MongoClient
 from dotenv import dotenv_values
 from contextlib import asynccontextmanager
 from app.routes import router
+from app.sockets import websocket_router
 
 
 config = dotenv_values(".env")
 if "URI" not in config:
     raise Exception(".env is not properly configured")
+
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -30,9 +32,11 @@ async def lifespan(app: FastAPI):
     print("Database shutdown")
     app.mongodb_client.close()
 
+
 app = FastAPI(lifespan=lifespan)
 
 app.include_router(router)
+app.include_router(websocket_router)
 
 origins = [
     "http://localhost",
