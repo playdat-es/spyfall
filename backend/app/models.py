@@ -2,13 +2,18 @@ import random
 import string
 import uuid
 
-from pydantic import BaseModel, Field
-from typing import Optional, List
+from pydantic import BaseModel, Field, BeforeValidator
+from typing import Optional, List, Annotated
+
+
+def sanitize_name(name):
+    name = name.strip()
+    return name[:16] if len(name) > 16 else name
 
 
 class Player(BaseModel):
     id: str = Field(default_factory=lambda: uuid.uuid4().hex)
-    name: str
+    name: Annotated[str, BeforeValidator(sanitize_name)]
     role: Optional[str] = None
     dedupe: Optional[int] = 0
 
@@ -28,11 +33,11 @@ class Lobby(BaseModel):
 
 
 class CreateLobbyRequest(BaseModel):
-    playerName: str
+    playerName: Annotated[str, BeforeValidator(sanitize_name)]
 
 
 class CheckLobbyRequest(BaseModel):
-    playerName: str
+    playerName: Annotated[str, BeforeValidator(sanitize_name)]
 
 
 class CreateLobbyResponse(BaseModel):

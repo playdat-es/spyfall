@@ -2,7 +2,6 @@ from fastapi import APIRouter, WebSocket
 from starlette.websockets import WebSocketDisconnect
 
 from app.models import Player
-from app.utils import sanitize_name
 
 
 class PlayerMetadata:
@@ -40,7 +39,6 @@ class ConnectionManager:
             print(f"Lobby with code {lobby_id} not found")
             return
 
-        player_name = sanitize_name(player_name)
         dedupe_num = 0
         for player in lobby["players"]:
             if player["name"] == player_name:
@@ -95,7 +93,6 @@ class ConnectionManager:
 
         lobby = database.find_one({"_id": lobby_id})
 
-        player_name = sanitize_name(player_name)
         player_by_id = next(
             (player for player in lobby["players"] if player["id"] == player_id), None
         )

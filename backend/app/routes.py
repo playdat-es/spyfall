@@ -8,7 +8,6 @@ from app.models import (
 )
 import uuid
 
-from app.utils import sanitize_name
 
 router = APIRouter()
 
@@ -26,9 +25,8 @@ def create_lobby(request: Request, body: CreateLobbyRequest):
     request.app.database["Lobby"].insert_one(lobby.model_dump(by_alias=True))
     print(f"Created a lobby with code {lobby.id}")
 
-    sanitized_name = sanitize_name(body.playerName)
     return CreateLobbyResponse(
-        lobbyId=lobby.id, playerId=lobby.creator, playerName=sanitized_name
+        lobbyId=lobby.id, playerId=lobby.creator, playerName=body.playerName
     )
 
 
@@ -47,7 +45,6 @@ def check_lobby(lobby_id: str, request: Request, body: CheckLobbyRequest):
             detail=f"Lobby with code {lobby_id} not found",
         )
 
-    sanitized_name = sanitize_name(body.playerName)
     return CheckLobbyResponse(
-        lobbyId=lobby_id, playerId=uuid.uuid4().hex, playerName=sanitized_name
+        lobbyId=lobby_id, playerId=uuid.uuid4().hex, playerName=body.playerName
     )
