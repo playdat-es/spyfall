@@ -25,7 +25,6 @@ interface CheckLobbyRequest {
 export type RequestBody = CreateLobbyRequest | CheckLobbyRequest;
 
 export enum LobbyStatus {
-  CREATED = 'CREATED',
+  NOT_STARTED = 'NOT_STARTED',
   IN_PROGRESS = 'IN_PROGRESS',
-  COMPLETED = 'COMPLETED',
 }

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import useWebSocket from 'react-use-websocket';
 import { Lobby, LobbyStatus, Player } from '../utils/models.ts';
 
@@ -19,15 +19,13 @@ export const useGameStateManager = () => {
   const [location, setLocation] = useState<string>();
   const [startTime, setStartTime] = useState<number>();
   const [duration, setDuration] = useState<number>();
-  const [status, setStatus] = useState<LobbyStatus>();
 
-  const handleLobbyState = (lobby: Lobby, status: LobbyStatus) => {
+  const handleLobbyState = (lobby: Lobby) => {
     setPlayers(lobby.players);
     setCreator(lobby.creator);
     setLocation(lobby.location);
     setStartTime(lobby.startTime);
     setDuration(lobby.duration);
-    setStatus(status);
   };
 
   const handlePlayerJoin = (id: string, name: string, dedupe: number) => {
@@ -61,7 +59,7 @@ export const useGameStateManager = () => {
     const data = message?.data;
     switch (message?.type) {
       case 'LOBBY_STATE': {
-        handleLobbyState(data['lobby'], data['status']);
+        handleLobbyState(data['lobby']);
         break;
       }
       case 'PLAYER_JOIN': {
@@ -112,6 +110,10 @@ export const useGameStateManager = () => {
     playerRenameEvent,
     startGameEvent,
   };
+
+  const status = useMemo(() => {
+    return startTime ? LobbyStatus.NOT_STARTED : LobbyStatus.IN_PROGRESS;
+  }, [startTime]);
 
   const gameState = {
     players,

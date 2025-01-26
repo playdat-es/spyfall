@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import { Button, Divider, Stack, Typography } from '@mui/material';
 import { Face } from '@mui/icons-material';
-import RoleLocationListitem from '../molecules/RoleLocationListItem';
-import { GamePageProps } from './GamePage.tsx';
+import RoleLocationListitem from '../molecules/RoleLocationListItem.tsx';
+import { GamePageProps } from '../pages/GamePage.tsx';
 
-function RolePage({ gameState }: GamePageProps) {
+function RolePane({ gameState }: GamePageProps) {
   const intervalRef = useRef(0);
   const [timer, setTimer] = useState('XX:XX');
   const [gameOver, setGameOver] = useState(false);
@@ -75,4 +75,4 @@ function RolePage({ gameState }: GamePageProps) {
   );
 }
 
-export default RolePage;
+export default RolePane;

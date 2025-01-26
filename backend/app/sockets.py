@@ -4,7 +4,6 @@ from fastapi import APIRouter, WebSocket
 from starlette.websockets import WebSocketDisconnect
 
 from app.models import Player
-from app.utils import get_lobby_status
 
 
 class PlayerMetadata:
@@ -68,7 +67,7 @@ class ConnectionManager:
         await self.send_event(
             connection,
             "LOBBY_STATE",
-            {"lobby": lobby, "status": get_lobby_status(lobby)},
+            {"lobby": lobby},
         )
 
     async def handle_player_leave(self, connection: WebSocket):
@@ -145,7 +144,7 @@ class ConnectionManager:
         await self.broadcast_event(
             lobby_id,
             "LOBBY_STATE",
-            {"lobby": lobby, "status": "IN_PROGRESS"},
+            {"lobby": lobby},
         )
 
 

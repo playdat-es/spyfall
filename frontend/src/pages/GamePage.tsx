@@ -1,15 +1,18 @@
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useGameStateManager } from '../hooks/useGameStateManager';
 import { useEffect } from 'react';
 import { Lobby, LobbyStatus } from '../utils/models.ts';
-import LobbyPage from './LobbyPage.tsx';
-import RolePage from './RolePage.tsx';
+import LobbyPane from '../organisms/LobbyPane.tsx';
+import RolePane from '../organisms/RolePane.tsx';
+import { IconButton, ListItem, ListItemIcon, ListItemText } from '@mui/material';
+import { ArrowBackIosNew, ContactMail } from '@mui/icons-material';
 
 export interface GamePageProps {
   gameState: Omit<Lobby, 'id'> & { status?: LobbyStatus };
 }
 
 function GamePage() {
+  const navigate = useNavigate();
   const { lobbyId } = useParams();
 
   const { gameState, sendEvent, socketState } = useGameStateManager();
@@ -22,15 +25,23 @@ function GamePage() {
 
   return (
     <>
-      {gameState.status === LobbyStatus.CREATED && (
-        <LobbyPage
+      <ListItem divider>
+        <IconButton edge="start" aria-label="back" onClick={() => navigate('/')}>
+          <ArrowBackIosNew />
+        </IconButton>
+        <ListItemIcon>
+          <ContactMail />
+        </ListItemIcon>
+        <ListItemText primary={lobbyId} />
+      </ListItem>
+      {gameState.status === LobbyStatus.NOT_STARTED && (
+        <LobbyPane
           gameState={gameState!}
           playerRenameEvent={sendEvent.playerRenameEvent}
           startGameEvent={sendEvent.startGameEvent}
         />
       )}
-      {gameState.status === LobbyStatus.IN_PROGRESS && <RolePage gameState={gameState!} />}
-      {gameState.status === LobbyStatus.COMPLETED && 'completed'}
+      {gameState.status === LobbyStatus.IN_PROGRESS && <RolePane gameState={gameState!} />}
     </>
   );
 }
