@@ -1,3 +1,5 @@
+import json
+import random
 import time
 
 from fastapi import APIRouter, WebSocket
@@ -130,16 +132,35 @@ class ConnectionManager:
         database = connection.app.database["Lobby"]
         metadata = self.connection_to_metadata.get(connection)
         lobby_id = metadata.lobby_id
+
+        lobby = database.find_one({"_id": lobby_id})
+        if len(lobby["players"]) < 3:
+            return
+
+        with open("location-packs/location-pack-1.json") as json_file:
+            location_pack = json.load(json_file)
+            location = random.choice(location_pack["locations"])
+
+            spy = random.choice(lobby["players"])
+            spy["role"] = "Spy"
+
+            for player in lobby["players"]:
+                if player["role"] != "Spy":
+                    role = random.choice(location["roles"])
+                    location["roles"].remove(role)
+                    player["role"] = role["name"]
+
         database.update_one(
             {"_id": lobby_id},
             {
                 "$set": {
                     "start_time": time.time(),
-                    "location": "sample location",
-                    "players.$[].role": "sample role",
+                    "location": location["name"],
+                    "players": lobby["players"],
                 }
             },
         )
+
         lobby = database.find_one({"_id": lobby_id})
         await self.broadcast_event(
             lobby_id,

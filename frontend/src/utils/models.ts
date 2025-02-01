@@ -10,7 +10,7 @@ export interface Lobby {
   creator: string;
   players: Player[];
   location?: string;
-  startTime?: number;
+  start_time?: number;
   duration?: number;
 }
 

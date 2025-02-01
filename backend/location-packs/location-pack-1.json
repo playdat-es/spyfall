@@ -9,27 +9,27 @@
             "description": ""
           },
           {
-            "name:": "Coach Passenger",
+            "name": "Coach Passenger",
             "description": ""
           },
           {
-            "name:": "Copilot",
+            "name": "Copilot",
             "description": ""
           },
           {
-            "name:": "Flight Attendant",
+            "name": "Flight Attendant",
             "description": ""
           },
           {
-            "name:": "Flight Engineer",
+            "name": "Flight Engineer",
             "description": ""
           },
           {
-            "name:": "Pilot",
+            "name": "Pilot",
             "description": ""
           },
           {
-            "name:": "Stowaway",
+            "name": "Stowaway",
             "description": ""
           }
         ]
@@ -42,27 +42,27 @@
             "description": ""
           },
           {
-            "name:": "Kid",
+            "name": "Kid",
             "description": ""
           },
           {
-            "name:": "Mechanic",
+            "name": "Mechanic",
             "description": ""
           },
           {
-            "name:": "Ride Operator",
+            "name": "Ride Operator",
             "description": ""
           },
           {
-            "name:": "Tourist",
+            "name": "Tourist",
             "description": ""
           },
           {
-            "name:": "Vendor",
+            "name": "Vendor",
             "description": ""
           },
           {
-            "name:": "Visitor",
+            "name": "Visitor",
             "description": ""
           }
         ]
@@ -75,27 +75,27 @@
             "description": ""
           },
           {
-            "name:": "Branch Manager",
+            "name": "Branch Manager",
             "description": ""
           },
           {
-            "name:": "Consultant",
+            "name": "Consultant",
             "description": ""
           },
           {
-            "name:": "Customer",
+            "name": "Customer",
             "description": ""
           },
           {
-            "name:": "Security Guard",
+            "name": "Security Guard",
             "description": ""
           },
           {
-            "name:": "Robber",
+            "name": "Robber",
             "description": ""
           },
           {
-            "name:": "Teller",
+            "name": "Teller",
             "description": ""
           }
         ]
@@ -108,27 +108,27 @@
             "description": ""
           },
           {
-            "name:": "Food Vendor",
+            "name": "Food Vendor",
             "description": ""
           },
           {
-            "name:": "Lifeguard",
+            "name": "Lifeguard",
             "description": ""
           },
           {
-            "name:": "Paraglider",
+            "name": "Paraglider",
             "description": ""
           },
           {
-            "name:": "Photographer with Monkey",
+            "name": "Photographer with Monkey",
             "description": ""
           },
           {
-            "name:": "Thief",
+            "name": "Thief",
             "description": ""
           },
           {
-            "name:": "Vacationer",
+            "name": "Vacationer",
             "description": ""
           }
         ]
@@ -141,27 +141,27 @@
             "description": ""
           },
           {
-            "name:": "Photographer",
+            "name": "Photographer",
             "description": ""
           },
           {
-            "name:": "Reenactor",
+            "name": "Reenactor",
             "description": ""
           },
           {
-            "name:": "Reporter",
+            "name": "Reporter",
             "description": ""
           },
           {
-            "name:": "Roleplaying Game Fan",
+            "name": "Roleplaying Game Fan",
             "description": ""
           },
           {
-            "name:": "Tourist",
+            "name": "Tourist",
             "description": ""
           },
           {
-            "name:": "Vendor",
+            "name": "Vendor",
             "description": ""
           }
         ]
@@ -174,27 +174,27 @@
             "description": ""
           },
           {
-            "name:": "Bartender",
+            "name": "Bartender",
             "description": ""
           },
           {
-            "name:": "Bouncer",
+            "name": "Bouncer",
             "description": ""
           },
           {
-            "name:": "Cardsharp",
+            "name": "Cardsharp",
             "description": ""
           },
           {
-            "name:": "Dealer",
+            "name": "Dealer",
             "description": ""
           },
           {
-            "name:": "Head of Security",
+            "name": "Head of Security",
             "description": ""
           },
           {
-            "name:": "Gambler",
+            "name": "Gambler",
             "description": ""
           }
         ]
@@ -207,27 +207,27 @@
             "description": ""
           },
           {
-            "name:": "Animal Tamer",
+            "name": "Animal Tamer",
             "description": ""
           },
           {
-            "name:": "Circus-Goer",
+            "name": "Circus-Goer",
             "description": ""
           },
           {
-            "name:": "Clown",
+            "name": "Clown",
             "description": ""
           },
           {
-            "name:": "Juggler",
+            "name": "Juggler",
             "description": ""
           },
           {
-            "name:": "Knife Thrower",
+            "name": "Knife Thrower",
             "description": ""
           },
           {
-            "name:": "Magician",
+            "name": "Magician",
             "description": ""
           }
         ]
@@ -240,27 +240,27 @@
             "description": ""
           },
           {
-            "name:": "Administrative Assistant",
+            "name": "Administrative Assistant",
             "description": ""
           },
           {
-            "name:": "CEO",
+            "name": "CEO",
             "description": ""
           },
           {
-            "name:": "Courier",
+            "name": "Courier",
             "description": ""
           },
           {
-            "name:": "Emcee",
+            "name": "Emcee",
             "description": ""
           },
           {
-            "name:": "Manager",
+            "name": "Manager",
             "description": ""
           },
           {
-            "name:": "Party Crasher",
+            "name": "Party Crasher",
             "description": ""
           }
         ]
@@ -273,27 +273,27 @@
             "description": ""
           },
           {
-            "name:": "Bishop",
+            "name": "Bishop",
             "description": ""
           },
           {
-            "name:": "Captive Nomad",
+            "name": "Captive Nomad",
             "description": ""
           },
           {
-            "name:": "Knight",
+            "name": "Knight",
             "description": ""
           },
           {
-            "name:": "Monk",
+            "name": "Monk",
             "description": ""
           },
           {
-            "name:": "Servant",
+            "name": "Servant",
             "description": ""
           },
           {
-            "name:": "Squire",
+            "name": "Squire",
             "description": ""
           }
         ]
@@ -306,27 +306,27 @@
             "description": ""
           },
           {
-            "name:": "Customer",
+            "name": "Customer",
             "description": ""
           },
           {
-            "name:": "Dermatologist",
+            "name": "Dermatologist",
             "description": ""
           },
           {
-            "name:": "Makeup Specialist",
+            "name": "Makeup Specialist",
             "description": ""
           },
           {
-            "name:": "Masseur",
+            "name": "Masseur",
             "description": ""
           },
           {
-            "name:": "Nail Specialist",
+            "name": "Nail Specialist",
             "description": ""
           },
           {
-            "name:": "Stylist",
+            "name": "Stylist",
             "description": ""
           }
         ]
@@ -339,27 +339,27 @@
             "description": ""
           },
           {
-            "name:": "Bureaucrat",
+            "name": "Bureaucrat",
             "description": ""
           },
           {
-            "name:": "Diplomat",
+            "name": "Diplomat",
             "description": ""
           },
           {
-            "name:": "Refugee",
+            "name": "Refugee",
             "description": ""
           },
           {
-            "name:": "Secretary",
+            "name": "Secretary",
             "description": ""
           },
           {
-            "name:": "Security Guard",
+            "name": "Security Guard",
             "description": ""
           },
           {
-            "name:": "Tourist",
+            "name": "Tourist",
             "description": ""
           }
         ]
@@ -372,27 +372,27 @@
             "description": ""
           },
           {
-            "name:": "Intern",
+            "name": "Intern",
             "description": ""
           },
           {
-            "name:": "Nurse",
+            "name": "Nurse",
             "description": ""
           },
           {
-            "name:": "Pathologist",
+            "name": "Pathologist",
             "description": ""
           },
           {
-            "name:": "Patient",
+            "name": "Patient",
             "description": ""
           },
           {
-            "name:": "Physician",
+            "name": "Physician",
             "description": ""
           },
           {
-            "name:": "Surgeon",
+            "name": "Surgeon",
             "description": ""
           }
         ]
@@ -405,27 +405,27 @@
             "description": ""
           },
           {
-            "name:": "Doorman",
+            "name": "Doorman",
             "description": ""
           },
           {
-            "name:": "Guest",
+            "name": "Guest",
             "description": ""
           },
           {
-            "name:": "Hotel Manager",
+            "name": "Hotel Manager",
             "description": ""
           },
           {
-            "name:": "Housekeeper",
+            "name": "Housekeeper",
             "description": ""
           },
           {
-            "name:": "Receptionist",
+            "name": "Receptionist",
             "description": ""
           },
           {
-            "name:": "Security Guard",
+            "name": "Security Guard",
             "description": ""
           }
         ]
@@ -438,27 +438,27 @@
             "description": ""
           },
           {
-            "name:": "Deserter",
+            "name": "Deserter",
             "description": ""
           },
           {
-            "name:": "Medic",
+            "name": "Medic",
             "description": ""
           },
           {
-            "name:": "Non-Commissioned Officer",
+            "name": "Non-Commissioned Officer",
             "description": ""
           },
           {
-            "name:": "Private",
+            "name": "Private",
             "description": ""
           },
           {
-            "name:": "Sales Clerk",
+            "name": "Sales Clerk",
             "description": ""
           },
           {
-            "name:": "Sentry",
+            "name": "Sentry",
             "description": ""
           }
         ]
@@ -471,27 +471,27 @@
             "description": ""
           },
           {
-            "name:": "Cameraman",
+            "name": "Cameraman",
             "description": ""
           },
           {
-            "name:": "Costume Designer",
+            "name": "Costume Designer",
             "description": ""
           },
           {
-            "name:": "Director",
+            "name": "Director",
             "description": ""
           },
           {
-            "name:": "Extra",
+            "name": "Extra",
             "description": ""
           },
           {
-            "name:": "Sound Engineer",
+            "name": "Sound Engineer",
             "description": ""
           },
           {
-            "name:": "Stuntman",
+            "name": "Stuntman",
             "description": ""
           }
         ]
@@ -504,27 +504,27 @@
             "description": ""
           },
           {
-            "name:": "Bouncer",
+            "name": "Bouncer",
             "description": ""
           },
           {
-            "name:": "Dancer",
+            "name": "Dancer",
             "description": ""
           },
           {
-            "name:": "DJ",
+            "name": "DJ",
             "description": ""
           },
           {
-            "name:": "Model",
+            "name": "Model",
             "description": ""
           },
           {
-            "name:": "Pick-Up Artist",
+            "name": "Pick-Up Artist",
             "description": ""
           },
           {
-            "name:": "Regular",
+            "name": "Regular",
             "description": ""
           }
         ]
@@ -537,27 +537,27 @@
             "description": ""
           },
           {
-            "name:": "Bartender",
+            "name": "Bartender",
             "description": ""
           },
           {
-            "name:": "Captain",
+            "name": "Captain",
             "description": ""
           },
           {
-            "name:": "Cook",
+            "name": "Cook",
             "description": ""
           },
           {
-            "name:": "Musician",
+            "name": "Musician",
             "description": ""
           },
           {
-            "name:": "Radio Operator",
+            "name": "Radio Operator",
             "description": ""
           },
           {
-            "name:": "Wealthy Passenger",
+            "name": "Wealthy Passenger",
             "description": ""
           }
         ]
@@ -570,27 +570,27 @@
             "description": ""
           },
           {
-            "name:": "Dining Car Cook",
+            "name": "Dining Car Cook",
             "description": ""
           },
           {
-            "name:": "Passenger",
+            "name": "Passenger",
             "description": ""
           },
           {
-            "name:": "Passenger Car Attendant",
+            "name": "Passenger Car Attendant",
             "description": ""
           },
           {
-            "name:": "Stoker",
+            "name": "Stoker",
             "description": ""
           },
           {
-            "name:": "Ticket Taker",
+            "name": "Ticket Taker",
             "description": ""
           },
           {
-            "name:": "Vendor",
+            "name": "Vendor",
             "description": ""
           }
         ]
@@ -603,27 +603,27 @@
             "description": ""
           },
           {
-            "name:": "Cook",
+            "name": "Cook",
             "description": ""
           },
           {
-            "name:": "Gunner",
+            "name": "Gunner",
             "description": ""
           },
           {
-            "name:": "Seaman",
+            "name": "Seaman",
             "description": ""
           },
           {
-            "name:": "Shackled Prisoner",
+            "name": "Shackled Prisoner",
             "description": ""
           },
           {
-            "name:": "Slave",
+            "name": "Slave",
             "description": ""
           },
           {
-            "name:": "Swashbuckling Captain",
+            "name": "Swashbuckling Captain",
             "description": ""
           }
         ]
@@ -636,27 +636,27 @@
             "description": ""
           },
           {
-            "name:": "Expedition Leader",
+            "name": "Expedition Leader",
             "description": ""
           },
           {
-            "name:": "Geoscientist",
+            "name": "Geoscientist",
             "description": ""
           },
           {
-            "name:": "Hydrologist",
+            "name": "Hydrologist",
             "description": ""
           },
           {
-            "name:": "Medic",
+            "name": "Medic",
             "description": ""
           },
           {
-            "name:": "Meteorologist",
+            "name": "Meteorologist",
             "description": ""
           },
           {
-            "name:": "Radio Operator",
+            "name": "Radio Operator",
             "description": ""
           }
         ]
@@ -669,27 +669,27 @@
             "description": ""
           },
           {
-            "name:": "Beat Cop",
+            "name": "Beat Cop",
             "description": ""
           },
           {
-            "name:": "Criminal Lawyer",
+            "name": "Criminal Lawyer",
             "description": ""
           },
           {
-            "name:": "Detective",
+            "name": "Detective",
             "description": ""
           },
           {
-            "name:": "Journalist",
+            "name": "Journalist",
             "description": ""
           },
           {
-            "name:": "Lieutenant",
+            "name": "Lieutenant",
             "description": ""
           },
           {
-            "name:": "Suspect",
+            "name": "Suspect",
             "description": ""
           }
         ]
@@ -702,27 +702,27 @@
             "description": ""
           },
           {
-            "name:": "Chef",
+            "name": "Chef",
             "description": ""
           },
           {
-            "name:": "Customer",
+            "name": "Customer",
             "description": ""
           },
           {
-            "name:": "Food Critic",
+            "name": "Food Critic",
             "description": ""
           },
           {
-            "name:": "Maître d'hôtel",
+            "name": "Maître d'hôtel",
             "description": ""
           },
           {
-            "name:": "Musician",
+            "name": "Musician",
             "description": ""
           },
           {
-            "name:": "Waiter",
+            "name": "Waiter",
             "description": ""
           }
         ]
@@ -735,27 +735,27 @@
             "description": ""
           },
           {
-            "name:": "Janitor",
+            "name": "Janitor",
             "description": ""
           },
           {
-            "name:": "Math Teacher",
+            "name": "Math Teacher",
             "description": ""
           },
           {
-            "name:": "Principal",
+            "name": "Principal",
             "description": ""
           },
           {
-            "name:": "Security Guard",
+            "name": "Security Guard",
             "description": ""
           },
           {
-            "name:": "Student",
+            "name": "Student",
             "description": ""
           },
           {
-            "name:": "Vice Principal",
+            "name": "Vice Principal",
             "description": ""
           }
         ]
@@ -768,27 +768,27 @@
             "description": ""
           },
           {
-            "name:": "Car Washer",
+            "name": "Car Washer",
             "description": ""
           },
           {
-            "name:": "Driver",
+            "name": "Driver",
             "description": ""
           },
           {
-            "name:": "Electrical Technician",
+            "name": "Electrical Technician",
             "description": ""
           },
           {
-            "name:": "Manager",
+            "name": "Manager",
             "description": ""
           },
           {
-            "name:": "Service Receptionist",
+            "name": "Service Receptionist",
             "description": ""
           },
           {
-            "name:": "Tire Service Technician",
+            "name": "Tire Service Technician",
             "description": ""
           }
         ]
@@ -801,27 +801,27 @@
             "description": ""
           },
           {
-            "name:": "Doctor",
+            "name": "Doctor",
             "description": ""
           },
           {
-            "name:": "Mechanical Engineer",
+            "name": "Mechanical Engineer",
             "description": ""
           },
           {
-            "name:": "Mission Commander",
+            "name": "Mission Commander",
             "description": ""
           },
           {
-            "name:": "Pilot",
+            "name": "Pilot",
             "description": ""
           },
           {
-            "name:": "Research Engineer",
+            "name": "Research Engineer",
             "description": ""
           },
           {
-            "name:": "Space Tourist",
+            "name": "Space Tourist",
             "description": ""
           }
         ]
@@ -834,27 +834,27 @@
             "description": ""
           },
           {
-            "name:": "Cook",
+            "name": "Cook",
             "description": ""
           },
           {
-            "name:": "Electrical Officer",
+            "name": "Electrical Officer",
             "description": ""
           },
           {
-            "name:": "Navigator",
+            "name": "Navigator",
             "description": ""
           },
           {
-            "name:": "Radio Operator",
+            "name": "Radio Operator",
             "description": ""
           },
           {
-            "name:": "Sailor",
+            "name": "Sailor",
             "description": ""
           },
           {
-            "name:": "Sonar Operator",
+            "name": "Sonar Operator",
             "description": ""
           }
         ]
@@ -867,27 +867,27 @@
             "description": ""
           },
           {
-            "name:": "Cashier",
+            "name": "Cashier",
             "description": ""
           },
           {
-            "name:": "Customer",
+            "name": "Customer",
             "description": ""
           },
           {
-            "name:": "Delivery Man",
+            "name": "Delivery Man",
             "description": ""
           },
           {
-            "name:": "Janitor",
+            "name": "Janitor",
             "description": ""
           },
           {
-            "name:": "Merchandiser",
+            "name": "Merchandiser",
             "description": ""
           },
           {
-            "name:": "Security Guard",
+            "name": "Security Guard",
             "description": ""
           }
         ]
@@ -900,27 +900,27 @@
             "description": ""
           },
           {
-            "name:": "Audience Member",
+            "name": "Audience Member",
             "description": ""
           },
           {
-            "name:": "Coatroom Attendant",
+            "name": "Coatroom Attendant",
             "description": ""
           },
           {
-            "name:": "Director",
+            "name": "Director",
             "description": ""
           },
           {
-            "name:": "Prompter",
+            "name": "Prompter",
             "description": ""
           },
           {
-            "name:": "Stage Hand",
+            "name": "Stage Hand",
             "description": ""
           },
           {
-            "name:": "Usher",
+            "name": "Usher",
             "description": ""
           }
         ]
@@ -933,27 +933,27 @@
             "description": ""
           },
           {
-            "name:": "Dean",
+            "name": "Dean",
             "description": ""
           },
           {
-            "name:": "Graduate Student",
+            "name": "Graduate Student",
             "description": ""
           },
           {
-            "name:": "President",
+            "name": "President",
             "description": ""
           },
           {
-            "name:": "Professor",
+            "name": "Professor",
             "description": ""
           },
           {
-            "name:": "Researcher",
+            "name": "Researcher",
             "description": ""
           },
           {
-            "name:": "Student",
+            "name": "Student",
             "description": ""
           }
         ]
@@ -966,27 +966,27 @@
             "description": ""
           },
           {
-            "name:": "General Manager",
+            "name": "General Manager",
             "description": ""
           },
           {
-            "name:": "Guide",
+            "name": "Guide",
             "description": ""
           },
           {
-            "name:": "Janitor",
+            "name": "Janitor",
             "description": ""
           },
           {
-            "name:": "Vendor",
+            "name": "Vendor",
             "description": ""
           },
           {
-            "name:": "Veterinarian",
+            "name": "Veterinarian",
             "description": ""
           },
           {
-            "name:": "Visitor",
+            "name": "Visitor",
             "description": ""
           }
         ]
