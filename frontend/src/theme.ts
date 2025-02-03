@@ -1,0 +1,18 @@
+import { createTheme } from '@mui/material/styles';
+
+const theme = createTheme({
+  palette: {
+    mode: 'dark',
+    primary: {
+      main: '#ad1457'
+    },
+    secondary: {
+      main: '#f2e7fe'
+    }
+  },
+  typography: {
+    fontFamily: '"VT323", "Roboto"'
+  }
+});
+
+export default theme;
