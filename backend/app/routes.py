@@ -1,6 +1,13 @@
 from fastapi import APIRouter, HTTPException, Request, status
-from app.models import CheckLobbyResponse, CreateLobbyResponse, Lobby
+from app.models import (
+    CheckLobbyResponse,
+    CreateLobbyResponse,
+    Lobby,
+    CreateLobbyRequest,
+    CheckLobbyRequest,
+)
 import uuid
+
 
 router = APIRouter()
 
@@ -12,12 +19,15 @@ router = APIRouter()
     status_code=status.HTTP_201_CREATED,
     response_model=CreateLobbyResponse,
 )
-def create_lobby(request: Request):
+def create_lobby(request: Request, body: CreateLobbyRequest):
     lobby = Lobby()
     # todo: handle id collision
     request.app.database["Lobby"].insert_one(lobby.model_dump(by_alias=True))
     print(f"Created a lobby with code {lobby.id}")
-    return CreateLobbyResponse(lobbyId=lobby.id, playerId=lobby.creator)
+
+    return CreateLobbyResponse(
+        lobbyId=lobby.id, playerId=lobby.creator, playerName=body.playerName
+    )
 
 
 @router.post(
@@ -27,7 +37,7 @@ def create_lobby(request: Request):
     status_code=status.HTTP_200_OK,
     response_model=CheckLobbyResponse,
 )
-def check_lobby(lobby_id: str, request: Request):
+def check_lobby(lobby_id: str, request: Request, body: CheckLobbyRequest):
     database = request.app.database["Lobby"]
     if (database.find_one({"_id": lobby_id})) is None:
         raise HTTPException(
@@ -35,4 +45,6 @@ def check_lobby(lobby_id: str, request: Request):
             detail=f"Lobby with code {lobby_id} not found",
         )
 
-    return CheckLobbyResponse(lobbyId=lobby_id, playerId=uuid.uuid4().hex)
+    return CheckLobbyResponse(
+        lobbyId=lobby_id, playerId=uuid.uuid4().hex, playerName=body.playerName
+    )

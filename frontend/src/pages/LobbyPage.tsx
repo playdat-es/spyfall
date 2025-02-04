@@ -32,10 +32,9 @@ function LobbyPage() {
         {gameState.players.map((player) => (
           <PlayerListItem
             key={player.id}
-            playerName={player.name}
-            isCreator={player.id === gameState.creator}
-            canEdit={player.id === localStorage.getItem('playerId')}
-            canKick={localStorage.getItem('playerId') === gameState.creator}
+            player={player}
+            rename={sendEvent.playerRenameEvent}
+            creator={gameState.creator}
           />
         ))}
       </List>
