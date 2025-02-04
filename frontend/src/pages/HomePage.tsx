@@ -3,19 +3,6 @@ import { Box, Button, Modal, Stack, TextField, Typography } from '@mui/material'
 import { useNavigate } from 'react-router-dom';
 import spyfallLogo from '../assets/react.svg';
 
-const lobbyCodeModalStyle = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 300,
-  bgcolor: 'background.paper',
-  color: 'black',
-  borderRadius: '10px',
-  p: 4,
-  textAlign: 'center'
-};
-
 function HomePage() {
   const navigate = useNavigate();
   const [name, setName] = useState('');
@@ -108,7 +95,7 @@ function HomePage() {
         </Button>
       </Stack>
       <Modal open={showModal} onClose={() => setShowModal(false)}>
-        <Box sx={lobbyCodeModalStyle}>
+        <Box>
           <Typography variant="h4" component="label" gutterBottom>
             Enter Lobby Code
           </Typography>
