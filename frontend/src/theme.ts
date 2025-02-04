@@ -1,6 +1,6 @@
 import { createTheme } from '@mui/material/styles';
 
-const theme = createTheme({
+export const theme = createTheme({
   palette: {
     mode: 'dark',
     primary: {
@@ -23,24 +23,18 @@ const theme = createTheme({
           }
         }
       }
-    },
-    MuiModal: {
-      styleOverrides: {
-        root: {
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          width: '30rem',
-          height: '15rem',
-          backgroundColor: 'rgb(59 59 59 / 95%)',
-          borderRadius: '10px',
-          padding: '1rem',
-          textAlign: 'center'
-        }
-      }
     }
   }
 });
 
-export default theme;
+export const lobbyCodeModalStyle = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: '30rem',
+  bgcolor: 'background.paper',
+  borderRadius: '10px',
+  p: 4,
+  textAlign: 'center'
+};

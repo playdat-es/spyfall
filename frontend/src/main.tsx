@@ -5,7 +5,7 @@ import HomePage from './pages/HomePage.tsx';
 import LobbyPage from './pages/LobbyPage.tsx';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { CssBaseline, ThemeProvider } from '@mui/material';
-import theme from './theme.ts';
+import { theme } from './theme.ts';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

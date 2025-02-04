@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Box, Button, Modal, Stack, TextField, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import spyfallLogo from '../assets/react.svg';
+import { lobbyCodeModalStyle } from '../theme';
 
 function HomePage() {
   const navigate = useNavigate();
@@ -95,7 +96,7 @@ function HomePage() {
         </Button>
       </Stack>
       <Modal open={showModal} onClose={() => setShowModal(false)}>
-        <Box>
+        <Box sx={lobbyCodeModalStyle}>
           <Typography variant="h4" component="label" gutterBottom>
             Enter Lobby Code
           </Typography>
