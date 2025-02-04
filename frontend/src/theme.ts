@@ -12,6 +12,17 @@ const theme = createTheme({
   },
   typography: {
     fontFamily: '"VT323", "Roboto"'
+  },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          '&.Mui-disabled': {
+            backgroundColor: '#595959'
+          }
+        }
+      }
+    }
   }
 });
 
