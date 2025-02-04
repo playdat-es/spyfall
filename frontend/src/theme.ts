@@ -11,7 +11,8 @@ const theme = createTheme({
     }
   },
   typography: {
-    fontFamily: '"VT323", "Roboto"'
+    fontFamily: '"VT323", "Roboto"',
+    fontSize: 24
   },
   components: {
     MuiButton: {
