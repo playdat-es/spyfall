@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import useWebSocket from 'react-use-websocket';
-import { Player } from '../utils/models.ts';
+import { Lobby, LobbyStatus, Player } from '../utils/models.ts';
 
 interface JsonMessage {
   type: string;
@@ -16,10 +16,16 @@ export const useGameStateManager = () => {
   } = useWebSocket(import.meta.env.VITE_WEBSOCKET_URL);
   const [players, setPlayers] = useState<Player[]>([]);
   const [creator, setCreator] = useState<string>('');
+  const [location, setLocation] = useState<string>();
+  const [startTime, setStartTime] = useState<number>();
+  const [duration, setDuration] = useState<number>();
 
-  const handleLobbyState = (players: Player[], creator: string) => {
-    setPlayers(players);
-    setCreator(creator);
+  const handleLobbyState = (lobby: Lobby) => {
+    setPlayers(lobby.players);
+    setCreator(lobby.creator);
+    setLocation(lobby.location);
+    setStartTime(lobby.startTime);
+    setDuration(lobby.duration);
   };
 
   const handlePlayerJoin = (id: string, name: string, dedupe: number) => {
@@ -53,7 +59,7 @@ export const useGameStateManager = () => {
     const data = message?.data;
     switch (message?.type) {
       case 'LOBBY_STATE': {
-        handleLobbyState(data['players'], data['creator']);
+        handleLobbyState(data['lobby']);
         break;
       }
       case 'PLAYER_JOIN': {
@@ -92,14 +98,30 @@ export const useGameStateManager = () => {
     });
   };
 
+  const startGameEvent = () => {
+    sendJsonMessage({
+      type: 'START_GAME',
+      data: {},
+    });
+  };
+
   const sendEvent = {
     playerJoinEvent,
     playerRenameEvent,
+    startGameEvent,
   };
+
+  const status = useMemo(() => {
+    return startTime ? LobbyStatus.NOT_STARTED : LobbyStatus.IN_PROGRESS;
+  }, [startTime]);
 
   const gameState = {
     players,
     creator,
+    location,
+    startTime,
+    duration,
+    status,
   };
 
   return {
