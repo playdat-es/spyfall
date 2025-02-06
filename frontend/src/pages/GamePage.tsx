@@ -42,7 +42,9 @@ function GamePage() {
           startGameEvent={sendEvent.startGameEvent}
         />
       )}
-      {status === LobbyStatus.IN_PROGRESS && <RolePane gameState={gameState!} />}
+      {status === LobbyStatus.IN_PROGRESS && (
+        <RolePane gameState={gameState!} returnToLobbyEvent={sendEvent.returnToLobbyEvent} />
+      )}
     </>
   );
 }

@@ -1,10 +1,15 @@
 import { useEffect, useRef, useState } from 'react';
 import { Button, Divider, Stack, Typography } from '@mui/material';
 import { Face } from '@mui/icons-material';
-import RoleLocationListitem from '../molecules/RoleLocationListItem.tsx';
+import RoleLocationDisplay from '../molecules/RoleLocationDisplay.tsx';
 import { GamePageProps } from '../pages/GamePage.tsx';
+import { useNavigate } from 'react-router-dom';
 
-function RolePane({ gameState }: GamePageProps) {
+type RolePaneProps = GamePageProps & {
+  returnToLobbyEvent: () => void;
+};
+function RolePane({ gameState, returnToLobbyEvent }: RolePaneProps) {
+  const navigate = useNavigate();
   const intervalRef = useRef(0);
   const [timer, setTimer] = useState('XX:XX');
   const [gameOver, setGameOver] = useState(false);
@@ -47,6 +52,10 @@ function RolePane({ gameState }: GamePageProps) {
     startTimer();
   }, []);
 
+  const onLeaveGame = () => {
+    navigate('/');
+  };
+
   return (
     <Stack>
       <Stack direction="row" alignItems="center" justifyContent="center" spacing={1} sx={{ my: 1 }}>
@@ -54,15 +63,17 @@ function RolePane({ gameState }: GamePageProps) {
         <Typography>{player?.name}</Typography>
       </Stack>
       <Divider />
-      <RoleLocationListitem role={role} location={location} />
+      <RoleLocationDisplay role={role} location={location} />
       {gameOver ? (
         <Stack spacing={1}>
           {isCreator ? (
-            <Button variant="contained">RETURN TO LOBBY</Button>
+            <Button variant="contained" onClick={returnToLobbyEvent}>
+              RETURN TO LOBBY
+            </Button>
           ) : (
             <Typography>waiting for host...</Typography>
           )}
-          <Button variant="contained" color="secondary">
+          <Button variant="contained" color="secondary" onClick={onLeaveGame}>
             LEAVE GAME
           </Button>
         </Stack>

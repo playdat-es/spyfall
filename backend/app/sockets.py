@@ -168,6 +168,29 @@ class ConnectionManager:
             {"lobby": lobby},
         )
 
+    async def handle_reset_game(self, connection: WebSocket):
+        database = connection.app.database["Lobby"]
+        metadata = self.connection_to_metadata.get(connection)
+        lobby_id = metadata.lobby_id
+
+        database.update_one(
+            {"_id": lobby_id},
+            {
+                "$set": {
+                    "start_time": None,
+                    "location": None,
+                    "players.$[].role": None,
+                }
+            },
+        )
+
+        lobby = database.find_one({"_id": lobby_id})
+        await self.broadcast_event(
+            lobby_id,
+            "LOBBY_STATE",
+            {"lobby": lobby},
+        )
+
 
 websocket_router = APIRouter()
 manager = ConnectionManager()
@@ -197,6 +220,8 @@ async def websocket_endpoint(websocket: WebSocket):
                     )
                 case "START_GAME":
                     await manager.handle_start_game(websocket)
+                case "RESET_GAME":
+                    await manager.handle_reset_game(websocket)
                 case _:
                     print(f"Received event with unhandled type: {event}")
 
