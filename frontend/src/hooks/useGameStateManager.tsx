@@ -1,6 +1,6 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import useWebSocket from 'react-use-websocket';
-import { Lobby, LobbyStatus, Player } from '../utils/models.ts';
+import { Lobby, Player } from '../utils/models.ts';
 
 interface JsonMessage {
   type: string;
@@ -24,7 +24,7 @@ export const useGameStateManager = () => {
     setPlayers(lobby.players);
     setCreator(lobby.creator);
     setLocation(lobby.location);
-    setStartTime(lobby.startTime);
+    setStartTime(lobby.start_time);
     setDuration(lobby.duration);
   };
 
@@ -111,17 +111,12 @@ export const useGameStateManager = () => {
     startGameEvent,
   };
 
-  const status = useMemo(() => {
-    return startTime ? LobbyStatus.NOT_STARTED : LobbyStatus.IN_PROGRESS;
-  }, [startTime]);
-
   const gameState = {
     players,
     creator,
     location,
     startTime,
     duration,
-    status,
   };
 
   return {
