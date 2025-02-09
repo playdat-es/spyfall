@@ -12,7 +12,10 @@ function HomePage() {
   const [codeHelperText, setCodeHelperText] = useState('');
 
   const handleCreateLobby = () => {
-    fetch(`${import.meta.env.VITE_API_BASE_URL}/lobby`, post({ playerName: name.trim() }))
+    fetch(
+      `${import.meta.env.VITE_API_BASE_URL}/lobby`,
+      post({ playerName: name.trim(), playerId: localStorage.getItem('playerId') || '' }),
+    )
       .then((response) => response.json())
       .then((json) => {
         if (json['lobbyId']) {
@@ -35,7 +38,10 @@ function HomePage() {
       return;
     }
     setDisableCodeField(true);
-    fetch(`${import.meta.env.VITE_API_BASE_URL}/lobby/${code}`, post({ playerName: name.trim() }))
+    fetch(
+      `${import.meta.env.VITE_API_BASE_URL}/lobby/${code}`,
+      post({ playerName: name.trim(), playerId: localStorage.getItem('playerId') || '' }),
+    )
       .then((response) => response.json())
       .then((json) => {
         if (json['lobbyId']) {

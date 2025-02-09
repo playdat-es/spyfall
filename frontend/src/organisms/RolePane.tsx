@@ -1,6 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
-import { Button, Divider, Stack, Typography } from '@mui/material';
-import { Face } from '@mui/icons-material';
+import {
+  Button,
+  CircularProgress,
+  Divider,
+  List,
+  ListItem,
+  Stack,
+  Typography,
+} from '@mui/material';
+import { Face, Timer } from '@mui/icons-material';
 import RoleLocationDisplay from '../molecules/RoleLocationDisplay.tsx';
 import { GamePageProps } from '../pages/GamePage.tsx';
 import { useNavigate } from 'react-router-dom';
@@ -11,7 +19,7 @@ type RolePaneProps = GamePageProps & {
 function RolePane({ gameState, returnToLobbyEvent }: RolePaneProps) {
   const navigate = useNavigate();
   const intervalRef = useRef(0);
-  const [timer, setTimer] = useState('XX:XX');
+  const [timer, setTimer] = useState('');
   const [gameOver, setGameOver] = useState(false);
 
   const player = gameState.players.find((player) => player.id === localStorage.getItem('playerId'));
@@ -40,7 +48,9 @@ function RolePane({ gameState, returnToLobbyEvent }: RolePaneProps) {
   };
 
   const startTimer = () => {
-    const currTime = new Date();
+    console.log(new Date());
+    console.log(gameState.start_time);
+    const currTime = new Date(gameState.start_time! * 1000);
     currTime.setSeconds(currTime.getSeconds() + duration);
     if (intervalRef.current) clearInterval(intervalRef.current);
     intervalRef.current = setInterval(() => {
@@ -64,6 +74,16 @@ function RolePane({ gameState, returnToLobbyEvent }: RolePaneProps) {
       </Stack>
       <Divider />
       <RoleLocationDisplay role={role} location={location} />
+      <List>
+        {gameState.players.map((player) => (
+          <ListItem
+            key={player.id}
+            style={{ textDecoration: player.disconnected ? 'line-through' : 'none' }}
+          >
+            {player.name}
+          </ListItem>
+        ))}
+      </List>
       {gameOver ? (
         <Stack spacing={1}>
           {isCreator ? (
@@ -78,8 +98,8 @@ function RolePane({ gameState, returnToLobbyEvent }: RolePaneProps) {
           </Button>
         </Stack>
       ) : (
-        <Button variant="contained" disabled>
-          Timer: {timer}
+        <Button variant="contained" disabled startIcon={<Timer />}>
+          {timer ? timer : <CircularProgress size={24} />}
         </Button>
       )}
     </Stack>

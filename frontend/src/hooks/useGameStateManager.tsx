@@ -26,6 +26,13 @@ export const useGameStateManager = () => {
     setLocation(lobby.location);
     setStartTime(lobby.start_time);
     setDuration(lobby.duration);
+
+    if (localStorage.getItem('playerName') === undefined) {
+      const thisPlayer = lobby.players.find(
+        (player) => player.id === localStorage.getItem('playerId'),
+      );
+      localStorage.setItem('playerName', thisPlayer!.name);
+    }
   };
 
   const handlePlayerJoin = (id: string, name: string, dedupe: number) => {
@@ -33,6 +40,7 @@ export const useGameStateManager = () => {
       id: id,
       name: name,
       dedupe: dedupe,
+      disconnected: false,
     };
     if (players.some((player) => player.id === id)) return;
     setPlayers((prev) => [...prev, newPlayer]);
@@ -42,22 +50,39 @@ export const useGameStateManager = () => {
     setPlayers(players.filter((player) => player.id !== id));
   };
 
+  const handlePlayerDisconnect = (id: string) => {
+    players.find((player) => player.id === id)!.disconnected = true;
+  };
+
+  const handlePlayerReconnect = (id: string) => {
+    if (id === localStorage.getItem('playerId')) {
+      return;
+    }
+    players.find((player) => player.id === id)!.disconnected = false;
+  };
+
   const handlePlayerRename = (playerId: string, newName: string, dedupe: number) => {
-    const renamedPlayer: Player = {
-      id: playerId,
-      name: newName,
-      dedupe: dedupe,
-    };
-    setPlayers(players.map((player) => (player.id !== playerId ? player : renamedPlayer)));
+    const renamedPlayer = players.find((player) => player.id === playerId)!;
+    renamedPlayer.name = newName;
+    renamedPlayer.dedupe = dedupe;
+
     if (playerId === localStorage.getItem('playerId')) {
       localStorage.setItem('playerName', newName);
     }
   };
 
+  const handleCreatorChange = (id: string) => {
+    setCreator(id);
+  };
+
   useEffect(() => {
     const message = lastJsonMessage as JsonMessage;
-    const data = message?.data;
-    switch (message?.type) {
+    if (!message) {
+      return;
+    }
+
+    const data = message.data;
+    switch (message.type) {
       case 'LOBBY_STATE': {
         handleLobbyState(data['lobby']);
         break;
@@ -73,6 +98,21 @@ export const useGameStateManager = () => {
       case 'PLAYER_RENAME': {
         handlePlayerRename(data['playerId'], data['playerName'], data['dedupe']);
         break;
+      }
+      case 'PLAYER_DISCONNECT': {
+        handlePlayerDisconnect(data['playerId']);
+        break;
+      }
+      case 'PLAYER_RECONNECT': {
+        handlePlayerReconnect(data['playerId']);
+        break;
+      }
+      case 'CREATOR_CHANGE': {
+        handleCreatorChange(data['playerId']);
+        break;
+      }
+      default: {
+        console.error(`Received event with unhandled type: ${message.type}`);
       }
     }
   }, [lastJsonMessage]);
@@ -123,7 +163,7 @@ export const useGameStateManager = () => {
     players,
     creator,
     location,
-    startTime,
+    start_time: startTime,
     duration,
   };
 

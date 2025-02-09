@@ -16,7 +16,7 @@ function GamePage() {
   const { lobbyId } = useParams();
 
   const { gameState, sendEvent, socketState } = useGameStateManager();
-  const status = gameState.startTime ? LobbyStatus.IN_PROGRESS : LobbyStatus.NOT_STARTED;
+  const status = gameState.start_time ? LobbyStatus.IN_PROGRESS : LobbyStatus.NOT_STARTED;
 
   useEffect(() => {
     if (socketState === WebSocket.OPEN) {
