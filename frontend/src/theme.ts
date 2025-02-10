@@ -24,6 +24,24 @@ export const theme = createTheme({
         },
       },
     },
+    MuiListItem: {
+      variants: [
+        {
+          props: { color: 'primary' },
+          style: {
+            backgroundColor: '#f2e7fe',
+            color: '#ad1457',
+          },
+        },
+        {
+          props: { color: 'secondary' },
+          style: {
+            backgroundColor: '#ad1457',
+            color: '#f2e7fe',
+          },
+        },
+      ],
+    },
   },
 });
 
