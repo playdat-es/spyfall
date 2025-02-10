@@ -1,7 +1,11 @@
+import json
+import random
+import time
+
 from fastapi import APIRouter, WebSocket
 from starlette.websockets import WebSocketDisconnect
 
-from models import Player
+from app.models import Player
 
 
 class PlayerMetadata:
@@ -32,16 +36,30 @@ class ConnectionManager:
     async def handle_player_join(
         self, connection: WebSocket, lobby_id: str, player_id: str, player_name: str
     ):
-        # todo: lobby id does not exist
         database = connection.app.database["Lobby"]
-        player = Player(id=player_id, name=player_name).model_dump(by_alias=True)
+
+        # todo: lobby id does not exist
+        if (lobby := database.find_one({"_id": lobby_id})) is None:
+            print(f"Lobby with code {lobby_id} not found")
+            return
+
+        dedupe_num = 0
+        for player in lobby["players"]:
+            if player["name"] == player_name:
+                dedupe_num = max(player["dedupe"] + 1, dedupe_num)
+
+        player = Player(id=player_id, name=player_name, dedupe=dedupe_num).model_dump(
+            by_alias=True
+        )
         database.update_one({"_id": lobby_id}, {"$push": {"players": player}})
 
         if lobby_id not in self.lobby_to_connections:
             self.lobby_to_connections[lobby_id] = []
 
         await self.broadcast_event(
-            lobby_id, "PLAYER_JOIN", {"playerId": player_id, "playerName": player_name}
+            lobby_id,
+            "PLAYER_JOIN",
+            {"playerId": player_id, "playerName": player_name, "dedupe": dedupe_num},
         )
 
         self.lobby_to_connections[lobby_id].append(connection)
@@ -51,7 +69,7 @@ class ConnectionManager:
         await self.send_event(
             connection,
             "LOBBY_STATE",
-            {"players": lobby["players"], "creator": lobby["creator"]},
+            {"lobby": lobby},
         )
 
     async def handle_player_leave(self, connection: WebSocket):
@@ -70,6 +88,107 @@ class ConnectionManager:
             {
                 "playerId": metadata.player_id,
             },
+        )
+
+    async def handle_player_rename(self, connection: WebSocket, player_name: str):
+        database = connection.app.database["Lobby"]
+        metadata = self.connection_to_metadata.get(connection)
+        player_id = metadata.player_id
+        lobby_id = metadata.lobby_id
+
+        lobby = database.find_one({"_id": lobby_id})
+
+        player_by_id = next(
+            (player for player in lobby["players"] if player["id"] == player_id), None
+        )
+
+        if player_by_id["name"] != player_name:
+            dedupe_num = 0
+            for player in lobby["players"]:
+                if player["name"] == player_name:
+                    dedupe_num = max(player["dedupe"] + 1, dedupe_num)
+
+            database.update_one(
+                {"_id": lobby_id, "players.id": player_id},
+                {
+                    "$set": {
+                        "players.$.name": player_name,
+                        "players.$.dedupe": dedupe_num,
+                    }
+                },
+            )
+
+            await self.broadcast_event(
+                lobby_id,
+                "PLAYER_RENAME",
+                {
+                    "playerId": player_id,
+                    "playerName": player_name,
+                    "dedupe": dedupe_num,
+                },
+            )
+
+    async def handle_start_game(self, connection: WebSocket):
+        database = connection.app.database["Lobby"]
+        metadata = self.connection_to_metadata.get(connection)
+        lobby_id = metadata.lobby_id
+
+        lobby = database.find_one({"_id": lobby_id})
+        if len(lobby["players"]) < 3:
+            return
+
+        with open("location-packs/location-pack-1.json") as json_file:
+            location_pack = json.load(json_file)
+            location = random.choice(location_pack["locations"])
+
+            spy = random.choice(lobby["players"])
+            spy["role"] = "Spy"
+
+            for player in lobby["players"]:
+                if player["role"] != "Spy":
+                    role = random.choice(location["roles"])
+                    location["roles"].remove(role)
+                    player["role"] = role["name"]
+
+        database.update_one(
+            {"_id": lobby_id},
+            {
+                "$set": {
+                    "start_time": time.time(),
+                    "location": location["name"],
+                    "players": lobby["players"],
+                }
+            },
+        )
+
+        lobby = database.find_one({"_id": lobby_id})
+        await self.broadcast_event(
+            lobby_id,
+            "LOBBY_STATE",
+            {"lobby": lobby},
+        )
+
+    async def handle_reset_game(self, connection: WebSocket):
+        database = connection.app.database["Lobby"]
+        metadata = self.connection_to_metadata.get(connection)
+        lobby_id = metadata.lobby_id
+
+        database.update_one(
+            {"_id": lobby_id},
+            {
+                "$set": {
+                    "start_time": None,
+                    "location": None,
+                    "players.$[].role": None,
+                }
+            },
+        )
+
+        lobby = database.find_one({"_id": lobby_id})
+        await self.broadcast_event(
+            lobby_id,
+            "LOBBY_STATE",
+            {"lobby": lobby},
         )
 
 
@@ -94,6 +213,15 @@ async def websocket_endpoint(websocket: WebSocket):
                         event_data["playerId"],
                         event_data["playerName"],
                     )
+                case "PLAYER_RENAME":
+                    await manager.handle_player_rename(
+                        websocket,
+                        event_data["playerName"],
+                    )
+                case "START_GAME":
+                    await manager.handle_start_game(websocket)
+                case "RESET_GAME":
+                    await manager.handle_reset_game(websocket)
                 case _:
                     print(f"Received event with unhandled type: {event}")
 
