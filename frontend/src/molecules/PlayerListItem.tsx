@@ -11,7 +11,7 @@ import {
 import { Close, Edit, Face, FaceRetouchingNatural } from '@mui/icons-material';
 import { useState } from 'react';
 import { Player } from '../utils/models.ts';
-import { modalStyle } from '../utils/utils.ts';
+import { modalStyle } from '../theme.ts';
 
 interface PlayerListItemProps {
   player: Player;

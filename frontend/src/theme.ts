@@ -4,30 +4,30 @@ export const theme = createTheme({
   palette: {
     mode: 'dark',
     primary: {
-      main: '#ad1457'
+      main: '#ad1457',
     },
     secondary: {
-      main: '#f2e7fe'
-    }
+      main: '#f2e7fe',
+    },
   },
   typography: {
     fontFamily: '"VT323", "Roboto"',
-    fontSize: 24
+    fontSize: 24,
   },
   components: {
     MuiButton: {
       styleOverrides: {
         root: {
           '&.Mui-disabled': {
-            backgroundColor: '#595959'
-          }
-        }
-      }
-    }
-  }
+            backgroundColor: '#595959',
+          },
+        },
+      },
+    },
+  },
 });
 
-export const lobbyCodeModalStyle = {
+export const modalStyle = {
   position: 'absolute',
   top: '50%',
   left: '50%',
@@ -36,5 +36,5 @@ export const lobbyCodeModalStyle = {
   bgcolor: 'background.paper',
   borderRadius: '10px',
   p: 4,
-  textAlign: 'center'
+  textAlign: 'center',
 };
