@@ -45,7 +45,7 @@ function PlayerListItem({ player, rename, creator }: PlayerListItemProps) {
       sx={canEdit ? listItemStylePrimary : undefined}
     >
       <ListItemIcon>{player.id === creator ? <FaceRetouchingNatural /> : <Face />}</ListItemIcon>
-      <ListItemText primary={`${player.name} ${dedupeString}`} />
+      <ListItemText primary={`${player.name} ${dedupeString}`} secondary={canEdit ? '(you)' : ''} />
       <Modal open={showModal} onClose={() => setShowModal(false)}>
         <Box sx={modalStyle}>
           <TextField

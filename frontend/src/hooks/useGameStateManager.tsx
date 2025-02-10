@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
+import { adjectives, animals, uniqueNamesGenerator } from 'unique-names-generator';
 import useWebSocket from 'react-use-websocket';
 import { Lobby, Player } from '../utils/models.ts';
+import { uuid } from '../utils/utils.ts';
+import { NavigateFunction } from 'react-router-dom';
 
 interface JsonMessage {
   type: string;
@@ -8,7 +11,7 @@ interface JsonMessage {
   data: { [key: string]: any };
 }
 
-export const useGameStateManager = () => {
+export const useGameStateManager = (navigate: NavigateFunction) => {
   const {
     sendJsonMessage,
     lastJsonMessage,
@@ -54,11 +57,13 @@ export const useGameStateManager = () => {
     players.find((player) => player.id === id)!.disconnected = true;
   };
 
-  const handlePlayerReconnect = (id: string) => {
+  const handlePlayerReconnect = (id: string, name: string) => {
     if (id === localStorage.getItem('playerId')) {
       return;
     }
-    players.find((player) => player.id === id)!.disconnected = false;
+    const reconnectedPlayer = players.find((player) => player.id === id)!;
+    reconnectedPlayer.disconnected = false;
+    reconnectedPlayer.name = name;
   };
 
   const handlePlayerRename = (playerId: string, newName: string, dedupe: number) => {
@@ -73,6 +78,10 @@ export const useGameStateManager = () => {
 
   const handleCreatorChange = (id: string) => {
     setCreator(id);
+  };
+
+  const handleGoHome = () => {
+    navigate('/');
   };
 
   useEffect(() => {
@@ -104,11 +113,15 @@ export const useGameStateManager = () => {
         break;
       }
       case 'PLAYER_RECONNECT': {
-        handlePlayerReconnect(data['playerId']);
+        handlePlayerReconnect(data['playerId'], data['playerName']);
         break;
       }
       case 'CREATOR_CHANGE': {
         handleCreatorChange(data['playerId']);
+        break;
+      }
+      case 'GO_HOME': {
+        handleGoHome();
         break;
       }
       default: {
@@ -118,12 +131,22 @@ export const useGameStateManager = () => {
   }, [lastJsonMessage]);
 
   const playerJoinEvent = (lobbyId: string) => {
+    if (!localStorage.getItem('playerId')) {
+      localStorage.setItem('playerId', uuid());
+    }
     sendJsonMessage({
       type: 'PLAYER_JOIN',
       data: {
         lobbyId: lobbyId,
         playerId: localStorage.getItem('playerId'),
-        playerName: localStorage.getItem('playerName'),
+        playerName:
+          localStorage.getItem('playerName') ??
+          uniqueNamesGenerator({
+            dictionaries: [adjectives, animals],
+            length: 2,
+            separator: ' ',
+            style: 'capital',
+          }),
       },
     });
   };
