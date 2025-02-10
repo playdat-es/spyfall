@@ -105,10 +105,18 @@ export const useGameStateManager = () => {
     });
   };
 
+  const returnToLobbyEvent = () => {
+    sendJsonMessage({
+      type: 'RESET_GAME',
+      data: {},
+    });
+  };
+
   const sendEvent = {
     playerJoinEvent,
     playerRenameEvent,
     startGameEvent,
+    returnToLobbyEvent,
   };
 
   const gameState = {
