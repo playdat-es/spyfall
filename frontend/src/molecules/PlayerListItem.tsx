@@ -11,7 +11,7 @@ import {
 import { Close, Edit, Face, FaceRetouchingNatural } from '@mui/icons-material';
 import { useState } from 'react';
 import { Player } from '../utils/models.ts';
-import { modalStyle } from '../theme.ts';
+import { modalStyle, listItemStylePrimary } from '../theme.ts';
 
 interface PlayerListItemProps {
   player: Player;
@@ -42,6 +42,7 @@ function PlayerListItem({ player, rename, creator }: PlayerListItemProps) {
           </IconButton>
         )
       }
+      sx={canEdit ? listItemStylePrimary : undefined}
     >
       <ListItemIcon>{player.id === creator ? <FaceRetouchingNatural /> : <Face />}</ListItemIcon>
       <ListItemText primary={`${player.name} ${dedupeString}`} />

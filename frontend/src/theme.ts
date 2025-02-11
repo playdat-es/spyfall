@@ -24,24 +24,6 @@ export const theme = createTheme({
         },
       },
     },
-    MuiListItem: {
-      variants: [
-        {
-          props: { color: 'primary' },
-          style: {
-            backgroundColor: '#f2e7fe',
-            color: '#ad1457',
-          },
-        },
-        {
-          props: { color: 'secondary' },
-          style: {
-            backgroundColor: '#ad1457',
-            color: '#f2e7fe',
-          },
-        },
-      ],
-    },
   },
 });
 
@@ -55,4 +37,14 @@ export const modalStyle = {
   borderRadius: '10px',
   p: 4,
   textAlign: 'center',
+};
+
+export const listItemStylePrimary = {
+  bgcolor: '#f2e7fe',
+  color: '#ad1457',
+};
+
+export const listItemStyleSecondary = {
+  bgcolor: '#ad1457',
+  color: '#f2e7fe',
 };
