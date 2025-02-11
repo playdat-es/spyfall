@@ -24,6 +24,13 @@ export const theme = createTheme({
         },
       },
     },
+    MuiStack: {
+      styleOverrides: {
+        root: {
+          fill: 'currentcolor',
+        },
+      },
+    },
     MuiListItem: {
       styleOverrides: {
         root: {
