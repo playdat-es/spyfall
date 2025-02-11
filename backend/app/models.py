@@ -8,7 +8,7 @@ from typing import Optional, List, Annotated
 
 def sanitize_name(name):
     name = name.strip()
-    return name[:16] if len(name) > 16 else name
+    return name[:24] if len(name) > 24 else name
 
 
 def valid_uuid(value):

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Box, Button, Modal, Stack, TextField, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import spyfallLogo from '../assets/react.svg';
-import { LOBBY_CODE_LENGTH, post, sanitizeLobbyCode } from '../utils/utils.ts';
+import { LOBBY_CODE_LENGTH, post, sanitizeLobbyCode, uuid } from '../utils/utils.ts';
 import { modalStyle } from '../theme.ts';
 
 function HomePage() {
@@ -15,7 +15,7 @@ function HomePage() {
   const handleCreateLobby = () => {
     fetch(
       `${import.meta.env.VITE_API_BASE_URL}/lobby`,
-      post({ playerName: name.trim(), playerId: localStorage.getItem('playerId') || '' }),
+      post({ playerName: name.trim(), playerId: localStorage.getItem('playerId') || uuid() }),
     )
       .then((response) => response.json())
       .then((json) => {
@@ -41,7 +41,7 @@ function HomePage() {
     setDisableCodeField(true);
     fetch(
       `${import.meta.env.VITE_API_BASE_URL}/lobby/${code}`,
-      post({ playerName: name.trim(), playerId: localStorage.getItem('playerId') || '' }),
+      post({ playerName: name.trim(), playerId: localStorage.getItem('playerId') || uuid() }),
     )
       .then((response) => response.json())
       .then((json) => {
@@ -71,7 +71,7 @@ function HomePage() {
         <TextField
           placeholder="Player Name"
           defaultValue={localStorage.getItem('playerName')}
-          slotProps={{ htmlInput: { maxLength: 16 } }}
+          slotProps={{ htmlInput: { maxLength: 24 } }}
           autoComplete="off"
           fullWidth
           onChange={(text) => setName(text.target.value)}

@@ -38,9 +38,8 @@ class ConnectionManager:
     ):
         database = connection.app.database["Lobby"]
 
-        # todo: lobby id does not exist
         if (lobby := database.find_one({"_id": lobby_id})) is None:
-            print(f"Lobby with code {lobby_id} not found")
+            await self.send_event(connection, "GO_HOME", {})
             return
 
         if lobby_id not in self.lobby_to_connections:
@@ -57,6 +56,7 @@ class ConnectionManager:
                 {"_id": lobby_id, "players.id": player_id},
                 {
                     "$set": {
+                        "players.$.name": player_name,
                         "players.$.disconnected": False,
                     }
                 },
@@ -64,7 +64,7 @@ class ConnectionManager:
             await self.broadcast_event(
                 lobby_id,
                 "PLAYER_RECONNECT",
-                {"playerId": player_id},
+                {"playerId": player_id, "playerName": player_name},
             )
         # handle player join
         else:
@@ -97,7 +97,9 @@ class ConnectionManager:
         )
 
     async def handle_player_leave(self, connection: WebSocket):
-        metadata = self.connection_to_metadata.pop(connection)
+        metadata = self.connection_to_metadata.pop(connection, None)
+        if metadata is None:
+            return
         player_id = metadata.player_id
         lobby_id = metadata.lobby_id
         self.lobby_to_connections[lobby_id].remove(connection)
