@@ -24,6 +24,20 @@ export const theme = createTheme({
         },
       },
     },
+    MuiListItem: {
+      styleOverrides: {
+        root: {
+          fill: 'currentcolor',
+        },
+      },
+    },
+    MuiSvgIcon: {
+      styleOverrides: {
+        root: {
+          fill: 'inherit',
+        },
+      },
+    },
   },
 });
 
@@ -42,9 +56,11 @@ export const modalStyle = {
 export const listItemStylePrimary = {
   bgcolor: '#f2e7fe',
   color: '#ad1457',
+  fill: '#ad1457',
 };
 
 export const listItemStyleSecondary = {
   bgcolor: '#ad1457',
   color: '#f2e7fe',
+  fill: '#f2e7fe',
 };
