@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { Box, Button, Modal, Stack, TextField, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import spyfallLogo from '../assets/react.svg';
-import { LOBBY_CODE_LENGTH, modalStyle, post, sanitizeLobbyCode } from '../utils/utils.ts';
+import { LOBBY_CODE_LENGTH, post, sanitizeLobbyCode } from '../utils/utils.ts';
+import { modalStyle } from '../theme.ts';
 
 function HomePage() {
   const navigate = useNavigate();
