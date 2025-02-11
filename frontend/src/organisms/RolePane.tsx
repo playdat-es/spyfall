@@ -48,8 +48,6 @@ function RolePane({ gameState, returnToLobbyEvent }: RolePaneProps) {
   };
 
   const startTimer = () => {
-    console.log(new Date());
-    console.log(gameState.start_time);
     const currTime = new Date(gameState.start_time! * 1000);
     currTime.setSeconds(currTime.getSeconds() + duration);
     if (intervalRef.current) clearInterval(intervalRef.current);
