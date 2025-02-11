@@ -6,7 +6,6 @@ from app.models import (
     CreateLobbyRequest,
     CheckLobbyRequest,
 )
-import uuid
 
 
 router = APIRouter()
@@ -20,13 +19,13 @@ router = APIRouter()
     response_model=CreateLobbyResponse,
 )
 def create_lobby(request: Request, body: CreateLobbyRequest):
-    lobby = Lobby()
+    lobby = Lobby(creator=body.playerId)
     # todo: handle id collision
     request.app.database["Lobby"].insert_one(lobby.model_dump(by_alias=True))
     print(f"Created a lobby with code {lobby.id}")
 
     return CreateLobbyResponse(
-        lobbyId=lobby.id, playerId=lobby.creator, playerName=body.playerName
+        lobbyId=lobby.id, playerId=body.playerId, playerName=body.playerName
     )
 
 
@@ -46,5 +45,5 @@ def check_lobby(lobby_id: str, request: Request, body: CheckLobbyRequest):
         )
 
     return CheckLobbyResponse(
-        lobbyId=lobby_id, playerId=uuid.uuid4().hex, playerName=body.playerName
+        lobbyId=lobby_id, playerId=body.playerId, playerName=body.playerName
     )

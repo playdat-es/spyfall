@@ -1,8 +1,9 @@
 export interface Player {
   id: string;
   name: string;
-  dedupe?: number;
   role?: string;
+  dedupe?: number;
+  disconnected: boolean;
 }
 
 export interface Lobby {
@@ -16,10 +17,12 @@ export interface Lobby {
 
 interface CreateLobbyRequest {
   playerName: string;
+  playerId: string;
 }
 
 interface CheckLobbyRequest {
   playerName: string;
+  playerId: string;
 }
 
 export type RequestBody = CreateLobbyRequest | CheckLobbyRequest;

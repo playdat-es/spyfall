@@ -11,11 +11,19 @@ def sanitize_name(name):
     return name[:16] if len(name) > 16 else name
 
 
+def valid_uuid(value):
+    try:
+        return uuid.UUID(value, version=4).hex
+    except ValueError:
+        return uuid.uuid4().hex
+
+
 class Player(BaseModel):
     id: str = Field(default_factory=lambda: uuid.uuid4().hex)
     name: Annotated[str, BeforeValidator(sanitize_name)]
     role: Optional[str] = None
     dedupe: Optional[int] = 0
+    disconnected: bool = False
 
 
 class Lobby(BaseModel):
@@ -34,10 +42,12 @@ class Lobby(BaseModel):
 
 class CreateLobbyRequest(BaseModel):
     playerName: Annotated[str, BeforeValidator(sanitize_name)]
+    playerId: Annotated[str, BeforeValidator(valid_uuid)]
 
 
 class CheckLobbyRequest(BaseModel):
     playerName: Annotated[str, BeforeValidator(sanitize_name)]
+    playerId: Annotated[str, BeforeValidator(valid_uuid)]
 
 
 class CreateLobbyResponse(BaseModel):
