@@ -80,6 +80,7 @@ function GamePage() {
         <LobbyPane
           gameState={gameState!}
           playerRenameEvent={sendEvent.playerRenameEvent}
+          kickPlayerEvent={sendEvent.kickPlayerEvent}
           startGameEvent={sendEvent.startGameEvent}
         />
       )}

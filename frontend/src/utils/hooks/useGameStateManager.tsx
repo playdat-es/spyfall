@@ -187,6 +187,13 @@ export const useGameStateManager = (navigate: NavigateFunction) => {
     });
   };
 
+  const kickPlayerEvent = () => {
+    sendJsonMessage({
+      type: 'GO_HOME',
+      data: {},
+    });
+  };
+
   const startGameEvent = () => {
     sendJsonMessage({
       type: 'START_GAME',
@@ -204,6 +211,7 @@ export const useGameStateManager = (navigate: NavigateFunction) => {
   const sendEvent = {
     playerJoinEvent,
     playerRenameEvent,
+    kickPlayerEvent,
     startGameEvent,
     returnToLobbyEvent,
   };

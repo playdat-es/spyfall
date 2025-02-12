@@ -19,10 +19,11 @@ import { PLAYER_NAME_LENGTH } from '../utils/utils.ts';
 interface PlayerListItemProps {
   player: Player;
   rename: (newName: string) => void;
+  kick: () => void;
   creator: string;
 }
 
-function PlayerListItem({ player, rename, creator }: PlayerListItemProps) {
+function PlayerListItem({ player, rename, kick, creator }: PlayerListItemProps) {
   const [showModal, setShowModal] = useState(false);
   const [newName, setNewName] = useState(player.name);
 
@@ -33,6 +34,10 @@ function PlayerListItem({ player, rename, creator }: PlayerListItemProps) {
   const onRename = () => {
     rename(newName);
     setShowModal(false);
+  };
+
+  const onKick = () => {
+    kick();
   };
 
   return (
@@ -46,7 +51,7 @@ function PlayerListItem({ player, rename, creator }: PlayerListItemProps) {
               </IconButton>
             )}
             {canKick && (
-              <IconButton edge="end" onClick={() => setShowModal(true)}>
+              <IconButton edge="end" onClick={onKick}>
                 <Close />
               </IconButton>
             )}
