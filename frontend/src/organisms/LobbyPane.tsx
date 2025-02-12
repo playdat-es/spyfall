@@ -10,11 +10,11 @@ function LobbyPane({ gameState, playerRenameEvent, startGameEvent }: LobbyPanePr
   const isCreator = gameState.creator === localStorage.getItem('playerId');
 
   return (
-    <Box>
-      <List>
+    <Box height="80vh" display="flex" flexDirection="column">
+      <List sx={{ flexGrow: 1 }}>
         {gameState.players.map((player) => (
           <PlayerListItem
-            key={player.id}
+            key={player.id + player.name}
             player={player}
             rename={playerRenameEvent}
             creator={gameState.creator}
@@ -22,7 +22,11 @@ function LobbyPane({ gameState, playerRenameEvent, startGameEvent }: LobbyPanePr
         ))}
       </List>
       {isCreator && (
-        <Button onClick={startGameEvent} disabled={gameState.players.length < 3}>
+        <Button
+          onClick={startGameEvent}
+          disabled={gameState.players.length < 3}
+          variant="contained"
+        >
           Start Game
         </Button>
       )}

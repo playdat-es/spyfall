@@ -1,25 +1,17 @@
-import { useEffect, useRef, useState } from 'react';
-import {
-  Button,
-  CircularProgress,
-  Divider,
-  List,
-  ListItem,
-  Stack,
-  Typography,
-} from '@mui/material';
-import { Face, Timer } from '@mui/icons-material';
-import RoleLocationDisplay from '../molecules/RoleLocationDisplay.tsx';
+import { useState } from 'react';
+import { Box, Button, Grid2, Stack, Typography } from '@mui/material';
 import { GamePageProps } from '../pages/GamePage.tsx';
 import { useNavigate } from 'react-router-dom';
+import NotesTabs from '../molecules/NotesTabs.tsx';
+import GameTimer from '../molecules/GameTimer.tsx';
+import RoleDisplay from '../atoms/RoleDisplay.tsx';
+import LocationDisplay from '../atoms/LocationDisplay.tsx';
 
 type RolePaneProps = GamePageProps & {
   returnToLobbyEvent: () => void;
 };
 function RolePane({ gameState, returnToLobbyEvent }: RolePaneProps) {
   const navigate = useNavigate();
-  const intervalRef = useRef(0);
-  const [timer, setTimer] = useState('');
   const [gameOver, setGameOver] = useState(false);
 
   const player = gameState.players.find((player) => player.id === localStorage.getItem('playerId'));
@@ -27,61 +19,35 @@ function RolePane({ gameState, returnToLobbyEvent }: RolePaneProps) {
   const location = gameState.location ?? '';
   const duration = gameState.duration ?? 0;
   const isCreator = gameState.creator === localStorage.getItem('playerId');
-
-  const getTimeRemaining = (currTime: Date) => {
-    const total = Date.parse(currTime.toString()) - Date.parse(new Date().toString());
-    const seconds = Math.floor((total / 1000) % 60);
-    const minutes = Math.floor((total / 1000 / 60) % 60);
-    return { total, seconds, minutes };
-  };
-
-  const updateTimer = (currTime: Date) => {
-    const { total, minutes, seconds } = getTimeRemaining(currTime);
-    if (total >= 0) {
-      setTimer(
-        (minutes > 9 ? minutes : '0' + minutes) + ':' + (seconds > 9 ? seconds : '0' + seconds),
-      );
-    } else {
-      setGameOver(true);
-      clearInterval(intervalRef.current);
-    }
-  };
-
-  const startTimer = () => {
-    const currTime = new Date(gameState.start_time! * 1000);
-    currTime.setSeconds(currTime.getSeconds() + duration);
-    if (intervalRef.current) clearInterval(intervalRef.current);
-    intervalRef.current = setInterval(() => {
-      updateTimer(currTime);
-    }, 1000);
-  };
-
-  useEffect(() => {
-    startTimer();
-  }, []);
+  const isSpy = role == 'Spy';
 
   const onLeaveGame = () => {
     navigate('/');
   };
 
   return (
-    <Stack>
-      <Stack direction="row" alignItems="center" justifyContent="center" spacing={1} sx={{ my: 1 }}>
-        <Face />
-        <Typography>{player?.name}</Typography>
-      </Stack>
-      <Divider />
-      <RoleLocationDisplay role={role} location={location} />
-      <List>
-        {gameState.players.map((player) => (
-          <ListItem
-            key={player.id}
-            style={{ textDecoration: player.disconnected ? 'line-through' : 'none' }}
-          >
-            {player.name}
-          </ListItem>
-        ))}
-      </List>
+    <Stack height="80vh" display="flex" flexDirection="column">
+      <Grid2 container>
+        <Grid2 size={6}>
+          <Typography variant="h6">Role</Typography>
+        </Grid2>
+        <Grid2 size={6}>
+          <Typography variant="h6">Location</Typography>
+        </Grid2>
+        <Grid2 size={6}>
+          <RoleDisplay role={role} />
+        </Grid2>
+        <Grid2 size={6}>
+          <LocationDisplay location={isSpy ? '???' : location} />
+        </Grid2>
+      </Grid2>
+      <Box sx={{ flexGrow: 1 }}>
+        <NotesTabs
+          locations={gameState.possibleLocations}
+          players={gameState.players}
+          isSpy={isSpy}
+        />
+      </Box>
       {gameOver ? (
         <Stack spacing={1}>
           {isCreator ? (
@@ -96,9 +62,7 @@ function RolePane({ gameState, returnToLobbyEvent }: RolePaneProps) {
           </Button>
         </Stack>
       ) : (
-        <Button variant="contained" disabled startIcon={<Timer />}>
-          {timer ? timer : <CircularProgress size={24} />}
-        </Button>
+        <GameTimer startTime={gameState.startTime!} duration={duration} setGameOver={setGameOver} />
       )}
     </Stack>
   );

@@ -2,7 +2,13 @@ import { useState } from 'react';
 import { Box, Button, Modal, Stack, TextField, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import spyfallLogo from '../assets/react.svg';
-import { LOBBY_CODE_LENGTH, post, sanitizeLobbyCode, uuid } from '../utils/utils.ts';
+import {
+  LOBBY_CODE_LENGTH,
+  PLAYER_NAME_LENGTH,
+  post,
+  sanitizeLobbyCode,
+  uuid,
+} from '../utils/utils.ts';
 import { modalStyle } from '../theme.ts';
 
 function HomePage() {
@@ -34,7 +40,7 @@ function HomePage() {
   // If valid, join lobby with that code
   const handleCodeChange = (code: string) => {
     code = sanitizeLobbyCode(code);
-    if (code.length < LOBBY_CODE_LENGTH) {
+    if (code.length != LOBBY_CODE_LENGTH) {
       setCodeHelperText('Code is 4 characters');
       return;
     }
@@ -65,13 +71,11 @@ function HomePage() {
         Spyfall
       </Typography>
       <Box sx={{ mb: 2 }}>
-        <Typography variant="body1" component="label" gutterBottom>
-          Enter Your Name
-        </Typography>
         <TextField
+          label="Enter Your Name"
           placeholder="Player Name"
           defaultValue={localStorage.getItem('playerName')}
-          slotProps={{ htmlInput: { maxLength: 24 } }}
+          slotProps={{ htmlInput: { maxLength: PLAYER_NAME_LENGTH } }}
           autoComplete="off"
           fullWidth
           onChange={(text) => setName(text.target.value)}
@@ -87,7 +91,7 @@ function HomePage() {
       </Stack>
       <Modal open={showModal} onClose={() => setShowModal(false)}>
         <Box sx={modalStyle}>
-          <Typography variant="h4" component="label" gutterBottom>
+          <Typography variant="h5" component="label">
             Enter Lobby Code
           </Typography>
           <TextField

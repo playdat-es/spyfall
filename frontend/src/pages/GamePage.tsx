@@ -1,23 +1,26 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import { useGameStateManager } from '../hooks/useGameStateManager';
+import { GameStateType, useGameStateManager } from '../utils/hooks/useGameStateManager';
 import { SyntheticEvent, useEffect, useState } from 'react';
-import { Lobby, LobbyStatus } from '../utils/models.ts';
+import { LobbyStatus } from '../utils/models.ts';
 import LobbyPane from '../organisms/LobbyPane.tsx';
 import RolePane from '../organisms/RolePane.tsx';
 import {
   Alert,
+  Box,
   Button,
+  Divider,
   IconButton,
-  ListItem,
-  ListItemIcon,
   Slide,
   Snackbar,
   SnackbarCloseReason,
+  Stack,
+  Typography,
 } from '@mui/material';
-import { ArrowBackIosNew, ContactMail, ContentCopy } from '@mui/icons-material';
+import { ArrowBackIosNew, ContentCopy } from '@mui/icons-material';
 
 export interface GamePageProps {
-  gameState: Omit<Lobby, 'id'> & { status?: LobbyStatus };
+  gameState: GameStateType;
+  status?: LobbyStatus;
 }
 
 function GamePage() {
@@ -26,7 +29,7 @@ function GamePage() {
   const [showCopied, setShowCopied] = useState(false);
 
   const { gameState, sendEvent, socketState } = useGameStateManager(navigate);
-  const status = gameState.start_time ? LobbyStatus.IN_PROGRESS : LobbyStatus.NOT_STARTED;
+  const status = gameState.startTime ? LobbyStatus.IN_PROGRESS : LobbyStatus.NOT_STARTED;
 
   useEffect(() => {
     if (socketState === WebSocket.OPEN) {
@@ -47,7 +50,7 @@ function GamePage() {
   };
 
   return (
-    <>
+    <Box>
       <Snackbar
         open={showCopied}
         onClose={onCloseCopied}
@@ -59,17 +62,20 @@ function GamePage() {
           Invite link copied!
         </Alert>
       </Snackbar>
-      <ListItem divider>
-        <IconButton edge="start" aria-label="back" onClick={() => navigate('/')}>
-          <ArrowBackIosNew />
-        </IconButton>
-        <ListItemIcon>
-          <ContactMail />
-        </ListItemIcon>
-        <Button variant="outlined" endIcon={<ContentCopy />} onClick={onCopyLobbyCode}>
-          {lobbyId}
-        </Button>
-      </ListItem>
+      <Box>
+        <Stack direction="row" spacing={2}>
+          <IconButton edge="start" aria-label="back" onClick={() => navigate('/')} disableRipple>
+            <ArrowBackIosNew />
+          </IconButton>
+          <Box sx={{ flexGrow: 1 }}>
+            <Button variant="text" endIcon={<ContentCopy />} onClick={onCopyLobbyCode}>
+              <Typography variant="h6">Code: {lobbyId}</Typography>
+            </Button>
+          </Box>
+        </Stack>
+      </Box>
+      <Divider />
+
       {status === LobbyStatus.NOT_STARTED && (
         <LobbyPane
           gameState={gameState!}
@@ -80,7 +86,7 @@ function GamePage() {
       {status === LobbyStatus.IN_PROGRESS && (
         <RolePane gameState={gameState!} returnToLobbyEvent={sendEvent.returnToLobbyEvent} />
       )}
-    </>
+    </Box>
   );
 }
 

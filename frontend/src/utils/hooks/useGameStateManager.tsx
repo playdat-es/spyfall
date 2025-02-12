@@ -1,9 +1,18 @@
 import { useEffect, useState } from 'react';
 import { adjectives, animals, uniqueNamesGenerator } from 'unique-names-generator';
 import useWebSocket from 'react-use-websocket';
-import { Lobby, Player } from '../utils/models.ts';
-import { uuid } from '../utils/utils.ts';
+import { Lobby, Player } from '../models.ts';
+import { uuid } from '../utils.ts';
 import { NavigateFunction } from 'react-router-dom';
+
+export interface GameStateType {
+  players: Player[];
+  creator: string;
+  location?: string;
+  startTime?: number;
+  duration?: number;
+  possibleLocations: string[];
+}
 
 interface JsonMessage {
   type: string;
@@ -22,6 +31,7 @@ export const useGameStateManager = (navigate: NavigateFunction) => {
   const [location, setLocation] = useState<string>();
   const [startTime, setStartTime] = useState<number>();
   const [duration, setDuration] = useState<number>();
+  const [possibleLocations, setPossibleLocations] = useState<string[]>([]);
 
   const handleLobbyState = (lobby: Lobby) => {
     setPlayers(lobby.players);
@@ -54,22 +64,30 @@ export const useGameStateManager = (navigate: NavigateFunction) => {
   };
 
   const handlePlayerDisconnect = (id: string) => {
-    players.find((player) => player.id === id)!.disconnected = true;
+    const disconnectedPlayer = { ...players.find((player) => player.id === id)! };
+    disconnectedPlayer.disconnected = true;
+
+    setPlayers(players.map((player) => (player.id !== id ? player : disconnectedPlayer)));
   };
 
   const handlePlayerReconnect = (id: string, name: string) => {
     if (id === localStorage.getItem('playerId')) {
       return;
     }
-    const reconnectedPlayer = players.find((player) => player.id === id)!;
+
+    const reconnectedPlayer = { ...players.find((player) => player.id === id)! };
     reconnectedPlayer.disconnected = false;
     reconnectedPlayer.name = name;
+
+    setPlayers(players.map((player) => (player.id !== id ? player : reconnectedPlayer)));
   };
 
   const handlePlayerRename = (playerId: string, newName: string, dedupe: number) => {
-    const renamedPlayer = players.find((player) => player.id === playerId)!;
+    const renamedPlayer = { ...players.find((player) => player.id === playerId)! };
     renamedPlayer.name = newName;
     renamedPlayer.dedupe = dedupe;
+
+    setPlayers(players.map((player) => (player.id !== playerId ? player : renamedPlayer)));
 
     if (playerId === localStorage.getItem('playerId')) {
       localStorage.setItem('playerName', newName);
@@ -78,6 +96,10 @@ export const useGameStateManager = (navigate: NavigateFunction) => {
 
   const handleCreatorChange = (id: string) => {
     setCreator(id);
+  };
+
+  const handlePossibleLocations = (locations: string[]) => {
+    setPossibleLocations(locations);
   };
 
   const handleGoHome = () => {
@@ -118,6 +140,10 @@ export const useGameStateManager = (navigate: NavigateFunction) => {
       }
       case 'CREATOR_CHANGE': {
         handleCreatorChange(data['playerId']);
+        break;
+      }
+      case 'POSSIBLE_LOCATIONS': {
+        handlePossibleLocations(data['locations']);
         break;
       }
       case 'GO_HOME': {
@@ -186,8 +212,9 @@ export const useGameStateManager = (navigate: NavigateFunction) => {
     players,
     creator,
     location,
-    start_time: startTime,
+    startTime,
     duration,
+    possibleLocations,
   };
 
   return {
