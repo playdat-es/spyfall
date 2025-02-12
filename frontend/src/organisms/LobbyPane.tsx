@@ -4,7 +4,7 @@ import { GamePageProps } from '../pages/GamePage.tsx';
 
 type LobbyPaneProps = GamePageProps & {
   playerRenameEvent: (newName: string) => void;
-  kickPlayerEvent: () => void;
+  kickPlayerEvent: (playerId: string) => void;
   startGameEvent: () => void;
 };
 function LobbyPane({

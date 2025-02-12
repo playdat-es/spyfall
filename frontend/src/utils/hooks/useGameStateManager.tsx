@@ -187,10 +187,12 @@ export const useGameStateManager = (navigate: NavigateFunction) => {
     });
   };
 
-  const kickPlayerEvent = () => {
+  const kickPlayerEvent = (playerId: string) => {
     sendJsonMessage({
       type: 'GO_HOME',
-      data: {},
+      data: {
+        playerId: playerId,
+      },
     });
   };
 

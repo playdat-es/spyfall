@@ -19,7 +19,7 @@ import { PLAYER_NAME_LENGTH } from '../utils/utils.ts';
 interface PlayerListItemProps {
   player: Player;
   rename: (newName: string) => void;
-  kick: () => void;
+  kick: (playerId: string) => void;
   creator: string;
 }
 
@@ -37,7 +37,7 @@ function PlayerListItem({ player, rename, kick, creator }: PlayerListItemProps) 
   };
 
   const onKick = () => {
-    kick();
+    kick(player.id);
   };
 
   return (
