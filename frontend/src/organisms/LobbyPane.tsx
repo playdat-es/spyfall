@@ -4,9 +4,15 @@ import { GamePageProps } from '../pages/GamePage.tsx';
 
 type LobbyPaneProps = GamePageProps & {
   playerRenameEvent: (newName: string) => void;
+  kickPlayerEvent: () => void;
   startGameEvent: () => void;
 };
-function LobbyPane({ gameState, playerRenameEvent, startGameEvent }: LobbyPaneProps) {
+function LobbyPane({
+  gameState,
+  playerRenameEvent,
+  kickPlayerEvent,
+  startGameEvent,
+}: LobbyPaneProps) {
   const isCreator = gameState.creator === localStorage.getItem('playerId');
 
   return (
@@ -17,6 +23,7 @@ function LobbyPane({ gameState, playerRenameEvent, startGameEvent }: LobbyPanePr
             key={player.id}
             player={player}
             rename={playerRenameEvent}
+            kick={kickPlayerEvent}
             creator={gameState.creator}
           />
         ))}
