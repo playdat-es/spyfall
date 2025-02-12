@@ -39,10 +39,18 @@ function PlayerListItem({ player, rename, creator }: PlayerListItemProps) {
     <ListItem
       secondaryAction={
         (canEdit || canKick) && (
-          <IconButton edge="end" onClick={() => setShowModal(true)}>
-            {canEdit && <Edit />}
-            {canKick && <Close />}
-          </IconButton>
+          <>
+            {canEdit && (
+              <IconButton edge="end" onClick={() => setShowModal(true)}>
+                <Edit />
+              </IconButton>
+            )}
+            {canKick && (
+              <IconButton edge="end" onClick={() => setShowModal(true)}>
+                <Close />
+              </IconButton>
+            )}
+          </>
         )
       }
       sx={canEdit ? listItemStylePrimary : undefined}
