@@ -189,7 +189,7 @@ export const useGameStateManager = (navigate: NavigateFunction) => {
 
   const kickPlayerEvent = (playerId: string) => {
     sendJsonMessage({
-      type: 'GO_HOME',
+      type: 'KICK_PLAYER',
       data: {
         playerId: playerId,
       },
