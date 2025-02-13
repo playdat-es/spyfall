@@ -209,12 +209,12 @@ class ConnectionManager:
         creator = lobby["creator"]
         if creator != metadata.player_id:
             return
-        
+
         for connect in self.lobby_to_connections[lobby_id]:
             metadata = self.connection_to_metadata.get(connect)
             if metadata.player_id == player_id:
                 await self.send_event(connect, "GO_HOME", {})
-        
+
         database.update_one(
             {"_id": lobby_id},
             {"$pull": {"players": {"id": player_id}}},
