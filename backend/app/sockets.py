@@ -66,6 +66,17 @@ class ConnectionManager:
                 "PLAYER_RECONNECT",
                 {"playerId": player_id, "playerName": player_name},
             )
+            with open("location-packs/location-pack-1.json") as json_file:
+                location_pack = json.load(json_file)
+                await self.send_event(
+                    connection,
+                    "POSSIBLE_LOCATIONS",
+                    {
+                        "locations": [
+                            location["name"] for location in location_pack["locations"]
+                        ]
+                    },
+                )
         # handle player join
         else:
             # handle player name collision
@@ -210,6 +221,16 @@ class ConnectionManager:
                     role = random.choice(location["roles"])
                     location["roles"].remove(role)
                     player["role"] = role["name"]
+
+            await self.broadcast_event(
+                lobby_id,
+                "POSSIBLE_LOCATIONS",
+                {
+                    "locations": [
+                        location["name"] for location in location_pack["locations"]
+                    ]
+                },
+            )
 
         database.update_one(
             {"_id": lobby_id},

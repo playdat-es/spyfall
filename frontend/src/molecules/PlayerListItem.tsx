@@ -6,12 +6,15 @@ import {
   ListItemIcon,
   ListItemText,
   Modal,
+  Stack,
   TextField,
+  Typography,
 } from '@mui/material';
 import { Close, Edit, Face, FaceRetouchingNatural } from '@mui/icons-material';
 import { useState } from 'react';
 import { Player } from '../utils/models.ts';
 import { modalStyle, listItemStylePrimary } from '../theme.ts';
+import { PLAYER_NAME_LENGTH } from '../utils/utils.ts';
 
 interface PlayerListItemProps {
   player: Player;
@@ -45,21 +48,31 @@ function PlayerListItem({ player, rename, creator }: PlayerListItemProps) {
       sx={canEdit ? listItemStylePrimary : undefined}
     >
       <ListItemIcon>{player.id === creator ? <FaceRetouchingNatural /> : <Face />}</ListItemIcon>
-      <ListItemText primary={`${player.name} ${dedupeString}`} secondary={canEdit ? '(you)' : ''} />
+      <ListItemText primary={`${player.name} ${dedupeString}`} />
       <Modal open={showModal} onClose={() => setShowModal(false)}>
         <Box sx={modalStyle}>
-          <TextField
-            label="Change name"
-            defaultValue={player.name}
-            slotProps={{ htmlInput: { maxLength: 16 } }}
-            autoComplete="off"
-            fullWidth
-            onChange={(text) => setNewName(text.target.value.trim())}
-          />
-          <Button onClick={() => setShowModal(false)}>Cancel</Button>
-          <Button variant="contained" onClick={onRename} disabled={newName === player.name}>
-            Submit
-          </Button>
+          <Stack spacing={1}>
+            <Typography variant="h5" component="label">
+              Edit Name
+            </Typography>
+            <TextField
+              defaultValue={player.name}
+              slotProps={{ htmlInput: { maxLength: PLAYER_NAME_LENGTH } }}
+              autoComplete="off"
+              onChange={(text) => setNewName(text.target.value.trim())}
+            />
+            <Stack direction="row" spacing={1} justifyContent="right">
+              <Button onClick={() => setShowModal(false)}>Cancel</Button>
+              <Button
+                variant="contained"
+                onClick={onRename}
+                disabled={newName === player.name}
+                sx={{ width: 120 }}
+              >
+                Submit
+              </Button>
+            </Stack>
+          </Stack>
         </Box>
       </Modal>
     </ListItem>

@@ -53,10 +53,12 @@ export const modalStyle = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: '30rem',
+  width: '24rem',
   bgcolor: 'background.paper',
   borderRadius: '10px',
-  p: 4,
+  px: 3,
+  pb: 3,
+  pt: 2,
   textAlign: 'center',
 };
 
