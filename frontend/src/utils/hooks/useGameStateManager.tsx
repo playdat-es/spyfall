@@ -187,6 +187,15 @@ export const useGameStateManager = (navigate: NavigateFunction) => {
     });
   };
 
+  const kickPlayerEvent = (playerId: string) => {
+    sendJsonMessage({
+      type: 'KICK_PLAYER',
+      data: {
+        playerId: playerId,
+      },
+    });
+  };
+
   const startGameEvent = () => {
     sendJsonMessage({
       type: 'START_GAME',
@@ -204,6 +213,7 @@ export const useGameStateManager = (navigate: NavigateFunction) => {
   const sendEvent = {
     playerJoinEvent,
     playerRenameEvent,
+    kickPlayerEvent,
     startGameEvent,
     returnToLobbyEvent,
   };

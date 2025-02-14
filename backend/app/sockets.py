@@ -200,6 +200,26 @@ class ConnectionManager:
                 },
             )
 
+    async def handle_player_kick(self, connection: WebSocket, player_id: str):
+        metadata = self.connection_to_metadata.get(connection)
+        lobby_id = metadata.lobby_id
+        database = connection.app.database["Lobby"]
+
+        lobby = database.find_one({"_id": lobby_id})
+        creator = lobby["creator"]
+        if creator != metadata.player_id:
+            return
+
+        for connect in self.lobby_to_connections[lobby_id]:
+            metadata = self.connection_to_metadata.get(connect)
+            if metadata.player_id == player_id:
+                await self.send_event(connect, "GO_HOME", {})
+
+        database.update_one(
+            {"_id": lobby_id},
+            {"$pull": {"players": {"id": player_id}}},
+        )
+
     async def handle_start_game(self, connection: WebSocket):
         database = connection.app.database["Lobby"]
         metadata = self.connection_to_metadata.get(connection)
@@ -304,6 +324,8 @@ async def websocket_endpoint(websocket: WebSocket):
                         websocket,
                         event_data["playerName"],
                     )
+                case "KICK_PLAYER":
+                    await manager.handle_player_kick(websocket, event_data["playerId"])
                 case "START_GAME":
                     await manager.handle_start_game(websocket)
                 case "RESET_GAME":

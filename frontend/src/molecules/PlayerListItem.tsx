@@ -19,10 +19,11 @@ import { PLAYER_NAME_LENGTH } from '../utils/utils.ts';
 interface PlayerListItemProps {
   player: Player;
   rename: (newName: string) => void;
+  kick: (playerId: string) => void;
   creator: string;
 }
 
-function PlayerListItem({ player, rename, creator }: PlayerListItemProps) {
+function PlayerListItem({ player, rename, kick, creator }: PlayerListItemProps) {
   const [showModal, setShowModal] = useState(false);
   const [newName, setNewName] = useState(player.name);
 
@@ -35,14 +36,26 @@ function PlayerListItem({ player, rename, creator }: PlayerListItemProps) {
     setShowModal(false);
   };
 
+  const onKick = () => {
+    kick(player.id);
+  };
+
   return (
     <ListItem
       secondaryAction={
         (canEdit || canKick) && (
-          <IconButton edge="end" onClick={() => setShowModal(true)}>
-            {canEdit && <Edit />}
-            {canKick && <Close />}
-          </IconButton>
+          <>
+            {canEdit && (
+              <IconButton edge="end" onClick={() => setShowModal(true)}>
+                <Edit />
+              </IconButton>
+            )}
+            {canKick && (
+              <IconButton edge="end" onClick={onKick}>
+                <Close />
+              </IconButton>
+            )}
+          </>
         )
       }
       sx={canEdit ? listItemStylePrimary : undefined}
