@@ -163,6 +163,9 @@ class ConnectionManager:
             )
 
     async def handle_player_rename(self, connection: WebSocket, player_name: str):
+        if player_name == "":
+            return
+
         database = connection.app.database["Lobby"]
         metadata = self.connection_to_metadata.get(connection)
         player_id = metadata.player_id
