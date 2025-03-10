@@ -9,19 +9,19 @@ import {
 import { useState } from 'react';
 import { PLAYER_NAME_LENGTH } from '../utils/utils.ts';
 
-interface PlayerRenameModalProps {
+interface PlayerRenameDialogProps {
   open: boolean;
   onClose: () => void;
   currentName: string;
   playerRenameEvent: (newName: string) => void;
 }
 
-function PlayerRenameModal({
+function PlayerRenameDialog({
   open,
   onClose,
   currentName,
   playerRenameEvent,
-}: PlayerRenameModalProps) {
+}: PlayerRenameDialogProps) {
   const [newName, setNewName] = useState(currentName);
 
   const onRename = () => {
@@ -55,4 +55,4 @@ function PlayerRenameModal({
   );
 }
 
-export default PlayerRenameModal;
+export default PlayerRenameDialog;

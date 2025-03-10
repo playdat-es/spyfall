@@ -3,7 +3,7 @@ import { Close, Edit, Face, FaceRetouchingNatural } from '@mui/icons-material';
 import { useState } from 'react';
 import { Player } from '../utils/models.ts';
 import { listItemStylePrimary } from '../theme.ts';
-import PlayerRenameModal from './PlayerRenameModal.tsx';
+import PlayerRenameDialog from './PlayerRenameDialog.tsx';
 
 interface PlayerListItemProps {
   player: Player;
@@ -50,7 +50,7 @@ function PlayerListItem({
     >
       <ListItemIcon>{player.id === creator ? <FaceRetouchingNatural /> : <Face />}</ListItemIcon>
       <ListItemText primary={`${player.name} ${dedupeString}`} />
-      <PlayerRenameModal
+      <PlayerRenameDialog
         open={showRenameModal}
         onClose={() => setShowRenameModal(false)}
         playerRenameEvent={playerRenameEvent}

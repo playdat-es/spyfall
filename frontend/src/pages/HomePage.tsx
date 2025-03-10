@@ -3,7 +3,7 @@ import { Box, Button, Stack, TextField, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import spyfallLogo from '../assets/logo.svg';
 import { PLAYER_NAME_LENGTH, post, uuid } from '../utils/utils.ts';
-import LobbyCodeModal from '../molecules/LobbyCodeModal.tsx';
+import LobbyCodeDialog from '../molecules/LobbyCodeDialog.tsx';
 
 function HomePage() {
   const navigate = useNavigate();
@@ -53,7 +53,7 @@ function HomePage() {
           Join Lobby
         </Button>
       </Stack>
-      <LobbyCodeModal
+      <LobbyCodeDialog
         open={showLobbyCodeModal}
         onClose={() => setShowLobbyCodeModal(false)}
         playerName={name}

@@ -3,13 +3,13 @@ import { Dialog, DialogContent, DialogTitle, TextField } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { LOBBY_CODE_LENGTH, post, sanitizeLobbyCode, uuid } from '../utils/utils.ts';
 
-interface LobbyCodeModalProps {
+interface LobbyCodeDialogProps {
   open: boolean;
   onClose: () => void;
   playerName: string;
 }
 
-function LobbyCodeModal({ open, onClose, playerName }: LobbyCodeModalProps) {
+function LobbyCodeDialog({ open, onClose, playerName }: LobbyCodeDialogProps) {
   const navigate = useNavigate();
   const [disableCodeField, setDisableCodeField] = useState(false);
   const [codeHelperText, setCodeHelperText] = useState('');
@@ -59,4 +59,4 @@ function LobbyCodeModal({ open, onClose, playerName }: LobbyCodeModalProps) {
   );
 }
 
-export default LobbyCodeModal;
+export default LobbyCodeDialog;
