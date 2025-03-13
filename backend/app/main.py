@@ -7,7 +7,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 from contextlib import asynccontextmanager
 
-from app.models import Player, Lobby
+from app.models import Lobby
 from app.routes import router
 from app.sockets import websocket_router
 
@@ -25,10 +25,7 @@ async def lifespan(app: FastAPI):
     database = app.mongodb_client.get_database(database)
     await init_beanie(
         database=database,
-        document_models=[
-            Player,
-            Lobby,
-        ],
+        document_models=[Lobby],
     )
     print("Connected to the MongoDB database!")
     yield
