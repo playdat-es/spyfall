@@ -19,7 +19,7 @@ def valid_uuid(value):
         return uuid.uuid4().hex
 
 
-class Player(Document):
+class Player(BaseModel):
     id: str = Field(default_factory=lambda: uuid.uuid4().hex)
     name: Annotated[str, BeforeValidator(sanitize_name)]
     role: Optional[str] = None
