@@ -5,7 +5,7 @@ import time
 from fastapi import APIRouter, WebSocket
 from starlette.websockets import WebSocketDisconnect
 
-from app.models import Player
+from app.models import Player, sanitize_name
 
 
 class PlayerMetadata:
@@ -163,6 +163,10 @@ class ConnectionManager:
             )
 
     async def handle_player_rename(self, connection: WebSocket, player_name: str):
+        player_name = sanitize_name(player_name)
+        if player_name == "":
+            return
+
         database = connection.app.database["Lobby"]
         metadata = self.connection_to_metadata.get(connection)
         player_id = metadata.player_id

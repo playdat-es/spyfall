@@ -22,9 +22,9 @@ function LobbyPane({
           <PlayerListItem
             key={player.id + player.name}
             player={player}
-            rename={playerRenameEvent}
-            kick={kickPlayerEvent}
             creator={gameState.creator}
+            playerRenameEvent={playerRenameEvent}
+            kickPlayerEvent={kickPlayerEvent}
           />
         ))}
       </List>

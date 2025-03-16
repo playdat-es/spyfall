@@ -48,28 +48,8 @@ export const theme = createTheme({
   },
 });
 
-export const modalStyle = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: '24rem',
-  bgcolor: 'background.paper',
-  borderRadius: '10px',
-  px: 3,
-  pb: 3,
-  pt: 2,
-  textAlign: 'center',
-};
-
 export const listItemStylePrimary = {
   bgcolor: '#f2e7fe',
   color: '#ad1457',
   fill: '#ad1457',
-};
-
-export const listItemStyleSecondary = {
-  bgcolor: '#ad1457',
-  color: '#f2e7fe',
-  fill: '#f2e7fe',
 };
