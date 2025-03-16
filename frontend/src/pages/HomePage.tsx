@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Box, Button, Stack, TextField, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import spyfallLogo from '../assets/logo.svg';
@@ -9,6 +9,10 @@ function HomePage() {
   const navigate = useNavigate();
   const [name, setName] = useState(localStorage.getItem('playerName') || '');
   const [showLobbyCodeModal, setShowLobbyCodeModal] = useState(false);
+
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/`, { method: 'GET' });
+  }, []);
 
   const handleCreateLobby = () => {
     fetch(
