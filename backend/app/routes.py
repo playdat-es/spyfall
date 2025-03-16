@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException, Request, status
+from fastapi import APIRouter, HTTPException, Request, Response, status
 from app.models import (
     CheckLobbyResponse,
     CreateLobbyResponse,
@@ -11,10 +11,19 @@ from app.models import (
 router = APIRouter()
 
 
+@router.get(
+    "/",
+    description="Dummy endpoint to mitigate cold start",
+    status_code=status.HTTP_200_OK,
+)
+def default():
+    return Response(status_code=status.HTTP_200_OK)
+
+
 @router.post(
     "/lobby",
     tags=["lobby"],
-    response_description="Create a new lobby",
+    description="Create a new lobby",
     status_code=status.HTTP_201_CREATED,
     response_model=CreateLobbyResponse,
 )
@@ -32,7 +41,7 @@ def create_lobby(request: Request, body: CreateLobbyRequest):
 @router.post(
     "/lobby/{lobby_id}",
     tags=["lobby"],
-    response_description="Check if lobby exists",
+    description="Check if lobby exists",
     status_code=status.HTTP_200_OK,
     response_model=CheckLobbyResponse,
 )
