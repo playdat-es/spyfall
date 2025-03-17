@@ -15,15 +15,6 @@ export const theme = createTheme({
     fontSize: 24,
   },
   components: {
-    MuiButton: {
-      styleOverrides: {
-        root: {
-          '&.Mui-disabled': {
-            backgroundColor: '#595959',
-          },
-        },
-      },
-    },
     MuiStack: {
       styleOverrides: {
         root: {
@@ -39,6 +30,9 @@ export const theme = createTheme({
       },
     },
     MuiSvgIcon: {
+      defaultProps: {
+        fontSize: 'small',
+      },
       styleOverrides: {
         root: {
           fill: 'inherit',
@@ -52,4 +46,5 @@ export const listItemStylePrimary = {
   bgcolor: '#f2e7fe',
   color: '#ad1457',
   fill: '#ad1457',
+  borderRadius: '5px',
 };

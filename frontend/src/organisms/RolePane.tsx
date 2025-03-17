@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Box, Button, Grid2, Stack, Typography } from '@mui/material';
+import { Button, Grid2, Stack, Typography } from '@mui/material';
 import { GamePageProps } from '../pages/GamePage.tsx';
 import { useNavigate } from 'react-router-dom';
 import NotesTabs from '../molecules/NotesTabs.tsx';
@@ -26,13 +26,13 @@ function RolePane({ gameState, returnToLobbyEvent }: RolePaneProps) {
   };
 
   return (
-    <Stack height="80vh" display="flex" flexDirection="column">
+    <Stack height="100%" px={2} justifyContent="space-between">
       <Grid2 container>
         <Grid2 size={6}>
-          <Typography variant="h6">Role</Typography>
+          <Typography variant="h7">Role</Typography>
         </Grid2>
         <Grid2 size={6}>
-          <Typography variant="h6">Location</Typography>
+          <Typography variant="h7">Location</Typography>
         </Grid2>
         <Grid2 size={6}>
           <RoleDisplay role={role} />
@@ -41,29 +41,34 @@ function RolePane({ gameState, returnToLobbyEvent }: RolePaneProps) {
           <LocationDisplay location={isSpy ? '???' : location} />
         </Grid2>
       </Grid2>
-      <Box sx={{ flexGrow: 1 }}>
-        <NotesTabs
-          locations={gameState.possibleLocations}
-          players={gameState.players}
-          isSpy={isSpy}
-        />
-      </Box>
-      {gameOver ? (
-        <Stack spacing={1}>
-          {isCreator ? (
-            <Button variant="contained" onClick={returnToLobbyEvent}>
-              RETURN TO LOBBY
+      <NotesTabs
+        locations={gameState.possibleLocations}
+        players={gameState.players}
+        isSpy={isSpy}
+      />
+      <Stack pb={2}>
+        {gameOver ? (
+          <Stack spacing={1}>
+            <Button onClick={returnToLobbyEvent} disabled={!isCreator} variant="contained">
+              {isCreator ? 'Return to Lobby' : 'Waiting for host...'}
             </Button>
-          ) : (
-            <Typography>waiting for host...</Typography>
-          )}
-          <Button variant="contained" color="secondary" onClick={onLeaveGame}>
-            LEAVE GAME
-          </Button>
-        </Stack>
-      ) : (
-        <GameTimer startTime={gameState.startTime!} duration={duration} setGameOver={setGameOver} />
-      )}
+            <Button
+              onClick={onLeaveGame}
+              variant="contained"
+              color="secondary"
+              sx={{ color: 'primary.main' }}
+            >
+              Leave Game
+            </Button>
+          </Stack>
+        ) : (
+          <GameTimer
+            startTime={gameState.startTime!}
+            duration={duration}
+            setGameOver={setGameOver}
+          />
+        )}
+      </Stack>
     </Stack>
   );
 }

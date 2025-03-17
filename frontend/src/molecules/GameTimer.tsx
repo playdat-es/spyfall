@@ -47,7 +47,7 @@ function GameTimer({ startTime, duration, setGameOver }: GameTimerProps) {
   return (
     <Button variant="contained" disabled>
       <Timer />
-      <Typography variant="h6">{timer ? timer : <CircularProgress size={24} />}</Typography>
+      <Typography variant="h7">{timer ? timer : <CircularProgress size={24} />}</Typography>
     </Button>
   );
 }
