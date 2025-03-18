@@ -8,6 +8,7 @@ type LobbyPaneProps = GamePageProps & {
   kickPlayerEvent: (playerId: string) => void;
   startGameEvent: () => void;
 };
+
 function LobbyPane({
   gameState,
   playerRenameEvent,
@@ -27,7 +28,7 @@ function LobbyPane({
 
   return (
     <Stack height="100%" px={2} justifyContent="space-between">
-      <List sx={{ flexGrow: 1, maxHeight: '80vh', overflowY: 'auto' }}>
+      <List sx={{ flexGrow: 1, maxHeight: '85vh', overflowY: 'auto' }}>
         {gameState.players.map((player) => (
           <PlayerListItem
             key={player.id + player.name}

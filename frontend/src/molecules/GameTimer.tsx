@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Button, CircularProgress, Typography } from '@mui/material';
+import { Button, CircularProgress } from '@mui/material';
 import { Timer } from '@mui/icons-material';
 
 interface GameTimerProps {
@@ -45,9 +45,9 @@ function GameTimer({ startTime, duration, setGameOver }: GameTimerProps) {
   }, []);
 
   return (
-    <Button variant="contained" disabled>
+    <Button variant="contained" disabled sx={{ height: '47px' }}>
       <Timer />
-      <Typography variant="h7">{timer ? timer : <CircularProgress size={24} />}</Typography>
+      {timer ? timer : <CircularProgress size={24} color="inherit" />}
     </Button>
   );
 }

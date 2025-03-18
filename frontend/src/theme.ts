@@ -11,10 +11,17 @@ export const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: '"VT323", "Roboto"',
-    fontSize: 24,
+    fontFamily: '"Sniglet", sans-serif',
+    fontSize: 20,
   },
   components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          textTransform: 'none',
+        },
+      },
+    },
     MuiStack: {
       styleOverrides: {
         root: {
@@ -36,6 +43,22 @@ export const theme = createTheme({
       styleOverrides: {
         root: {
           fill: 'inherit',
+        },
+      },
+    },
+    MuiTabs: {
+      styleOverrides: {
+        root: {
+          height: '50px',
+        },
+      },
+    },
+    MuiTab: {
+      styleOverrides: {
+        root: {
+          height: '50px',
+          minHeight: '50px',
+          textTransform: 'none',
         },
       },
     },

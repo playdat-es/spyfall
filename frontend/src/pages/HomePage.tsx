@@ -35,26 +35,28 @@ function HomePage() {
   return (
     <Stack height="100%" p="2rem" justifyContent="center" alignItems="center">
       <img style={{ width: '100%', maxWidth: '400px' }} src={logo} alt="logo" />
-      <Typography variant="h4" sx={{ my: 4 }}>
+      <Typography variant="h4" sx={{ mb: 5 }} fontFamily="Playpen Sans">
         Spyfall
       </Typography>
-      <TextField
-        label="Enter Your Name"
-        placeholder="Player Name"
-        defaultValue={localStorage.getItem('playerName')}
-        slotProps={{ htmlInput: { maxLength: PLAYER_NAME_LENGTH } }}
-        autoComplete="off"
-        fullWidth
-        onChange={(text) => setName(text.target.value)}
-        sx={{ mb: 2 }}
-      />
-      <Stack spacing={1} width="100%" mb={4}>
-        <Button variant="contained" disabled={!name} onClick={handleCreateLobby}>
-          Create Lobby
-        </Button>
-        <Button variant="contained" disabled={!name} onClick={() => setShowLobbyCodeModal(true)}>
-          Join Lobby
-        </Button>
+      <Stack width="100%" maxWidth="400px">
+        <TextField
+          label="Enter your name"
+          placeholder="Player Name"
+          defaultValue={localStorage.getItem('playerName')}
+          slotProps={{ htmlInput: { maxLength: PLAYER_NAME_LENGTH } }}
+          autoComplete="off"
+          fullWidth
+          onChange={(text) => setName(text.target.value)}
+          sx={{ mb: 2 }}
+        />
+        <Stack spacing={1} mb={4}>
+          <Button variant="contained" disabled={!name} onClick={handleCreateLobby}>
+            Create Lobby
+          </Button>
+          <Button variant="contained" disabled={!name} onClick={() => setShowLobbyCodeModal(true)}>
+            Join Lobby
+          </Button>
+        </Stack>
       </Stack>
       <LobbyCodeDialog
         open={showLobbyCodeModal}
