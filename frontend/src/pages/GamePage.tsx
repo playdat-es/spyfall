@@ -1,22 +1,12 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { GameStateType, useGameStateManager } from '../utils/hooks/useGameStateManager';
-import { SyntheticEvent, useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { LobbyStatus } from '../utils/models.ts';
 import LobbyPane from '../organisms/LobbyPane.tsx';
 import RolePane from '../organisms/RolePane.tsx';
-import {
-  Alert,
-  Box,
-  Button,
-  Divider,
-  IconButton,
-  Slide,
-  Snackbar,
-  SnackbarCloseReason,
-  Stack,
-  Typography,
-} from '@mui/material';
-import { ArrowBackIosNew, ContentCopy } from '@mui/icons-material';
+import { Divider, IconButton, Stack } from '@mui/material';
+import { ArrowBackIosNew } from '@mui/icons-material';
+import LobbyCodeDisplay from '../molecules/LobbyCodeDisplay.tsx';
 
 export interface GamePageProps {
   gameState: GameStateType;
@@ -26,7 +16,6 @@ export interface GamePageProps {
 function GamePage() {
   const navigate = useNavigate();
   const { lobbyId } = useParams();
-  const [showCopied, setShowCopied] = useState(false);
 
   const { gameState, sendEvent, socketState } = useGameStateManager(navigate);
   const status = gameState.startTime ? LobbyStatus.IN_PROGRESS : LobbyStatus.NOT_STARTED;
@@ -37,43 +26,14 @@ function GamePage() {
     }
   }, [socketState]);
 
-  const onCopyLobbyCode = async () => {
-    await navigator.clipboard.writeText(window.location.href);
-    setShowCopied(true);
-  };
-
-  const onCloseCopied = (_: SyntheticEvent | Event, reason?: SnackbarCloseReason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-    setShowCopied(false);
-  };
-
   return (
-    <Box>
-      <Snackbar
-        open={showCopied}
-        onClose={onCloseCopied}
-        autoHideDuration={2000}
-        TransitionComponent={Slide}
-        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-      >
-        <Alert onClose={onCloseCopied} severity="success" variant="filled">
-          Invite link copied!
-        </Alert>
-      </Snackbar>
-      <Box>
-        <Stack direction="row" spacing={2}>
-          <IconButton edge="start" aria-label="back" onClick={() => navigate('/')} disableRipple>
-            <ArrowBackIosNew />
-          </IconButton>
-          <Box sx={{ flexGrow: 1 }}>
-            <Button variant="text" endIcon={<ContentCopy />} onClick={onCopyLobbyCode}>
-              <Typography variant="h6">Code: {lobbyId}</Typography>
-            </Button>
-          </Box>
-        </Stack>
-      </Box>
+    <Stack height="100%">
+      <Stack direction="row" spacing={-5} mx={1} my={0.5}>
+        <IconButton onClick={() => navigate('/')} disableRipple>
+          <ArrowBackIosNew color="primary" />
+        </IconButton>
+        <LobbyCodeDisplay lobbyId={lobbyId} />
+      </Stack>
       <Divider />
 
       {status === LobbyStatus.NOT_STARTED && (
@@ -87,7 +47,7 @@ function GamePage() {
       {status === LobbyStatus.IN_PROGRESS && (
         <RolePane gameState={gameState!} returnToLobbyEvent={sendEvent.returnToLobbyEvent} />
       )}
-    </Box>
+    </Stack>
   );
 }
 

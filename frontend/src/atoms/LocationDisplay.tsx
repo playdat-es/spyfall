@@ -1,4 +1,4 @@
-import { Box, Typography } from '@mui/material';
+import { Stack, Typography } from '@mui/material';
 
 interface LocationProps {
   location: string;
@@ -6,9 +6,21 @@ interface LocationProps {
 
 function LocationDisplay({ location }: LocationProps) {
   return (
-    <Box sx={{ width: '100%', height: '100%' }}>
-      <Typography sx={{ py: 1, color: '#F2E7FE', bgcolor: '#AD1457' }}>{location}</Typography>
-    </Box>
+    <Stack height="52px">
+      <Typography
+        sx={{
+          height: '100%',
+          py: 1,
+          color: 'secondary.main',
+          bgcolor: 'primary.main',
+          fontSize: 'min(calc(1rem + 1.5vw), 27px)',
+          alignContent: 'center',
+          borderRadius: '0 5px 5px 0',
+        }}
+      >
+        {location}
+      </Typography>
+    </Stack>
   );
 }
 

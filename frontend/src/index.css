@@ -1,5 +1,5 @@
 :root {
-  font-family: VT323;
+  font-family: 'Sniglet', sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -16,16 +16,18 @@
 #root {
   max-width: 800px;
   min-width: 360px;
+  max-height: 1200px;
   width: 100%;
-  padding: 2rem;
+  height: 100%;
   text-align: center;
 }
 
 body {
   margin: 0;
   display: flex;
+  align-items: center;
   justify-content: center;
   place-items: center;
   min-width: 320px;
-  min-height: 100vh;
+  height: 100vh;
 }

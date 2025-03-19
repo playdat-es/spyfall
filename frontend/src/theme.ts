@@ -11,16 +11,14 @@ export const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: '"VT323", "Roboto"',
-    fontSize: 24,
+    fontFamily: '"Sniglet", sans-serif',
+    fontSize: 20,
   },
   components: {
     MuiButton: {
       styleOverrides: {
         root: {
-          '&.Mui-disabled': {
-            backgroundColor: '#595959',
-          },
+          textTransform: 'none',
         },
       },
     },
@@ -39,9 +37,28 @@ export const theme = createTheme({
       },
     },
     MuiSvgIcon: {
+      defaultProps: {
+        fontSize: 'small',
+      },
       styleOverrides: {
         root: {
           fill: 'inherit',
+        },
+      },
+    },
+    MuiTabs: {
+      styleOverrides: {
+        root: {
+          height: '50px',
+        },
+      },
+    },
+    MuiTab: {
+      styleOverrides: {
+        root: {
+          height: '50px',
+          minHeight: '50px',
+          textTransform: 'none',
         },
       },
     },
@@ -52,4 +69,5 @@ export const listItemStylePrimary = {
   bgcolor: '#f2e7fe',
   color: '#ad1457',
   fill: '#ad1457',
+  borderRadius: '5px',
 };

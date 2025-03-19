@@ -12,9 +12,9 @@ function StrikeableButton({ text }: StrikeableButtonProps) {
   };
 
   return (
-    <Button onClick={toggleStrikethrough} sx={{ width: '100%', height: '100%' }}>
+    <Button onClick={toggleStrikethrough} sx={{ width: '100%', height: '32px' }}>
       <Typography
-        style={{ textDecoration: strikethrough ? 'line-through' : 'none', fontSize: 24 }}
+        style={{ textDecoration: strikethrough ? 'line-through' : 'none', fontSize: 19 }}
         color={strikethrough ? 'textDisabled' : 'inherit'}
       >
         {text}
