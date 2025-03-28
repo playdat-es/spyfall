@@ -23,10 +23,10 @@ function RolePane({ gameState, returnToLobbyEvent }: RolePaneProps) {
     <Stack height="100%" px={2} justifyContent="space-between">
       <Grid2 container>
         <Grid2 size={6}>
-          <Typography variant="h7">Role</Typography>
+          <Typography>Role</Typography>
         </Grid2>
         <Grid2 size={6}>
-          <Typography variant="h7">Location</Typography>
+          <Typography>Location</Typography>
         </Grid2>
         <Grid2 size={6}>
           <RoleDisplay role={role} />
