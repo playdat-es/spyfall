@@ -39,7 +39,7 @@ function PlayersTab({ players, selected }: PlayersTabProps) {
       <Grid2 container>
         {players.map((player) => {
           return (
-            <Grid2 size={{ xs: 12, sm: 6 }} key={player.name}>
+            <Grid2 size={{ xs: 12, sm: 6 }} sx={{ my: 1 }} key={player.name}>
               <StrikeableButton text={player.name} icon={player.disconnected && <PowerOff />} />
             </Grid2>
           );
