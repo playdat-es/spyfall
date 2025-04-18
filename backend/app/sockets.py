@@ -4,8 +4,11 @@ import time
 
 from fastapi import APIRouter, WebSocket
 from starlette.websockets import WebSocketDisconnect
+from uvicorn.logging import logging
 
-from app.models import Player, Lobby, sanitize_name, sanitize_lobby_id
+from app.models import Lobby, Player, sanitize_lobby_id, sanitize_name
+
+logger = logging.getLogger("uvicorn")
 
 
 class PlayerMetadata:
