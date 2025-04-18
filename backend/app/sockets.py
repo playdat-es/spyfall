@@ -71,6 +71,10 @@ class ConnectionManager:
                 )
         # handle player join
         else:
+            # game in progress
+            if lobby.start_time is not None:
+                await self.send_event(connection, "GO_HOME", {})
+                return
             # handle player name collision
             dedupe_num = 0
             for player in lobby.players:
@@ -258,31 +262,38 @@ async def websocket_endpoint(websocket: WebSocket):
     await manager.connect(websocket)
     try:
         while True:
-            event = await websocket.receive_json()
-            event_type = event["type"]
-            event_data = event["data"]
+            try:
+                event = await websocket.receive_json()
+                event_type = event["type"]
+                event_data = event["data"]
 
-            match event_type:
-                case "PLAYER_JOIN":
-                    await manager.handle_player_join(
-                        websocket,
-                        event_data["lobbyId"],
-                        event_data["playerId"],
-                        event_data["playerName"],
-                    )
-                case "PLAYER_RENAME":
-                    await manager.handle_player_rename(
-                        websocket,
-                        event_data["playerName"],
-                    )
-                case "KICK_PLAYER":
-                    await manager.handle_player_kick(websocket, event_data["playerId"])
-                case "START_GAME":
-                    await manager.handle_start_game(websocket)
-                case "RESET_GAME":
-                    await manager.handle_reset_game(websocket)
-                case _:
-                    print(f"Received event with unhandled type: {event}")
+                match event_type:
+                    case "PLAYER_JOIN":
+                        await manager.handle_player_join(
+                            websocket,
+                            event_data["lobbyId"],
+                            event_data["playerId"],
+                            event_data["playerName"],
+                        )
+                    case "PLAYER_RENAME":
+                        await manager.handle_player_rename(
+                            websocket,
+                            event_data["playerName"],
+                        )
+                    case "KICK_PLAYER":
+                        await manager.handle_player_kick(
+                            websocket, event_data["playerId"]
+                        )
+                    case "START_GAME":
+                        await manager.handle_start_game(websocket)
+                    case "RESET_GAME":
+                        await manager.handle_reset_game(websocket)
+                    case _:
+                        print(f"Received event with unhandled type: {event}")
+            except json.JSONDecodeError:
+                text = await websocket.receive_text()
+                if text == "PING":
+                    await websocket.send_text("PONG")
 
     except WebSocketDisconnect:
         await manager.handle_player_leave(websocket)
