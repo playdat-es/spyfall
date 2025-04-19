@@ -94,8 +94,8 @@ export const useGameStateManager = (navigate: NavigateFunction) => {
     setPossibleLocations(locations);
   };
 
-  const handleGoHome = () => {
-    navigate('/');
+  const handleGoHome = (message: string) => {
+    navigate('/', { state: { errorMessage: message } });
   };
 
   useEffect(() => {
@@ -129,7 +129,7 @@ export const useGameStateManager = (navigate: NavigateFunction) => {
         handlePossibleLocations(data.locations);
         break;
       case 'GO_HOME':
-        handleGoHome();
+        handleGoHome(data.message);
         break;
       default:
         console.error(`Received event with unhandled type: ${type}`);

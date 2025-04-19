@@ -49,8 +49,15 @@ class ConnectionManager:
         lobby_id = sanitize_lobby_id(lobby_id)
         player_name = sanitize_name(player_name)
 
-        if (lobby := await Lobby.get(lobby_id)) is None or player_name == "":
-            await self.send_event(connection, "GO_HOME", {})
+        if player_name == "":
+            await self.send_event(
+                connection, "GO_HOME", {"message": "Cannot join with no name"}
+            )
+            return
+        if lobby := await Lobby.get(lobby_id) is None:
+            await self.send_event(
+                connection, "GO_HOME", {"message": f"Lobby {lobby_id} does not exist"}
+            )
             return
 
         if lobby_id not in self.lobby_to_connections:
@@ -212,7 +219,9 @@ class ConnectionManager:
         for connect in self.lobby_to_connections[lobby_id]:
             metadata = self.connection_to_metadata.get(connect)
             if metadata.player_id == player_id:
-                await self.send_event(connect, "GO_HOME", {})
+                await self.send_event(
+                    connect, "GO_HOME", {"message": f"You were kicked from {lobby_id}"}
+                )
 
     async def handle_start_game(self, connection: WebSocket):
         metadata = self.connection_to_metadata.get(connection)
