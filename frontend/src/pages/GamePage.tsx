@@ -46,7 +46,6 @@ function GamePage() {
         <LobbyCodeDisplay lobbyId={lobbyId} />
       </Stack>
       <Divider />
-
       {status === LobbyStatus.NOT_STARTED && (
         <LobbyPane
           gameState={gameState!}
