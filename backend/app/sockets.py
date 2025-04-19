@@ -45,10 +45,14 @@ class ConnectionManager:
         self.lobby_to_connections[lobby_id].append(connection)
         self.connection_to_metadata[connection] = PlayerMetadata(lobby_id, player_id)
 
-        # reconnect if player already in lobby
         player_by_id = next(
             (player for player in lobby.players if player.id == player_id), None
         )
+        # reject if lobby is full and player is not reconnecting
+        if player_by_id is None and len(lobby.players) >= 8:
+            await self.send_event(connection, "GO_HOME", {})
+            return
+        # reconnect if player already in lobby
         if player_by_id is not None:
             player_by_id.name = player_name
             player_by_id.disconnected = False
@@ -110,6 +114,11 @@ class ConnectionManager:
         self.lobby_to_connections[lobby_id].remove(connection)
 
         lobby = await Lobby.get(lobby_id)
+        player = next(
+            (player for player in lobby.players if player.id == player_id), None
+        )
+        if player is None:
+            return
 
         # pass lobby leader if they leave
         if lobby.creator == player_id:
@@ -125,7 +134,6 @@ class ConnectionManager:
                     {"playerId": new_creator.id},
                 )
 
-        player = next((player for player in lobby.players if player.id == player_id))
         # game not started
         if lobby.start_time is None:
             lobby.players.remove(player)
