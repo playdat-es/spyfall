@@ -1,17 +1,17 @@
 import { useEffect, useState } from 'react';
 import { adjectives, animals, uniqueNamesGenerator } from 'unique-names-generator';
 import useWebSocket from 'react-use-websocket';
-import { Lobby, Player, WebSocketMessage, WebSocketMessageType } from '../models.ts';
+import { Lobby, Location, Player, WebSocketMessage, WebSocketMessageType } from '../models.ts';
 import { uuid } from '../utils.ts';
 import { NavigateFunction } from 'react-router-dom';
 
 export interface GameStateType {
   players: Player[];
   creator: string;
-  location?: string;
+  location?: Location;
   startTime?: number;
   duration?: number;
-  possibleLocations: string[];
+  possibleLocations: Location[];
 }
 
 export const useGameStateManager = (navigate: NavigateFunction) => {
@@ -32,10 +32,10 @@ export const useGameStateManager = (navigate: NavigateFunction) => {
 
   const [players, setPlayers] = useState<Player[]>([]);
   const [creator, setCreator] = useState<string>('');
-  const [location, setLocation] = useState<string>();
+  const [location, setLocation] = useState<Location>();
   const [startTime, setStartTime] = useState<number>();
   const [duration, setDuration] = useState<number>();
-  const [possibleLocations, setPossibleLocations] = useState<string[]>([]);
+  const [possibleLocations, setPossibleLocations] = useState<Location[]>([]);
 
   const handleLobbyState = (lobby: Lobby) => {
     setPlayers(lobby.players);
@@ -90,7 +90,7 @@ export const useGameStateManager = (navigate: NavigateFunction) => {
     setCreator(id);
   };
 
-  const handlePossibleLocations = (locations: string[]) => {
+  const handlePossibleLocations = (locations: Location[]) => {
     setPossibleLocations(locations);
   };
 

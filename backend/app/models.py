@@ -24,10 +24,20 @@ def valid_uuid(value):
         return uuid.uuid4().hex
 
 
+class Role(BaseModel):
+    name: str
+    description: str
+
+
+class Location(BaseModel):
+    name: str
+    description: str
+
+
 class Player(BaseModel):
     id: str = Field(default_factory=lambda: uuid.uuid4().hex)
     name: Annotated[str, BeforeValidator(sanitize_name)]
-    role: Optional[str] = None
+    role: Optional[Role] = None
     dedupe: Optional[int] = 0
     disconnected: bool = False
 
@@ -42,7 +52,7 @@ class Lobby(Document):
     id: str = Field(default_factory=generate_id)
     creator: str = Field(default_factory=lambda: uuid.uuid4().hex)
     players: List[Player] = Field(default_factory=list)
-    location: Optional[str] = None
+    location: Optional[Location] = None
     start_time: Optional[int] = None
     duration: int = Field(default=480)  # seconds
     create_time: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))

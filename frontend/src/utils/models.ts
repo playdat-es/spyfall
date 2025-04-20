@@ -1,7 +1,17 @@
+export interface Role {
+  name: string;
+  description: string;
+}
+
+export interface Location {
+  name: string;
+  description: string;
+}
+
 export interface Player {
   id: string;
   name: string;
-  role?: string;
+  role?: Role;
   dedupe?: number;
   disconnected: boolean;
 }
@@ -10,7 +20,7 @@ export interface Lobby {
   id: string;
   creator: string;
   players: Player[];
-  location?: string;
+  location?: Location;
   start_time?: number;
   duration?: number;
 }
