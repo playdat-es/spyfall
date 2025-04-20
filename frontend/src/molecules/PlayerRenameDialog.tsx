@@ -8,7 +8,7 @@ import {
 } from '@mui/material';
 import { useState } from 'react';
 import { PLAYER_NAME_LENGTH } from '../utils/utils.ts';
-
+import CloseDialogButton from '../atoms/CloseDialogButton.tsx';
 interface PlayerRenameDialogProps {
   open: boolean;
   onClose: () => void;
@@ -31,7 +31,10 @@ function PlayerRenameDialog({
 
   return (
     <Dialog open={open} onClose={onClose}>
-      <DialogTitle>Edit Name</DialogTitle>
+      <DialogTitle>
+        Edit Name
+        <CloseDialogButton onClick={onClose} />
+      </DialogTitle>
       <DialogContent>
         <TextField
           value={newName}

@@ -3,6 +3,7 @@ import { Button, Stack, TextField, Typography } from '@mui/material';
 import { useNavigate, useLocation } from 'react-router-dom';
 import logo from '../assets/logo.svg';
 import { PLAYER_NAME_LENGTH, post, uuid } from '../utils/utils.ts';
+import HowToPlayDialog from '../molecules/HowToPlayDialog.tsx';
 import LobbyCodeDialog from '../molecules/LobbyCodeDialog.tsx';
 import ErrorToast from '../molecules/ErrorToast.tsx';
 
@@ -10,6 +11,7 @@ function HomePage() {
   const navigate = useNavigate();
   const location = useLocation();
   const [name, setName] = useState(localStorage.getItem('playerName') || '');
+  const [showHowToPlayModal, setShowHowToPlayModal] = useState(false);
   const [showLobbyCodeModal, setShowLobbyCodeModal] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string>('');
   const [showError, setShowError] = useState(false);
@@ -79,6 +81,9 @@ function HomePage() {
           <Button variant="contained" disabled={!name} onClick={handleJoinLobby}>
             Join Lobby
           </Button>
+          <Button variant="text" onClick={() => setShowHowToPlayModal(true)} size="small">
+            how to play
+          </Button>
         </Stack>
       </Stack>
       <LobbyCodeDialog
@@ -86,6 +91,7 @@ function HomePage() {
         onClose={() => setShowLobbyCodeModal(false)}
         playerName={name}
       />
+      <HowToPlayDialog open={showHowToPlayModal} onClose={() => setShowHowToPlayModal(false)} />
       <ErrorToast open={showError} onClose={() => setShowError(false)} message={errorMessage} />
     </Stack>
   );

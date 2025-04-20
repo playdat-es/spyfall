@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Dialog, DialogContent, DialogTitle, TextField } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { LOBBY_CODE_LENGTH, post, sanitizeLobbyCode, uuid } from '../utils/utils.ts';
+import CloseDialogButton from '../atoms/CloseDialogButton.tsx';
 
 interface LobbyCodeDialogProps {
   open: boolean;
@@ -47,7 +48,10 @@ function LobbyCodeDialog({ open, onClose, playerName }: LobbyCodeDialogProps) {
 
   return (
     <Dialog open={open} onClose={onDialogClose}>
-      <DialogTitle>Enter Lobby Code</DialogTitle>
+      <DialogTitle>
+        Enter Lobby Code
+        <CloseDialogButton onClick={onClose} />
+      </DialogTitle>
       <DialogContent sx={{ py: 0 }}>
         <TextField
           fullWidth
