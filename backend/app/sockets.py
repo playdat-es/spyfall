@@ -54,7 +54,7 @@ class ConnectionManager:
                 connection, "GO_HOME", {"message": "Cannot join with no name"}
             )
             return
-        if lobby := await Lobby.get(lobby_id) is None:
+        if (lobby := await Lobby.get(lobby_id)) is None:
             await self.send_event(
                 connection, "GO_HOME", {"message": f"Lobby {lobby_id} does not exist"}
             )

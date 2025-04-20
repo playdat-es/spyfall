@@ -2,13 +2,13 @@ import { Stack, Tooltip, Typography } from '@mui/material';
 import { Location } from '../utils/models.ts';
 
 interface LocationProps {
-  location: Location;
+  location?: Location;
 }
 
 function LocationDisplay({ location }: LocationProps) {
   return (
     <Stack height="52px">
-      <Tooltip title={location.description} arrow>
+      <Tooltip title={location?.description ?? ''} arrow>
         <Typography
           sx={{
             height: '100%',
@@ -21,7 +21,7 @@ function LocationDisplay({ location }: LocationProps) {
             lineHeight: 0.9,
           }}
         >
-          {location.name}
+          {location?.name ?? ''}
         </Typography>
       </Tooltip>
     </Stack>

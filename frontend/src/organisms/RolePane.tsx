@@ -20,7 +20,7 @@ function RolePane({ gameState, returnToLobbyEvent }: RolePaneProps) {
   const isCreator = gameState.creator === localStorage.getItem('playerId');
 
   const displayLocation =
-    role?.name !== 'Spy' && location
+    role?.name !== 'Spy'
       ? location
       : {
           name: '???',
