@@ -12,7 +12,12 @@ interface LobbyCodeDialogProps {
 function LobbyCodeDialog({ open, onClose, playerName }: LobbyCodeDialogProps) {
   const navigate = useNavigate();
   const [disableCodeField, setDisableCodeField] = useState(false);
-  const [codeHelperText, setCodeHelperText] = useState('');
+  const [codeHelperText, setCodeHelperText] = useState(' ');
+
+  const onDialogClose = () => {
+    onClose();
+    setCodeHelperText(' ');
+  };
 
   const handleCodeChange = (code: string) => {
     code = sanitizeLobbyCode(code);
@@ -41,15 +46,14 @@ function LobbyCodeDialog({ open, onClose, playerName }: LobbyCodeDialogProps) {
   };
 
   return (
-    <Dialog open={open} onClose={onClose}>
+    <Dialog open={open} onClose={onDialogClose}>
       <DialogTitle>Enter Lobby Code</DialogTitle>
-      <DialogContent>
+      <DialogContent sx={{ py: 0 }}>
         <TextField
-          placeholder="Lobby Code"
           fullWidth
           slotProps={{ htmlInput: { style: { textTransform: 'uppercase' } } }}
           helperText={codeHelperText}
-          error={codeHelperText !== ''}
+          error={!!codeHelperText.trim()}
           disabled={disableCodeField}
           onChange={(event) => handleCodeChange(event.target.value)}
         />

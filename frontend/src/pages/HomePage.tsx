@@ -1,18 +1,34 @@
 import { useEffect, useState } from 'react';
 import { Button, Stack, TextField, Typography } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import logo from '../assets/logo.svg';
 import { PLAYER_NAME_LENGTH, post, uuid } from '../utils/utils.ts';
 import LobbyCodeDialog from '../molecules/LobbyCodeDialog.tsx';
+import ErrorToast from '../molecules/ErrorToast.tsx';
 
 function HomePage() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [name, setName] = useState(localStorage.getItem('playerName') || '');
   const [showLobbyCodeModal, setShowLobbyCodeModal] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string>('');
+  const [showError, setShowError] = useState(false);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_BASE_URL}/`, { method: 'GET' });
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/`, { method: 'GET' }).catch((error) => {
+      console.error(error);
+      setErrorMessage('Failed to connect to server');
+      setShowError(true);
+    });
   }, []);
+
+  useEffect(() => {
+    if (location.state?.errorMessage) {
+      setErrorMessage(location.state.errorMessage);
+      setShowError(true);
+      navigate(location.pathname, { replace: true, state: {} });
+    }
+  }, [location, navigate]);
 
   const handleCreateLobby = () => {
     fetch(
@@ -26,10 +42,14 @@ function HomePage() {
           localStorage.setItem('playerName', json.playerName);
           navigate(`/${json.lobbyId}`);
         } else {
-          console.error(json);
+          throw new TypeError('Server did not return created lobby id');
         }
       })
-      .catch((error) => console.error(error));
+      .catch((error) => {
+        console.error(error);
+        setErrorMessage('Failed to create lobby');
+        setShowError(true);
+      });
   };
 
   const handleJoinLobby = () => {
@@ -66,6 +86,7 @@ function HomePage() {
         onClose={() => setShowLobbyCodeModal(false)}
         playerName={name}
       />
+      <ErrorToast open={showError} onClose={() => setShowError(false)} message={errorMessage} />
     </Stack>
   );
 }
