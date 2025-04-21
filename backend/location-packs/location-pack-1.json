@@ -3,991 +3,1021 @@
     "locations": [
       {
         "name": "Airplane",
+        "description": "A commercial airliner cruising at 35,000 feet",
         "roles": [
           {
             "name": "Business Class Passenger",
-            "description": ""
+            "description": "A well-dressed traveler enjoying premium service and comfort"
           },
           {
             "name": "Coach Passenger",
-            "description": ""
+            "description": "An economy class traveler trying to make the most of their journey"
           },
           {
             "name": "Copilot",
-            "description": ""
+            "description": "The second-in-command pilot assisting with flight operations"
           },
           {
             "name": "Flight Attendant",
-            "description": ""
+            "description": "A crew member responsible for passenger safety and comfort"
           },
           {
             "name": "Flight Engineer",
-            "description": ""
+            "description": "A technical expert monitoring aircraft systems and performance"
           },
           {
             "name": "Pilot",
-            "description": ""
+            "description": "The captain in command of the aircraft and its passengers"
           },
           {
             "name": "Stowaway",
-            "description": ""
+            "description": "Someone who has secretly boarded the plane without authorization"
           }
         ]
       },
       {
         "name": "Amusement Park",
+        "description": "A bustling theme park filled with rides, games, and entertainment",
         "roles": [
           {
             "name": "Clown",
-            "description": ""
+            "description": "A performer entertaining guests with jokes and balloon animals"
           },
           {
             "name": "Kid",
-            "description": ""
+            "description": "A young visitor excited to ride all the attractions"
           },
           {
             "name": "Mechanic",
-            "description": ""
+            "description": "A technician responsible for maintaining and repairing rides"
           },
           {
             "name": "Ride Operator",
-            "description": ""
+            "description": "A staff member controlling and supervising amusement rides"
           },
           {
             "name": "Tourist",
-            "description": ""
+            "description": "A visitor exploring the park's attractions and shows"
           },
           {
             "name": "Vendor",
-            "description": ""
+            "description": "Someone selling food, drinks, or souvenirs to park guests"
           },
           {
             "name": "Visitor",
-            "description": ""
+            "description": "A guest enjoying the park's various attractions and entertainment"
           }
         ]
       },
       {
         "name": "Bank",
+        "description": "A financial institution handling money and customer transactions",
         "roles": [
           {
             "name": "Armored Car Driver",
-            "description": ""
+            "description": "A security professional transporting valuable assets"
           },
           {
             "name": "Branch Manager",
-            "description": ""
+            "description": "The person in charge of the bank's daily operations"
           },
           {
             "name": "Consultant",
-            "description": ""
+            "description": "A financial advisor helping clients with their banking needs"
           },
           {
             "name": "Customer",
-            "description": ""
+            "description": "Someone conducting personal or business banking transactions"
           },
           {
             "name": "Security Guard",
-            "description": ""
+            "description": "A trained professional ensuring the safety of the bank and its customers"
           },
           {
             "name": "Robber",
-            "description": ""
+            "description": "Someone attempting to steal money from the bank"
           },
           {
             "name": "Teller",
-            "description": ""
+            "description": "A bank employee handling customer transactions at the counter"
           }
         ]
       },
       {
         "name": "Beach",
+        "description": "A sunny coastal area with sand, waves, and beachgoers enjoying the water",
         "roles": [
           {
             "name": "Entertainment Director",
-            "description": ""
+            "description": "A staff member organizing beach activities and events"
           },
           {
             "name": "Food Vendor",
-            "description": ""
+            "description": "Someone selling snacks and refreshments to beach visitors"
           },
           {
             "name": "Lifeguard",
-            "description": ""
+            "description": "A trained professional watching over swimmers' safety"
           },
           {
             "name": "Paraglider",
-            "description": ""
+            "description": "An adventurous person flying over the beach with a parachute"
           },
           {
             "name": "Photographer with Monkey",
-            "description": ""
+            "description": "A photographer offering souvenir photos with a trained monkey"
           },
           {
             "name": "Thief",
-            "description": ""
+            "description": "Someone stealing from unattended beach bags and belongings"
           },
           {
             "name": "Vacationer",
-            "description": ""
+            "description": "A tourist relaxing and enjoying their time at the beach"
           }
         ]
       },
       {
         "name": "Carnival",
+        "description": "A festive gathering with games, rides, and various attractions",
         "roles": [
           {
             "name": "Costumer",
-            "description": ""
+            "description": "A person creating and maintaining costumes for performers"
           },
           {
             "name": "Photographer",
-            "description": ""
+            "description": "Someone capturing memories of carnival visitors"
           },
           {
             "name": "Reenactor",
-            "description": ""
+            "description": "A performer recreating historical scenes or characters"
           },
           {
             "name": "Reporter",
-            "description": ""
+            "description": "A journalist covering the carnival events and attractions"
           },
           {
             "name": "Roleplaying Game Fan",
-            "description": ""
+            "description": "An enthusiast participating in fantasy or historical roleplay"
           },
           {
             "name": "Tourist",
-            "description": ""
+            "description": "A visitor exploring the carnival's various attractions"
           },
           {
             "name": "Vendor",
-            "description": ""
+            "description": "Someone selling food, drinks, or carnival merchandise"
           }
         ]
       },
       {
         "name": "Casino",
+        "description": "A glamorous establishment offering various games of chance",
         "roles": [
           {
             "name": "Administrator",
-            "description": ""
+            "description": "A manager overseeing casino operations and staff"
           },
           {
             "name": "Bartender",
-            "description": ""
+            "description": "A server preparing and serving drinks to casino patrons"
           },
           {
             "name": "Bouncer",
-            "description": ""
+            "description": "A security professional maintaining order in the casino"
           },
           {
             "name": "Cardsharp",
-            "description": ""
+            "description": "A skilled gambler known for their card-playing abilities"
           },
           {
             "name": "Dealer",
-            "description": ""
+            "description": "A casino employee running table games and handling bets"
           },
           {
             "name": "Head of Security",
-            "description": ""
+            "description": "The person in charge of casino safety and surveillance"
           },
           {
             "name": "Gambler",
-            "description": ""
+            "description": "A patron playing various casino games and placing bets"
           }
         ]
       },
       {
         "name": "Circus Tent",
+        "description": "A large tent hosting spectacular circus performances and acts",
         "roles": [
           {
             "name": "Acrobat",
-            "description": ""
+            "description": "A performer executing impressive gymnastic feats"
           },
           {
             "name": "Animal Tamer",
-            "description": ""
+            "description": "A trainer working with circus animals during performances"
           },
           {
             "name": "Circus-Goer",
-            "description": ""
+            "description": "An audience member watching the circus performances"
           },
           {
             "name": "Clown",
-            "description": ""
+            "description": "A comedic performer entertaining the crowd"
           },
           {
             "name": "Juggler",
-            "description": ""
+            "description": "A performer skillfully keeping multiple objects in the air"
           },
           {
             "name": "Knife Thrower",
-            "description": ""
+            "description": "A performer demonstrating precision with throwing knives"
           },
           {
             "name": "Magician",
-            "description": ""
+            "description": "A performer creating illusions and magic tricks"
           }
         ]
       },
       {
         "name": "Corporate Party",
+        "description": "A formal gathering of company employees and executives",
         "roles": [
           {
             "name": "Accountant",
-            "description": ""
+            "description": "A financial professional discussing company finances"
           },
           {
             "name": "Administrative Assistant",
-            "description": ""
+            "description": "A support staff member helping with party organization"
           },
           {
             "name": "CEO",
-            "description": ""
+            "description": "The company's chief executive officer mingling with staff"
           },
           {
             "name": "Courier",
-            "description": ""
+            "description": "A delivery person bringing important documents or items"
           },
           {
             "name": "Emcee",
-            "description": ""
+            "description": "A host announcing events and keeping the party flowing"
           },
           {
             "name": "Manager",
-            "description": ""
+            "description": "A department head networking with their team"
           },
           {
             "name": "Party Crasher",
-            "description": ""
+            "description": "Someone who wasn't invited but joined the party anyway"
           }
         ]
       },
       {
         "name": "Crusader Army",
+        "description": "A medieval military camp preparing for a holy campaign",
         "roles": [
           {
             "name": "Archer",
-            "description": ""
+            "description": "A soldier skilled in using bows and arrows"
           },
           {
             "name": "Bishop",
-            "description": ""
+            "description": "A religious leader providing spiritual guidance"
           },
           {
             "name": "Captive Nomad",
-            "description": ""
+            "description": "A prisoner from a nomadic tribe being held captive"
           },
           {
             "name": "Knight",
-            "description": ""
+            "description": "A noble warrior in shining armor"
           },
           {
             "name": "Monk",
-            "description": ""
+            "description": "A religious figure offering prayers and counsel"
           },
           {
             "name": "Servant",
-            "description": ""
+            "description": "A worker attending to the needs of the army"
           },
           {
             "name": "Squire",
-            "description": ""
+            "description": "A young attendant training to become a knight"
           }
         ]
       },
       {
         "name": "Day Spa",
+        "description": "A luxurious facility offering various beauty and relaxation treatments",
         "roles": [
           {
             "name": "Beautician",
-            "description": ""
+            "description": "A professional providing beauty treatments and services"
           },
           {
             "name": "Customer",
-            "description": ""
+            "description": "A client receiving spa treatments and services"
           },
           {
             "name": "Dermatologist",
-            "description": ""
+            "description": "A skin care specialist providing medical treatments"
           },
           {
             "name": "Makeup Specialist",
-            "description": ""
+            "description": "An expert in applying and teaching makeup techniques"
           },
           {
             "name": "Masseur",
-            "description": ""
+            "description": "A professional providing therapeutic massage services"
           },
           {
             "name": "Nail Specialist",
-            "description": ""
+            "description": "A technician providing manicure and pedicure services"
           },
           {
             "name": "Stylist",
-            "description": ""
+            "description": "A professional offering hair and beauty styling services"
           }
         ]
       },
       {
         "name": "Embassy",
+        "description": "A diplomatic building representing a foreign government",
         "roles": [
           {
             "name": "Ambassador",
-            "description": ""
+            "description": "The highest-ranking diplomatic representative"
           },
           {
             "name": "Bureaucrat",
-            "description": ""
+            "description": "An administrative official handling embassy paperwork"
           },
           {
             "name": "Diplomat",
-            "description": ""
+            "description": "A government representative conducting international relations"
           },
           {
             "name": "Refugee",
-            "description": ""
+            "description": "Someone seeking asylum or protection at the embassy"
           },
           {
             "name": "Secretary",
-            "description": ""
+            "description": "An administrative assistant managing embassy communications"
           },
           {
             "name": "Security Guard",
-            "description": ""
+            "description": "A trained professional protecting the embassy"
           },
           {
             "name": "Tourist",
-            "description": ""
+            "description": "A visitor seeking travel information or assistance"
           }
         ]
       },
       {
         "name": "Hospital",
+        "description": "A medical facility providing healthcare services and treatment",
         "roles": [
           {
             "name": "Head Physician",
-            "description": ""
+            "description": "The senior doctor overseeing medical staff and decisions"
           },
           {
             "name": "Intern",
-            "description": ""
+            "description": "A medical student gaining practical experience"
           },
           {
             "name": "Nurse",
-            "description": ""
+            "description": "A healthcare professional providing patient care"
           },
           {
             "name": "Pathologist",
-            "description": ""
+            "description": "A doctor specializing in diagnosing diseases"
           },
           {
             "name": "Patient",
-            "description": ""
+            "description": "Someone receiving medical treatment or care"
           },
           {
             "name": "Physician",
-            "description": ""
+            "description": "A medical doctor providing healthcare services"
           },
           {
             "name": "Surgeon",
-            "description": ""
+            "description": "A doctor performing medical operations"
           }
         ]
       },
       {
         "name": "Hotel",
+        "description": "A lodging establishment offering rooms and various amenities",
         "roles": [
           {
             "name": "Bartender",
-            "description": ""
+            "description": "A server preparing and serving drinks in the hotel bar"
           },
           {
             "name": "Doorman",
-            "description": ""
+            "description": "A staff member greeting guests and handling luggage"
           },
           {
             "name": "Guest",
-            "description": ""
+            "description": "A person staying at the hotel"
           },
           {
             "name": "Hotel Manager",
-            "description": ""
+            "description": "The person in charge of hotel operations"
           },
           {
             "name": "Housekeeper",
-            "description": ""
+            "description": "A staff member cleaning and maintaining rooms"
           },
           {
             "name": "Receptionist",
-            "description": ""
+            "description": "A front desk employee handling check-ins and inquiries"
           },
           {
             "name": "Security Guard",
-            "description": ""
+            "description": "A professional ensuring hotel safety and security"
           }
         ]
       },
       {
         "name": "Military Base",
+        "description": "A secure facility housing military personnel and equipment",
         "roles": [
           {
             "name": "Colonel",
-            "description": ""
+            "description": "A high-ranking military officer in command"
           },
           {
             "name": "Deserter",
-            "description": ""
+            "description": "A soldier who has left their post without permission"
           },
           {
             "name": "Medic",
-            "description": ""
+            "description": "A medical professional providing healthcare to soldiers"
           },
           {
             "name": "Non-Commissioned Officer",
-            "description": ""
+            "description": "A senior enlisted soldier supervising other troops"
           },
           {
             "name": "Private",
-            "description": ""
+            "description": "A junior enlisted soldier following orders"
           },
           {
             "name": "Sales Clerk",
-            "description": ""
+            "description": "A worker in the base's retail store"
           },
           {
             "name": "Sentry",
-            "description": ""
+            "description": "A guard posted to keep watch and prevent unauthorized access"
           }
         ]
       },
       {
         "name": "Movie Studio",
+        "description": "A production facility where films and shows are created",
         "roles": [
           {
             "name": "Actor",
-            "description": ""
+            "description": "A performer playing a role in the production"
           },
           {
             "name": "Cameraman",
-            "description": ""
+            "description": "A technician operating the camera equipment"
           },
           {
             "name": "Costume Designer",
-            "description": ""
+            "description": "A professional creating outfits for the production"
           },
           {
             "name": "Director",
-            "description": ""
+            "description": "The person in charge of the creative vision and filming"
           },
           {
             "name": "Extra",
-            "description": ""
+            "description": "A background performer in the production"
           },
           {
             "name": "Sound Engineer",
-            "description": ""
+            "description": "A technician handling audio recording and mixing"
           },
           {
             "name": "Stuntman",
-            "description": ""
+            "description": "A performer executing dangerous or difficult scenes"
           }
         ]
       },
       {
         "name": "Night Club",
+        "description": "A lively venue for music, dancing, and socializing",
         "roles": [
           {
             "name": "Barman",
-            "description": ""
+            "description": "A bartender mixing and serving drinks"
           },
           {
             "name": "Bouncer",
-            "description": ""
+            "description": "A security professional maintaining order"
           },
           {
             "name": "Dancer",
-            "description": ""
+            "description": "A performer entertaining with dance moves"
           },
           {
             "name": "DJ",
-            "description": ""
+            "description": "A music selector and mixer for the club"
           },
           {
             "name": "Model",
-            "description": ""
+            "description": "A fashion model promoting the club's image"
           },
           {
             "name": "Pick-Up Artist",
-            "description": ""
+            "description": "Someone skilled at meeting and attracting others"
           },
           {
             "name": "Regular",
-            "description": ""
+            "description": "A frequent patron of the club"
           }
         ]
       },
       {
         "name": "Ocean Liner",
+        "description": "A large passenger ship traveling across the ocean",
         "roles": [
           {
             "name": "Attendant",
-            "description": ""
+            "description": "A staff member serving passengers' needs"
           },
           {
             "name": "Bartender",
-            "description": ""
+            "description": "A server preparing drinks in the ship's bar"
           },
           {
             "name": "Captain",
-            "description": ""
+            "description": "The officer in command of the ship"
           },
           {
             "name": "Cook",
-            "description": ""
+            "description": "A chef preparing meals for passengers"
           },
           {
             "name": "Musician",
-            "description": ""
+            "description": "A performer entertaining passengers"
           },
           {
             "name": "Radio Operator",
-            "description": ""
+            "description": "A technician handling ship communications"
           },
           {
             "name": "Wealthy Passenger",
-            "description": ""
+            "description": "A first-class traveler enjoying luxury amenities"
           }
         ]
       },
       {
         "name": "Passenger Train",
+        "description": "A railway vehicle transporting travelers between destinations",
         "roles": [
           {
             "name": "Conductor",
-            "description": ""
+            "description": "The person in charge of the train's operations"
           },
           {
             "name": "Dining Car Cook",
-            "description": ""
+            "description": "A chef preparing meals in the train's kitchen"
           },
           {
             "name": "Passenger",
-            "description": ""
+            "description": "A traveler riding the train"
           },
           {
             "name": "Passenger Car Attendant",
-            "description": ""
+            "description": "A staff member assisting passengers"
           },
           {
             "name": "Stoker",
-            "description": ""
+            "description": "A worker maintaining the train's steam engine"
           },
           {
             "name": "Ticket Taker",
-            "description": ""
+            "description": "An employee checking and collecting tickets"
           },
           {
             "name": "Vendor",
-            "description": ""
+            "description": "Someone selling snacks and drinks on the train"
           }
         ]
       },
       {
         "name": "Pirate Ship",
+        "description": "A vessel crewed by pirates seeking treasure and adventure",
         "roles": [
           {
             "name": "Cabin Boy",
-            "description": ""
+            "description": "A young crew member learning the pirate trade"
           },
           {
             "name": "Cook",
-            "description": ""
+            "description": "A crew member preparing meals for the pirates"
           },
           {
             "name": "Gunner",
-            "description": ""
+            "description": "A pirate operating the ship's cannons"
           },
           {
             "name": "Seaman",
-            "description": ""
+            "description": "A regular crew member handling ship duties"
           },
           {
             "name": "Shackled Prisoner",
-            "description": ""
+            "description": "A captive being held on the ship"
           },
           {
             "name": "Slave",
-            "description": ""
+            "description": "An unwilling worker forced to serve the pirates"
           },
           {
             "name": "Swashbuckling Captain",
-            "description": ""
+            "description": "The charismatic leader of the pirate crew"
           }
         ]
       },
       {
         "name": "Polar Station",
+        "description": "A research facility in the Arctic or Antarctic",
         "roles": [
           {
             "name": "Biologist",
-            "description": ""
+            "description": "A scientist studying polar wildlife and ecosystems"
           },
           {
             "name": "Expedition Leader",
-            "description": ""
+            "description": "The person in charge of the research station"
           },
           {
             "name": "Geoscientist",
-            "description": ""
+            "description": "A researcher studying polar geology and climate"
           },
           {
             "name": "Hydrologist",
-            "description": ""
+            "description": "A scientist studying polar water systems"
           },
           {
             "name": "Medic",
-            "description": ""
+            "description": "A medical professional caring for station personnel"
           },
           {
             "name": "Meteorologist",
-            "description": ""
+            "description": "A scientist studying polar weather patterns"
           },
           {
             "name": "Radio Operator",
-            "description": ""
+            "description": "A technician maintaining communications equipment"
           }
         ]
       },
       {
         "name": "Police Station",
+        "description": "A law enforcement facility handling criminal cases",
         "roles": [
           {
             "name": "Attorney",
-            "description": ""
+            "description": "A lawyer representing clients at the station"
           },
           {
             "name": "Beat Cop",
-            "description": ""
+            "description": "A patrol officer working the streets"
           },
           {
             "name": "Criminal Lawyer",
-            "description": ""
+            "description": "A defense attorney representing accused individuals"
           },
           {
             "name": "Detective",
-            "description": ""
+            "description": "An investigator solving criminal cases"
           },
           {
             "name": "Journalist",
-            "description": ""
+            "description": "A reporter covering police activities"
           },
           {
             "name": "Lieutenant",
-            "description": ""
+            "description": "A mid-ranking police officer supervising others"
           },
           {
             "name": "Suspect",
-            "description": ""
+            "description": "Someone being questioned about a crime"
           }
         ]
       },
       {
         "name": "Restaurant",
+        "description": "An establishment serving prepared meals to customers",
         "roles": [
           {
             "name": "Busboy",
-            "description": ""
+            "description": "A staff member clearing and cleaning tables"
           },
           {
             "name": "Chef",
-            "description": ""
+            "description": "A professional preparing meals in the kitchen"
           },
           {
             "name": "Customer",
-            "description": ""
+            "description": "A patron dining at the restaurant"
           },
           {
             "name": "Food Critic",
-            "description": ""
+            "description": "A reviewer evaluating the restaurant's food"
           },
           {
             "name": "Maître d'hôtel",
-            "description": ""
+            "description": "The person managing the dining room and reservations"
           },
           {
             "name": "Musician",
-            "description": ""
+            "description": "A performer providing entertainment"
           },
           {
             "name": "Waiter",
-            "description": ""
+            "description": "A server taking orders and serving food"
           }
         ]
       },
       {
         "name": "School",
+        "description": "An educational institution for teaching students",
         "roles": [
           {
             "name": "Gym Teacher",
-            "description": ""
+            "description": "An instructor teaching physical education"
           },
           {
             "name": "Janitor",
-            "description": ""
+            "description": "A maintenance worker keeping the school clean"
           },
           {
             "name": "Math Teacher",
-            "description": ""
+            "description": "An instructor teaching mathematics"
           },
           {
             "name": "Principal",
-            "description": ""
+            "description": "The head administrator of the school"
           },
           {
             "name": "Security Guard",
-            "description": ""
+            "description": "A professional ensuring school safety"
           },
           {
             "name": "Student",
-            "description": ""
+            "description": "A learner attending classes"
           },
           {
             "name": "Vice Principal",
-            "description": ""
+            "description": "The assistant to the principal"
           }
         ]
       },
       {
         "name": "Service Station",
+        "description": "A facility providing vehicle maintenance and fuel",
         "roles": [
           {
             "name": "Biker",
-            "description": ""
+            "description": "A motorcycle rider getting their bike serviced"
           },
           {
             "name": "Car Washer",
-            "description": ""
+            "description": "A worker cleaning vehicles"
           },
           {
             "name": "Driver",
-            "description": ""
+            "description": "A customer getting their vehicle serviced"
           },
           {
             "name": "Electrical Technician",
-            "description": ""
+            "description": "A specialist handling vehicle electrical systems"
           },
           {
             "name": "Manager",
-            "description": ""
+            "description": "The person in charge of the service station"
           },
           {
             "name": "Service Receptionist",
-            "description": ""
+            "description": "An employee handling customer service requests"
           },
           {
             "name": "Tire Service Technician",
-            "description": ""
+            "description": "A specialist working on vehicle tires"
           }
         ]
       },
       {
         "name": "Space Station",
+        "description": "A scientific outpost orbiting in space",
         "roles": [
           {
             "name": "Alien",
-            "description": ""
+            "description": "An extraterrestrial being visiting the station"
           },
           {
             "name": "Doctor",
-            "description": ""
+            "description": "A medical professional caring for the crew"
           },
           {
             "name": "Mechanical Engineer",
-            "description": ""
+            "description": "A specialist maintaining station systems"
           },
           {
             "name": "Mission Commander",
-            "description": ""
+            "description": "The leader of the space station crew"
           },
           {
             "name": "Pilot",
-            "description": ""
+            "description": "A trained astronaut operating spacecraft"
           },
           {
             "name": "Research Engineer",
-            "description": ""
+            "description": "A scientist conducting space experiments"
           },
           {
             "name": "Space Tourist",
-            "description": ""
+            "description": "A civilian visiting the space station"
           }
         ]
       },
       {
         "name": "Submarine",
+        "description": "A watercraft capable of operating underwater",
         "roles": [
           {
             "name": "Commander",
-            "description": ""
+            "description": "The officer in charge of the submarine"
           },
           {
             "name": "Cook",
-            "description": ""
+            "description": "A crew member preparing meals"
           },
           {
             "name": "Electrical Officer",
-            "description": ""
+            "description": "A specialist maintaining electrical systems"
           },
           {
             "name": "Navigator",
-            "description": ""
+            "description": "An officer plotting the submarine's course"
           },
           {
             "name": "Radio Operator",
-            "description": ""
+            "description": "A technician handling communications"
           },
           {
             "name": "Sailor",
-            "description": ""
+            "description": "A regular crew member"
           },
           {
             "name": "Sonar Operator",
-            "description": ""
+            "description": "A specialist monitoring underwater sounds"
           }
         ]
       },
       {
         "name": "Supermarket",
+        "description": "A large retail store selling food and household items",
         "roles": [
           {
             "name": "Butcher",
-            "description": ""
+            "description": "A specialist preparing and selling meat"
           },
           {
             "name": "Cashier",
-            "description": ""
+            "description": "An employee handling customer payments"
           },
           {
             "name": "Customer",
-            "description": ""
+            "description": "A shopper buying groceries"
           },
           {
             "name": "Delivery Man",
-            "description": ""
+            "description": "A worker bringing in new stock"
           },
           {
             "name": "Janitor",
-            "description": ""
+            "description": "A maintenance worker keeping the store clean"
           },
           {
             "name": "Merchandiser",
-            "description": ""
+            "description": "A staff member arranging products on shelves"
           },
           {
             "name": "Security Guard",
-            "description": ""
+            "description": "A professional preventing theft"
           }
         ]
       },
       {
         "name": "Theatre",
+        "description": "A venue for live performances and shows",
         "roles": [
           {
             "name": "Actor",
-            "description": ""
+            "description": "A performer playing a role on stage"
           },
           {
             "name": "Audience Member",
-            "description": ""
+            "description": "Someone watching the performance"
           },
           {
             "name": "Coatroom Attendant",
-            "description": ""
+            "description": "A staff member handling guests' coats"
           },
           {
             "name": "Director",
-            "description": ""
+            "description": "The person in charge of the production"
           },
           {
             "name": "Prompter",
-            "description": ""
+            "description": "Someone helping actors remember their lines"
           },
           {
             "name": "Stage Hand",
-            "description": ""
+            "description": "A worker handling stage equipment and props"
           },
           {
             "name": "Usher",
-            "description": ""
+            "description": "A staff member showing guests to their seats"
           }
         ]
       },
       {
         "name": "University",
+        "description": "An institution of higher education and research",
         "roles": [
           {
             "name": "Campus Security",
-            "description": ""
+            "description": "A professional ensuring campus safety"
           },
           {
             "name": "Dean",
-            "description": ""
+            "description": "A senior academic administrator"
           },
           {
             "name": "Graduate Student",
-            "description": ""
+            "description": "An advanced student pursuing a higher degree"
           },
           {
             "name": "President",
-            "description": ""
+            "description": "The head of the university"
           },
           {
             "name": "Professor",
-            "description": ""
+            "description": "A teacher and researcher"
           },
           {
             "name": "Researcher",
-            "description": ""
+            "description": "A scientist conducting academic studies"
           },
           {
             "name": "Student",
-            "description": ""
+            "description": "A learner attending university classes"
           }
         ]
       },
       {
         "name": "Zoo",
+        "description": "A facility where animals are kept for public viewing",
         "roles": [
           {
             "name": "Caretaker",
-            "description": ""
+            "description": "A staff member looking after the animals"
           },
           {
             "name": "General Manager",
-            "description": ""
+            "description": "The person in charge of zoo operations"
           },
           {
             "name": "Guide",
-            "description": ""
+            "description": "A staff member leading tours and providing information"
           },
           {
             "name": "Janitor",
-            "description": ""
+            "description": "A maintenance worker keeping the zoo clean"
           },
           {
             "name": "Vendor",
-            "description": ""
+            "description": "Someone selling food and souvenirs"
           },
           {
             "name": "Veterinarian",
-            "description": ""
+            "description": "A doctor caring for the animals"
           },
           {
             "name": "Visitor",
-            "description": ""
+            "description": "A guest viewing the animals"
           }
         ]
       }

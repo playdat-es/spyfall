@@ -1,16 +1,16 @@
 import { AppBar, Box, Grid2, Stack, Tab, Tabs } from '@mui/material';
 import { SyntheticEvent, useState } from 'react';
 import { AssignmentInd, Place, PowerOff } from '@mui/icons-material';
-import { Player } from '../utils/models.ts';
+import { Player, Location } from '../utils/models.ts';
 import StrikeableButton from '../atoms/StrikeableButton.tsx';
 
 interface NotesTabsProps {
   players: Player[];
-  locations: string[];
+  locations: Location[];
 }
 
 interface LocationsTabProps {
-  locations: string[];
+  locations: Location[];
   selected: boolean;
 }
 
@@ -24,8 +24,8 @@ function LocationsTab({ locations, selected }: LocationsTabProps) {
     <Box hidden={!selected}>
       <Grid2 container rowSpacing={0}>
         {locations.map((location) => (
-          <Grid2 size={{ xs: 6, sm: 4 }} key={location}>
-            <StrikeableButton text={location} />
+          <Grid2 size={{ xs: 6, sm: 4 }} key={location.name}>
+            <StrikeableButton text={location.name} tooltip={location.description} />
           </Grid2>
         ))}
       </Grid2>

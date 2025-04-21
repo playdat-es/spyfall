@@ -14,10 +14,18 @@ function RolePane({ gameState, returnToLobbyEvent }: RolePaneProps) {
   const [gameOver, setGameOver] = useState(false);
 
   const player = gameState.players.find((player) => player.id === localStorage.getItem('playerId'));
-  const role = player?.role ?? '';
-  const location = gameState.location ?? '';
+  const role = player?.role;
+  const location = gameState.location;
   const duration = gameState.duration ?? 0;
   const isCreator = gameState.creator === localStorage.getItem('playerId');
+
+  const displayLocation =
+    role?.name !== 'Spy'
+      ? location
+      : {
+          name: '???',
+          description: role?.description ?? '???',
+        };
 
   return (
     <Stack height="100%" px={2} justifyContent="space-between">
@@ -32,7 +40,7 @@ function RolePane({ gameState, returnToLobbyEvent }: RolePaneProps) {
           <RoleDisplay role={role} />
         </Grid2>
         <Grid2 size={6}>
-          <LocationDisplay location={role == 'Spy' ? '???' : location} />
+          <LocationDisplay location={displayLocation} />
         </Grid2>
       </Grid2>
       <NotesTabs locations={gameState.possibleLocations} players={gameState.players} />

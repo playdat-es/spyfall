@@ -7,7 +7,7 @@ from fastapi import APIRouter, WebSocket
 from starlette.websockets import WebSocketDisconnect
 from uvicorn.logging import logging
 
-from app.models import Lobby, Player, sanitize_lobby_id, sanitize_name
+from app.models import Lobby, Location, Player, Role, sanitize_lobby_id, sanitize_name
 
 logger = logging.getLogger("uvicorn")
 
@@ -54,7 +54,7 @@ class ConnectionManager:
                 connection, "GO_HOME", {"message": "Cannot join with no name"}
             )
             return
-        if lobby := await Lobby.get(lobby_id) is None:
+        if (lobby := await Lobby.get(lobby_id)) is None:
             await self.send_event(
                 connection, "GO_HOME", {"message": f"Lobby {lobby_id} does not exist"}
             )
@@ -89,7 +89,10 @@ class ConnectionManager:
                     "POSSIBLE_LOCATIONS",
                     {
                         "locations": [
-                            location["name"] for location in location_pack["locations"]
+                            Location(
+                                name=loc["name"], description=loc["description"]
+                            ).model_dump()
+                            for loc in location_pack["locations"]
                         ]
                     },
                 )
@@ -233,29 +236,40 @@ class ConnectionManager:
 
         with open("location-packs/location-pack-1.json") as json_file:
             location_pack = json.load(json_file)
-            location = random.choice(location_pack["locations"])
+            location_data = random.choice(location_pack["locations"])
+            location = Location(
+                name=location_data["name"], description=location_data["description"]
+            )
 
             spy = random.choice(lobby.players)
-            spy.role = "Spy"
+            spy.role = Role(
+                name="Spy",
+                description="You are the spy! Blend in and figure out the location.",
+            )
 
             for player in lobby.players:
-                if player.role != "Spy":
-                    role = random.choice(location["roles"])
-                    location["roles"].remove(role)
-                    player.role = role["name"]
+                if player.role is None:
+                    role = random.choice(location_data["roles"])
+                    location_data["roles"].remove(role)
+                    player.role = Role(
+                        name=role["name"], description=role["description"]
+                    )
 
             await self.broadcast_event(
                 lobby_id,
                 "POSSIBLE_LOCATIONS",
                 {
                     "locations": [
-                        location["name"] for location in location_pack["locations"]
+                        Location(
+                            name=loc["name"], description=loc["description"]
+                        ).model_dump()
+                        for loc in location_pack["locations"]
                     ]
                 },
             )
 
         lobby.start_time = int(time.time())
-        lobby.location = location["name"]
+        lobby.location = location
         await lobby.save()
 
         await self.broadcast_event(
