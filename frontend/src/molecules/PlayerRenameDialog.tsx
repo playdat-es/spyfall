@@ -9,6 +9,7 @@ import {
 import { useState } from 'react';
 import { PLAYER_NAME_LENGTH } from '../utils/utils.ts';
 import CloseDialogButton from '../atoms/CloseDialogButton.tsx';
+
 interface PlayerRenameDialogProps {
   open: boolean;
   onClose: () => void;
